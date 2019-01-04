@@ -1,0 +1,24 @@
+{
+  "pages":[
+		"pages/index/index",
+    "pages/promteCode/promteCode",
+    "pages/register/register",
+    "pages/login/login",
+    "pages/buyShop/buyShop",
+    "pages/toPromote/toPromote",
+		"pages/buyShop/editorArea/editorArea",
+    "pages/buyShop/editorList/editorList",
+    "pages/buyShop/cardActivate/cardActivate",
+    "pages/buyShop/payFinish/payFinish",
+    "pages/buyShop/shopList/shopList",
+    "pages/buyShop/shopDetail/shopDetail",
+    "pages/buyShop/shopPay/shopPay",
+    "pages/hospitalList/hospitalList"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#15cebc",
+    "navigationBarTitleText": "正在加载",
+    "navigationBarTextStyle":"#fff"
+  }
+}

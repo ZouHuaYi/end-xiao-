@@ -1,0 +1,45 @@
+<view class="container">
+	<view class="top-area">
+		<image class="icon-img" src="../../assets/icon_location@2x.png" mode="cover"></image>
+		<view class="top-text">
+			<view class="tt-top clearfix">
+				<text class="tt-name">请选择收获地址</text>
+				<text class="tt-phone">12313131</text>
+			</view>
+			<view class="tt-tip">收货地址不能为空，否则无法下单</view>
+			<image class="goto-icon" mode="cover" src="../../assets/icon_more@2x.png"></image>
+		</view>
+	</view>
+	<text class="color-line"></text>
+	<text class="line"></text>
+	<view class="hospital">广州艾美美容医院</view>
+	<text class="line"></text>
+	<view class="package">
+		<view class="pack-item">
+			<view class="pack-i-top">
+				<view class="pack-name">D套餐 （等级四）</view>
+				<view class="pack-num">0.01</view>
+				<view class="pack-radio"></view>
+			</view>
+			<view class="pack-i-text">
+				这也是目前国内除直辖市外，国内首个省级自动驾驶路测管理规定。广东省内已有深圳、广州、肇庆等地发布了市级自动驾驶管理规定。
+			</view>
+		</view>
+		<view class="pack-item">
+			<view class="pack-i-top">
+				<view class="pack-name">D套餐 （等级四）</view>
+				<view class="pack-num">0.01</view>
+				<!-- <view class="pack-radio"></view> -->
+				<icon class="pack-radio icon" type="success" size="20"></icon>
+			</view>
+			<view class="pack-i-text">
+				这也是目前国内除直辖市外，国内首个省级自动驾驶路测管理规定。广东省内已有深圳、广州、肇庆等地发布了市级自动驾驶管理规定。
+			</view>
+		</view>
+	</view>
+	<view class="form-btn">
+		<button class="in-btn" type="default">立即购买</button>
+	</view>
+	<view class="text-tip">一经购买不支持退款、级别变更，详情请见<text class="sm">《套餐说明》</text></view>
+</view>
+          

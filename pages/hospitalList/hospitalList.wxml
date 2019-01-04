@@ -1,0 +1,23 @@
+<view class="container">
+	<view class="search-text">
+		<view class="search-input">
+			<input type="text" placeholder="搜索商家" />
+		</view>
+		<view class="btn-click">
+			<icon class="search" type="search" size="20" color="#ffffff"></icon>
+		</view>
+	</view>
+	<view class="h-top">
+		<view class="nav-list">
+			<text class="on">默认</text>
+			<text>最热</text>
+			<text>最新</text>
+			<text>最新</text>
+		</view>
+		<view class="sec-list">
+			<text>全部</text>
+			<text>医院</text>
+			<text>美容院</text>
+		</view>
+	</view>
+</view>

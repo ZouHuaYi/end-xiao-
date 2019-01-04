@@ -1,0 +1,27 @@
+<view class="container">
+	<view class="editor-list">
+		<block wx:for="{{areaList}}" wx:key="{{index}}">
+			<view class="editor-item">
+				<view class="ei-title">
+					<text class="name">{{item.receiveName}}</text>
+					<text class="phone">{{item.receivePhone}}</text>
+				</view>
+				<view class="ei-area">{{item.area}}{{item.address}}</view>
+				<view class="ei-cz clearfix">
+					<view class="ei-select fl">
+						<icon wx:if="{{selectId==0&&index==0}}" class="icon" type="success" size="16"></icon>
+						<icon wx:if="{{selectId==item.id}}" class="icon" type="success" size="16"></icon>
+						<text wx:if="{{selectId!=item.id}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="selectAction" class="ia"></text>
+						<text class="txt">默认地址</text>
+					</view>
+					<view class="ei-del fr">
+						<text class="ed" data-id="{{item.id}}" data-index="{{index}}" bindtap="modify">编辑</text><text class="ce">|</text><text bindtap="deteleArea" data-id="{{item.id}}" data-index="{{index}}" class="del">删除</text>
+					</view>
+				</view>
+			</view>
+		</block>
+	</view>
+	<view class="form-btn">
+		<button class="in-btn" bindtap="addNewsArea" type="default">添加新地址</button>
+	</view>
+</view>

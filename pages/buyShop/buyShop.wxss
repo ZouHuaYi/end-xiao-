@@ -1,0 +1,131 @@
+page{
+	width: 100%;
+	min-height: 100%;
+	background: #f2f2f2;
+	box-sizing: border-box;
+	border-top: 1px solid #F2F2F2;
+}
+.top-area{
+	width: 100%;
+	background: #ffffff;
+	padding: 46rpx 24rpx ;
+	display: flex;
+	box-sizing: border-box;
+}
+.top-text{
+	flex: 1;
+	padding-left: 20rpx;
+	position: relative;
+}
+.icon-img{
+	width: 60rpx;
+	height: 60rpx;
+	vertical-align: middle;
+}
+.goto-icon{
+	position: absolute;
+	right: 0;
+	width: 20rpx;
+	height: 30rpx;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.top-text .tt-top{
+	width: 100%;
+	font-size: 32rpx;
+	height: 32rpx;
+	line-height: 32rpx;
+}
+.tt-name{
+	float: left;
+}
+.tt-phone{
+	float: right;
+	padding-right: 30rpx;
+}
+.tt-tip{
+	font-size: 24rpx;
+	line-height: 24rpx;
+	color: #989898;
+	padding-top: 16rpx;
+}
+.color-line{
+	display: block;
+	width: 100%;
+	height: 10rpx;
+	background: linear-gradient(to right, #faf6b7 , #529fbb); 
+}
+.line{
+	display: block;
+	width: 100%;
+	height: 10rpx;
+	background: transparent;
+}
+.hospital{
+	width: 100%;
+	background: #FFFFFF;
+	font-size: 28rpx;
+	line-height: 28rpx;
+	box-sizing: border-box;
+	padding: 25rpx 30rpx;
+}
+.package{
+	width: 100%;
+	
+}
+.pack-item{
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 10rpx;
+	background: #FFFFFF;
+}
+.pack-name{
+	font-size: 30rpx;
+}
+.pack-i-top{
+	display: flex;
+	padding: 36rpx 25rpx;
+	position: relative;
+	border-bottom: 1px solid #F2F2F2;
+}
+.pack-name{
+	font-size: 28rpx;
+}
+.pack-num{
+	font-size: 28rpx;
+	padding-left: 70rpx;
+	color: #15cebc;
+}
+.pack-radio{
+	position: absolute;
+	width: 40rpx;
+	height: 40rpx;
+	border:1px solid #0ABA07;
+	border-radius: 50%;
+	right: 25rpx;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.pack-radio.icon{
+	border:none;
+}
+.pack-i-text{
+	width: 100%;
+	font-size: 24rpx;
+	line-height: 40rpx;
+	padding: 10rpx 25rpx;
+	box-sizing: border-box;
+	color: #989898;
+}
+.form-btn{
+	padding: 40rpx 34rpx 0;
+}
+.text-tip{
+	padding-top: 16rpx;
+	text-align: center;
+	font-size: 24rpx;
+	color: #989898;
+}
+.text-tip .sm{
+	color: #15CEBC;
+}

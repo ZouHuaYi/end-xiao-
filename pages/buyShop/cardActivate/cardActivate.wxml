@@ -1,0 +1,24 @@
+<view class="container">
+	<view class="header-top">
+		<view class="header-line">
+			<image class="img" mode="cover" src="../../../assets/line.png"></image>
+			<view class="header-cont-txt" wx:if="{{areaList}}" bindtap="selectArea" data-id="{{areaList.id}}">
+				<view class="tit">{{areaList.receiveName}} {{areaList.receivePhone}}</view>
+				<view class="txt">{{areaList.area}}{{areaList.address}}</view>
+				<text class="icon iconfont icon-jiantou"></text>
+			</view>
+			<view class="header-cont-txt" wx:else bindtap="selectArea">
+				<view class="tit">添加收货地址</view>
+				<text class="icon iconfont icon-jiantou"></text>
+			</view>
+		</view>
+	</view>
+	<view class="content-mak">
+		<view class="ipt">
+			<input type="number" bindinput="activateInput" placeholder="使用激活卡兑现套餐"/>
+		</view>
+		<view class="form-btn">
+			<button class="in-btn" bindtap="activateClick" type="default">立即激活</button>
+		</view>
+	</view>
+</view>

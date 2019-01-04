@@ -1,0 +1,83 @@
+page{
+	background: #F2F2F2;
+}
+.editor-list{
+	width: 100%;
+	padding-top: 30rpx;
+	padding-bottom:160rpx;
+}
+.editor-item{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 30rpx 25rpx;
+	background: #FFFFFF;
+	margin-bottom: 30rpx;
+	box-shadow: 0 1px 10rpx #CCCCCC;
+}
+.ei-title {
+	padding-bottom: 20rpx;
+}
+.ei-title text{
+	display: inline-block;
+	line-height: 32rpx;
+}
+.ei-title .name{
+	font-size: 32rpx;
+}
+.ei-title .phone{
+	padding-left: 60rpx;
+	font-size: 32rpx;
+}
+.ei-area{
+	padding-bottom: 20rpx;
+	font-size: 30rpx;
+	border-bottom: 1px solid #F2F2F2;
+}
+.ei-cz{
+	padding-top: 20rpx;
+}
+.ei-select .ia{
+	display: inline-block;
+	height: 30rpx;
+	width: 30rpx;
+	border:1px solid #0ABA07;
+	border-radius: 50% 50%;
+	vertical-align: middle;
+	margin-right: 10rpx;
+	margin-top: -3rpx;
+	line-height: 30rpx;
+}
+.ei-select icon.icon{
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 10rpx;
+	margin-top: 8rpx;
+	line-height: 30rpx;
+}
+.ei-select .txt{
+	font-size: 30rpx;
+	line-height: 36rpx;
+}
+.ei-del text{
+	display: inline-block;
+	color: #CCCCCC;
+	font-size: 30rpx;
+	line-height: 36rpx;
+}
+.ei-del text.ce{
+	padding: 0 30rpx;
+}
+.ei-del text.ed{
+	color: #000000;
+}
+.ei-del text.del{
+	color: #f00;
+}
+.form-btn{
+	position: fixed;
+	width: 100%;
+	padding: 0 25rpx;
+	bottom: 30rpx;
+	left: 0;
+	z-index: 1000;
+}

@@ -1,0 +1,67 @@
+<view class="container {{niceGlod?'on':''}}">
+	<view class="shop-img">
+		<image mode="widthFix" src="{{shopDetail.v_package.thumbnail}}"></image>
+	</view>
+	<view class="shop-box">
+		<view class="shop-mon">
+			<text class="monney-num">￥{{shopDetail.v_package.price}}</text>
+			<image class="share" mode="cover" src="../../../assets/hospital_btn_share.png"></image>
+		</view>
+		<view class="shop-txt">{{shopDetail.v_package.title}}</view>
+		<view class="nice-king" wx:if="{{shopDetail.v_package.freeAllowanceAllocation}}">美丽金配额: <text class="mon" bindtap="niceGlodShow">￥{{shopDetail.v_package.freeAllowanceAmount}}</text><text bindtap="niceGlodShow" class="mon num">(查看使用说明)</text></view>
+		<view class="s-star">
+			<view class="tip-cl">
+				<image mode="cover" src="../../../assets/class_a.png"></image>
+				<text>{{grade[shopDetail.v_package.grade]}}套餐</text>
+			</view>
+		
+		</view>
+	</view>
+	<view class="shop-name clearfix">
+		<view class="hospital-img">
+			<image src="{{shopDetail.v_hospital.thumbnail}}" mode="cover"></image>
+		</view>
+		<view class="hospital-title">
+			<text class="shop-tit">{{shopDetail.v_hospital.name}}</text>
+			<view class="shop-star">
+				<text wx:for="{{5}}" wx:key="{{index}}" class="icon iconfont icon-star {{shopDetail.v_hospital.evaluation>index?'on':''}}"></text>
+			</view>
+		</view>
+		<!-- <view class="btn-link">进入店铺</view> -->
+	</view>
+	<view class="shop-content">
+		<view class="shop-con-txt" wx:if="{{shopDetail.v_package.descriptionText}}">
+			　{{shopDetail.v_package.descriptionText}}
+		</view>
+		<block wx:for="{{shopDetail.v_package.descriptionImgs}}" wx:key="{{index}}">
+			<image mode="widthFix" src="{{item}}"></image>
+		</block>
+	</view>
+</view>
+<view class="form-btn">
+	<button class="in-btn" type="default" bindtap="gotoBuy">立即购买</button>
+</view>
+<view class="nice-glod" wx:if="{{niceGlod}}">
+	<view class="glod-monney">
+		<view class="glod-list">
+			<view class="glod-item" wx:for="{{shopDetail.v_package.freeAllowanceDescriptionList}}" wx:key="{{index}}">
+				<view class="glod-item-box">
+					<view class="glod-tit clearfix">
+						<text class="gt-l fl">{{shopDetail.v_package.hospitalName}}</text>
+						<text class="gt-r fr">{{item.num==0?'无限制':'一次使用'}}</text>
+					</view>
+					<view class="glod-cont">
+						<view class="gc-top">
+							<text class="tit">美丽金</text>
+							<text class="mon">{{item.freeAllowance}}</text>
+						</view>
+						<view class="gc-bottom">
+							{{item.serviceLimit}}
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="glod-close"><icon bindtap="niceGlodShow" type="cancel" color="rgb(255,255,255)" size="40" ></icon></view>
+</view>

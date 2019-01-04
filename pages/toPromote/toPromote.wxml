@@ -1,0 +1,76 @@
+<view class="container {{alertStatus?'on':''}}">
+	<view class="bgk"></view>
+	<view class="header">
+		<image class="main-back" src="../../assets/main_back.png"></image>
+		<view class="h-top">
+			<image class="avatar" src="../../assets/default.png"></image>
+			<view class="h-content">
+				<view class="h-title">{{newShowData.userNickname}}</view>
+				<view class="h-bay">
+					<view class="hb-item"><image class="icon" src="../../assets/taocan.png" mode="cover"></image><text class="tit">{{newShowData.pack}}</text></view>
+					<view class="hb-item" wx:if="{{newShowData.gradeText}}"><image class="icon" src="../../assets/star.png" mode="cover"></image><text class="tit">{{newShowData.gradeText}}</text></view>
+				</view>
+				<view class="h-prom">推广: {{newShowData.pUserNickname}}</view>
+			</view>
+		</view>
+		<button class="h-href" wx:if="{{newShowData.packageType==0}}" data-hospitalId="{{newShowData.hospitalId}}"  bindtap="goToPay"><text class="icon iconfont icon-huiyuanqiaguanli"></text>购买套餐<text class="icon iconfont icon-jiantou"></text></button>
+		<button class="h-href" bindtap="gotoScanMak" data-title="{{newShowData.hospitalName}}" data-pId="{{newShowData.userId}}" data-hospitalId="{{newShowData.hospitalId}}" wx:if="{{newShowData.packageType!=0}}"><text class="icon iconfont icon-erweima"></text>推广二维码<text class="icon iconfont icon-jiantou"></text></button>
+	</view>
+	<view class="goto-hospital">
+		<text class="tit">{{newShowData.hospitalName}}</text>
+		<view class="change" bindtap="changeAlert">
+			<text class="tip">切换</text>
+			<text class="icon iconfont icon-qiehuan"></text>
+		</view>
+	</view>
+	<view class="center-box">
+		<view class="c-top">
+			<text class="c-zh">账号余额</text>
+			<text class="c-mon">￥{{newShowData.balance}}</text>
+			<!-- <button class="c-btn" data-id="{{newShowData.id}}" size="mini">￥提现</button> -->
+		</view>
+		<view class="c-free">
+			<text class="cf-monney">冻结金额</text>
+			<text class="cf-num">￥{{newShowData.freeze?newShowData.freeze:0}}</text>
+		</view>
+		<view class="c-bot">
+			<view class="cb-item">
+				<text class="cbi-mon">￥{{newShowData.sumCashback}}</text>
+				<text class="cbi-tit">退押收入</text>
+			</view>
+			<view class="cb-item">
+				<text class="cbi-mon">￥{{newShowData.sumFreeIncome}}</text>
+				<text class="cbi-tit">免费收入</text>
+			</view>
+			<view class="cb-item">
+				<text class="cbi-mon">￥{{newShowData.sumMultipleIncome}}</text>
+				<text class="cbi-tit">重销收入</text>
+			</view>
+			<view class="cb-item">
+				<text class="cbi-mon">￥{{newShowData.sumRewardIncome}}</text>
+				<text class="cbi-tit">奖励收入</text>
+			</view>
+		</view>
+	</view>
+	<view class="footer">
+		
+	</view>
+</view>
+<view class="select-mak" wx:if="{{alertStatus}}">
+	<view class="mak-hidden" bindtap="initSelectStatus" animation="{{opacityData}}"></view>
+	<view class="select-box" animation="{{animationData}}">
+		<view class="select-content">
+			<view class="select-list">
+				<block wx:for="{{alertSelect}}" wx:key="{{index}}">
+					<view class="select-item">
+						<view class="s-item-title"><text class="icon iconfont {{item.icon}}"></text><text class="tit">{{item.hospital}}</text></view>
+						<view class="si-list">
+							<view bindtap="selectFun" data-key="{{itemName.key}}" wx:for="{{item.list}}" wx:key="{{idx}}" wx:for-index="idx" wx:for-item="itemName"  class="si-item {{itemName.select?'on':''}}">{{itemName.title}} <icon wx:if="{{itemName.select}}" class="sl" type="success" size="16" color="rgb(21,206,188)"></icon></view>
+						</view>
+					</view>
+				</block>
+			</view>
+		</view>
+		<button class="add-news-btn" type="default"><text class="icon iconfont icon-tianjia"></text>推广新医院</button>
+	</view>
+</view>

@@ -1,0 +1,114 @@
+page{
+	background: #F5F5F5;
+}
+.header-top{
+	width: 100%;
+	padding-top: 20rpx;
+}
+.header-line{
+	width: 100%;
+	position: relative;
+	background: #FFFFFF;
+}
+.header-line .img{
+	position: absolute;
+	width: 100%;
+	height: 10rpx;
+	top: 0;
+	left: 0;
+}
+.header-cont-txt{
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 0 30rpx;
+}
+.header-cont-txt .tit{
+	font-size: 32rpx;
+	font-weight: 900;
+	line-height: 32rpx;
+	padding-top: 30rpx;
+	padding-bottom: 20rpx;
+}
+.header-cont-txt .txt{
+	font-size: 22rpx;
+	line-height: 22rpx;
+	padding-bottom: 20rpx;
+}
+.header-cont-txt .icon{
+	position: absolute;
+	right: 30rpx;
+	font-size: 32rpx;
+	color: #666666;
+	top: 50%;
+	transform: translateY(-45%);
+}
+.content-box{
+	width: 100%;
+	margin-top: 30rpx;
+	box-sizing: border-box;
+	padding: 0 30rpx;
+	background: #FFFFFF;
+}
+.pay-box .tit{
+	width: 100%;
+	font-size: 30rpx;
+	line-height: 30rpx;
+	padding: 20rpx 0;
+	border-bottom:1px solid #e5e5e5;
+}
+.pay-hospital{
+	width: 100%;
+	padding: 20rpx 0;
+}
+.pay-hospital .hosp-img{
+	float: left;
+	width: 184rpx;
+	height: 184rpx;
+	border-radius: 12rpx;
+}
+.pay-hospital .pay-name{
+	float: left;
+	margin-left: 20rpx;
+}
+.s-star{
+	width:100%;
+	overflow: hidden;
+	padding-top: 20rpx;
+}
+.tip-cl{
+	height: 32rpx;
+	line-height: 32rpx;
+	position: relative;
+	box-sizing: border-box;
+	padding: 0 16rpx 0 40rpx;
+	background: #dbfdfc;
+	font-size: 22rpx;
+	float: left;
+	margin-right: 14rpx;
+	border-radius: 16rpx 16rpx;
+}
+.tip-cl image{
+	position: absolute;
+	width: 28rpx;
+	height: 28rpx;
+	left: 1rpx;
+	top:1rpx;
+}
+.pay-hospital .pay-name .pay-tit{
+	font-size: 28rpx;
+	padding-top: 24rpx;
+}
+.pay-name .s-monney{
+	font-size: 30rpx;
+	font-weight: 900;
+	color: #FF0000;
+	line-height: 30rpx;
+	padding-top: 20rpx;
+}
+.form-btn{
+	padding: 0 30rpx;
+	margin-top: 90rpx;
+}
+
+

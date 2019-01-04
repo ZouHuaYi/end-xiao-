@@ -1,0 +1,90 @@
+page{
+	background: #f5f5f5;
+}
+.box-list-ok{
+	width: 100%;
+	padding-top: 30rpx;
+}
+.list-cont{
+	width: 100%;
+	padding: 0 30rpx;
+	box-sizing: border-box;
+	background: #FFFFFF;
+	box-shadow: 0rpx 10rpx 10rpx #EFEFEF;
+}
+.cont-item{
+	width: 100%;
+	height: 80rpx;
+	border-bottom: 1px solid #f5f5f5;
+	line-height: 80rpx;
+	font-size: 32rpx;
+}
+.ci-left{
+	float: left;
+}
+.ci-left .img{
+	width: 38rpx;
+	vertical-align: top;
+	margin-top: 22rpx;
+	margin-right: 20rpx;
+}
+.ci-right{
+	float: right;
+}
+.box-monney{
+	width: 100%;
+	height: 100rpx;
+	margin-top: 30rpx;
+	background: #FFFFFF;
+	line-height: 100rpx;
+	box-sizing: border-box;
+	padding: 0 30rpx;
+	font-size: 32rpx;
+	box-shadow: 0rpx 10rpx 10rpx #EFEFEF;
+}
+.monney-num{
+	color: #ff0000;
+}
+.box-pay-type{
+	width: 100%;
+}
+.pay-tit{
+	width: 100%;
+	padding:0 30rpx;
+	box-sizing: border-box;
+	height: 100rpx;
+	line-height: 100rpx;
+	font-size:40rpx;
+}
+.pay-wx{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 30rpx;
+	height: 120rpx;
+	line-height: 120rpx;
+	background: #FFFFFF;
+	box-shadow: 0rpx 10rpx 10rpx #EFEFEF;
+}
+.pay-left{
+	font-size: 32rpx;
+	
+}
+.pay-left image{
+	width: 52rpx;
+	vertical-align: top;
+	margin: 40rpx 20rpx 0 0;
+}
+.vip-xy{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 30rpx;
+	font-size: 24rpx;
+	line-height: 24rpx;
+}
+.vip-xy .vip{
+	color: #03D0BC;
+}
+.form-btn{
+	width: 100%;
+	padding: 60rpx 30rpx 0;
+}

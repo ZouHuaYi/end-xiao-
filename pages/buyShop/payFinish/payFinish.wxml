@@ -1,0 +1,54 @@
+<view class="container">
+	<view class="box-list-ok">
+		<view class="list-cont">
+			<view class="cont-item">
+				<view class="ci-left">
+					<image class="img" mode="widthFix" src="../../../assets/pay/order.png"></image>
+					<text>订单编号</text>
+				</view>
+				<view class="ci-right">{{orderPlace.orderNumber}}</view>
+			</view>
+			<view class="cont-item">
+				<view class="ci-left">
+					<image class="img" mode="widthFix" src="../../../assets/pay/hospital.png"></image>
+					<text>所属医院</text>
+				</view>
+				<view class="ci-right">{{shopDetail.v_package.hospitalName}}</view>
+			</view>
+			<view class="cont-item">
+				<view class="ci-left">
+					<image class="img" mode="widthFix" src="../../../assets/pay/name.png"></image>
+					<text>套餐名称</text>
+				</view>
+				<view class="ci-right">{{shopDetail.v_package.title}}</view>
+			</view>
+			<view class="cont-item" wx:if="{{recommended}}">
+				<view class="ci-left">
+					<image class="img" mode="widthFix" src="../../../assets/pay/referrer.png"></image>
+					<text>推荐人</text>
+				</view>
+				<view class="ci-right">{{recommended}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="box-monney clearfix">
+		<view class="monney-text fl">应付金额</view>
+		<view class="monney-num fr">￥{{orderPlace.amount}}</view>
+	</view>
+	<view class="box-pay-type">
+		<view class="pay-tit">支付方式</view>
+		<view class="pay-wx">
+			<view class="pay-left">
+				<image mode="widthFix" src="../../../assets/pay/wachat.png"></image>
+				<text>微信支付</text>
+			</view>
+		</view>
+	</view>
+	<view class="vip-xy">
+		<text>购买即视同意</text>
+		<text class="vip">《美上美VIP-用户协议》</text>
+	</view>
+	<view class="form-btn">
+		<button class="in-btn" type="default" bindtap="payMonney">确认支付</button>
+	</view>
+</view>

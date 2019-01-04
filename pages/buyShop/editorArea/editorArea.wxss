@@ -1,0 +1,61 @@
+page{
+	width: 100%;
+	background: #F2F2F2;
+}
+.editort-top{
+	padding-top: 30rpx;
+}
+.editor-box{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 60rpx 25rpx 30rpx;
+	background: #FFFFFF;
+	box-shadow: 0 0 20rpx #CCCCCC;
+}
+.form-groud{
+	display: flex;
+	width: 100%;
+	height: 36rpx;
+	margin-bottom: 40rpx;
+}
+.form-groud .label{
+	width: 180rpx;
+	height: 1.4rem;
+	font-size: 30rpx;
+	text-align: center;
+	line-height: 1.4rem;
+}
+.form-groud .inp{
+	flex: 1;
+	font-size: 30rpx;
+}
+.form-btn{
+	position: fixed;
+	width: 100%;
+	padding: 0rpx 25rpx;
+	left: 0;
+	bottom: 120rpx;
+}
+.picker-view {
+  width: 100%;
+  display: flex;
+  z-index:12;
+  background-color: #FFFFFF;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  height: 40vh;
+}
+
+.picker-item {
+  line-height: 70rpx;
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+  text-align: center;
+}
+picker-view-column{
+	background: #CCCCCC;
+}

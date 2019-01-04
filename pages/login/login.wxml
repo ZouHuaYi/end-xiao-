@@ -1,0 +1,24 @@
+<view class="container">
+	<view class="login-top">
+		<view class="login-logo">
+			<image mode="widthFix" src="../../assets/logo_page.png"></image>
+		</view>	
+		<view class="form-box">
+			<view class="form-ground {{phoneType?'on':''}}" >
+				<text class="txt {{phoneType?'on':''}}"  animation="{{animationPhone}}">请输入手机号</text>
+				<input bindinput="bindAllInput" data-status="phone" class="inp" bindblur="phoneBlur" bindfocus="phoneClick" type="tel"  />
+			</view>
+			<view class="form-ground {{passwType?'on':''}}" >
+				<text class="txt {{passwType?'on':''}}" animation="{{animationPass}}">请输入密码</text>
+				<input bindinput="bindAllInput" data-status="passw" class="inp" bindblur="passwBlur" bindfocus="passwClick" type="password"  />
+			</view>
+			<view class="form-btn">
+				<button class="in-btn" type="default" bindtap="loginHandler">登录</button>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="register">
+	<navigator class="forget" open-type="reLaunch" url="../register/register?type=forget" >忘记密码？</navigator>	
+	<navigator class="reg-go" open-type="reLaunch" url="../register/register" >注册账号</navigator>	
+</view>
