@@ -36,6 +36,10 @@ Page({
 						  	icon: 'none',
 						  	duration: 2000
 						  }) 
+						  wx.navigateTo({
+						  	url:`/pages/promteCode/promteCode?pId=${this.options.userId}&hospitalId=${this.options.hospitalid}&myApp=myApp`
+						  })
+						  
 					  },
 					 fail:res=> {
 						   wx.showToast({
@@ -58,6 +62,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+	  if(options.userId){
+		  this.options = options;
+	  }
 	if(app.globalData.orderPlace){
 		this.setData({
 			orderPlace:app.globalData.orderPlace,

@@ -8,7 +8,7 @@ Page({
 		statusNowTime:0, // 0 正在加载的时候 1 点击加入 2 我的二维码页  4 登录验证
 	},
 	// 电话格式化
-	 formatPhone(phone) {
+	formatPhone(phone) {
       return phone.substr(0, 3) + "****" + phone.substr(7);
     },
 	// 获取小程序二维码
@@ -128,7 +128,7 @@ Page({
 			}
 		})
 	},
-  /**
+   /**
    * 生命周期函数--监听页面加载
    */
     onLoad: function (options) {

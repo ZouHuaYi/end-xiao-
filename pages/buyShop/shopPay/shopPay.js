@@ -32,7 +32,7 @@ Page({
 					"amount":data.data.amount
 				}
 				wx.navigateTo({
-					url:"../payFinish/payFinish"
+					url:`../payFinish/payFinish?userId=${data.data.userId}&hospitalId=${hospitalId}`
 				})
 			}else{
 				wx.showToast({

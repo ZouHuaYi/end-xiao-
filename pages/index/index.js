@@ -7,17 +7,34 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   onLoad: function (options) {
-	app.userInfoReadyCallback = res =>{
-		if(app.globalData.navigateBackUrl){
-			wx.reLaunch({
-				url:app.globalData.navigateBackUrl
-			})
-		}else{
-			wx.reLaunch({
-				url:'/pages/toPromote/toPromote'
-			})
-		}
-	}	
+	  if(app.globalData.myUserInfo){
+		  setTimeout(()=>{
+			if(app.globalData.navigateBackUrl){
+				wx.reLaunch({
+					url:app.globalData.navigateBackUrl
+				})
+			}else{
+				wx.reLaunch({
+					url:'/pages/toPromote/toPromote'
+				})
+			}
+		},2000)
+	  }else{
+		app.userInfoReadyCallback = res =>{
+			setTimeout(()=>{
+				if(app.globalData.navigateBackUrl){
+					wx.reLaunch({
+						url:app.globalData.navigateBackUrl
+					})
+				}else{
+					wx.reLaunch({
+						url:'/pages/toPromote/toPromote'
+					})
+				}
+			},2000)
+			
+		}	
+	  }
   },
 	// 小程序没有授权允许的情况下
   getUserInfo: function(e) {
@@ -26,7 +43,6 @@ Page({
 				if(data.messageCode==900){
 					app.globalData.openId = data.data.openid;
 					app.globalData.myUserInfo = data.data.user;
-					console.log(app.globalData.navigateBackUrl);
 					if(app.globalData.navigateBackUrl){
 						wx.reLaunch({
 							url:app.globalData.navigateBackUrl
@@ -43,7 +59,6 @@ Page({
 					wx.reLaunch({
 						url:'/pages/login/login'
 					})
-					
 				}
 			})
 		}
