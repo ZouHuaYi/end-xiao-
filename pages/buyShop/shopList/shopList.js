@@ -6,6 +6,7 @@ Page({
    */
   data: {
 		shopList:[],
+		nodataStatus:false,
 		grade:['无','A','B','C','D','E','F','G','H','I','K','L','M','N'],
 		shopHospital:{}
   },
@@ -37,20 +38,24 @@ Page({
 			token:token
 		},data=>{
 			wx.hideLoading();
+			
 			if(data.messageCode==900){
 				if(data.data&&data.data.length>0){
 					this.setData({
 						shopList:data.data
 					})
 				}
-				console.log(this.data.shopList)
+				
 			}else{
 				wx.showToast({
-					title: data.message,
+					title: data.message?data.message:'没有跟多内容',
 					icon: 'none',
 					duration: 2000
 				})
 			}
+			this.setData({
+				nodataStatus:true
+			})
 		})
   }
 })

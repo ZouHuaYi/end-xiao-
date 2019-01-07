@@ -28,12 +28,12 @@
 				<text class="ok">当前登陆账号</text>
 				<text class="ph">{{vphone}}</text>
 				<view class="form-btn">
-					<button class="in-btn" type="default">加入我们</button>
+					<button class="in-btn" bindtap="bindMyTeam" type="default">加入我们</button>
 				</view>
 			</view>
 			<view class="code-input al" wx:if="{{statusNowTime==3}}">
 				<view class="al-text">你已成功加入团队</view>
-				<view class="al-btn">3秒后前往购买页</view>
+				<view class="al-btn">{{alertText}}</view>
 			</view>
 			<!-- <view class="code-input" wx:if="{{statusNowTime==4}}">
 				<view class="code-form">

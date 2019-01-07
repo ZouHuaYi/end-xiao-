@@ -25,10 +25,18 @@ page{
 	height: 36rpx;
 	line-height: 36rpx;
 }
-.shop-box .share{
+.btn-share{
 	width: 34rpx;
 	height: 34rpx;
+	padding: 0;
+	line-height: 0;
+	border-radius:0;
+	background: #FFFFFF;
 	float: right;
+}
+.shop-box .share{
+	width: 100%;
+	height: 100%;
 }
 .shop-box .monney-num{
 	font-size: 36rpx;

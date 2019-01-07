@@ -30,6 +30,10 @@
 				</view>
 			</view>
 		</block>
+		<view class="nodata" wx:if="{{shopList.length==0&&nodataStatus}}">
+			<image mode="widthFix" src="../../../assets/nodata.png"></image>
+			<text>没有更多内容</text>
+		</view>
 	</view>
 	<view class="form-btn" wx:if="{{shopList.length>0}}">
 		<button class="in-btn" bindtap="goToBuyActivate" type="default">使用激活卡兑现套餐</button>

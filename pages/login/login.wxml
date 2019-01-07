@@ -1,12 +1,12 @@
 <view class="container">
 	<view class="login-top">
 		<view class="login-logo">
-			<image mode="widthFix" src="../../assets/logo_page.png"></image>
+			<image mode="widthFix" lazy-load="true" src="../../assets/logo_page.png"></image>
 		</view>	
 		<view class="form-box">
 			<view class="form-ground {{phoneType?'on':''}}" >
 				<text class="txt {{phoneType?'on':''}}"  animation="{{animationPhone}}">请输入手机号</text>
-				<input bindinput="bindAllInput" data-status="phone" class="inp" bindblur="phoneBlur" bindfocus="phoneClick" type="tel"  />
+				<input bindinput="bindAllInput" data-status="phone" class="inp" bindblur="phoneBlur" bindfocus="phoneClick" type="number"  />
 			</view>
 			<view class="form-ground {{passwType?'on':''}}" >
 				<text class="txt {{passwType?'on':''}}" animation="{{animationPass}}">请输入密码</text>

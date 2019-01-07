@@ -129,10 +129,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 15,
 					"name": "推广医院列表",
 					"pathName": "pages/hospitalList/hospitalList",
-					"query": ""
+					"query": "name=0&ok=name"
 				}
 			]
 		}

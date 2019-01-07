@@ -12,10 +12,16 @@ Page({
 			animationData:{},
 			opacityData:{}
 	},
+	// 去推广医院
+	goToHospitalList:function(){
+		this.initSelectStatus();
+		wx.navigateTo({
+			url:"/pages/hospitalList/hospitalList",
+		})
+	},
 	// 跳转到购买页
 	goToPay:function(e){
 		let hospitalId = e.currentTarget.dataset.hospitalid;
-		console.log(e)
 		wx.navigateTo({
 			url:"/pages/buyShop/shopList/shopList?hospitalid="+hospitalId
 		})
@@ -23,6 +29,7 @@ Page({
 	// 调转到我的推广页
 	gotoScanMak:function(e){
 		let {pid,hospitalid,title} = e.currentTarget.dataset;
+		hospitalid = '';
 		wx.navigateTo({
 			url:`/pages/promteCode/promteCode?pId=${pid}&hospitalId=${hospitalid}&myApp=myApp`
 		})
@@ -99,6 +106,7 @@ Page({
 		app.postRequest('/rest/distribution/home',formData,data=>{
 			wx.hideLoading();
 			if(data.messageCode==900){
+				if(data.data&&data.data.length>0){
 					this.setData({
 						allShowData:data.data.map((data,key)=>{
 							data.pack = pack[data.packageType]+'套餐';
@@ -117,9 +125,24 @@ Page({
 						alertSelect:alertSelect
 					})
 					this.renderFun(this.data.allShowData[0])
+				}else{}
+			}else if(data.messageCode==902){
+				wx.showModal({
+				  title: '温馨提示',
+				  cancelText:'取消',
+				  confirmText:'去推广',
+				  content: '您当前没有可推广的医院或美容院',
+				  success(res) {
+					if (res.confirm) {
+					  console.log('用户点击确定')
+					} else if (res.cancel) {
+					  console.log('用户点击取消')
+					}
+				  }
+				})
 			}else{
 				wx.showToast({
-					title: data.message,
+					title: data.message?data.message:'没有数据啦！',
 					icon: 'none',
 					duration: 2000
 				})

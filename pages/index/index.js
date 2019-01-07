@@ -32,7 +32,6 @@ Page({
 					})
 				}
 			},2000)
-			
 		}	
 	  }
   },
@@ -47,6 +46,7 @@ Page({
 						wx.reLaunch({
 							url:app.globalData.navigateBackUrl
 						})
+						app.globalData.navigateBackUrl = null;
 					}else{
 						wx.reLaunch({
 							url:'/pages/toPromote/toPromote'

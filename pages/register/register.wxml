@@ -1,7 +1,7 @@
 <view class="container">
 	<view class="login-top">
 		<view class="login-logo">
-			<image mode="widthFix" src="../../assets/logo_page.png"></image>
+			<image mode="widthFix" lazy-load="true" src="../../assets/logo_page.png"></image>
 		</view>	
 		<view class="form-box" wx:if="{{statusType&&!nextType}}">
 			<view class="form-ground {{phoneType?'on':''}}" >

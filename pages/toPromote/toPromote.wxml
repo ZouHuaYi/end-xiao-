@@ -71,6 +71,6 @@
 				</block>
 			</view>
 		</view>
-		<button class="add-news-btn" type="default"><text class="icon iconfont icon-tianjia"></text>推广新医院</button>
+		<button class="add-news-btn" type="default" bindtap="goToHospitalList"><text class="icon iconfont icon-tianjia"></text>推广新医院</button>
 	</view>
 </view>

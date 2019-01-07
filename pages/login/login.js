@@ -31,6 +31,11 @@ Page({
 					wx.reLaunch({
 						url:app.globalData.navigateBackUrl
 					})
+					app.globalData.navigateBackUrl = null;
+				}else{
+					wx.reLaunch({
+						url:"/pages/toPromote/toPromote"
+					})
 				}
 				app.postRequest('/rest/user/open_bind_unbundled',{
 					wechat:app.globalData.unionId,
@@ -39,7 +44,7 @@ Page({
 					action:0
 				},resd=>{
 					if(resd.messageCode==900){
-						console.log('静默式绑定成功')
+						console.log('静默式绑定成功');
 					}
 				})
 			}else{

@@ -5,7 +5,7 @@
 	<view class="shop-box">
 		<view class="shop-mon">
 			<text class="monney-num">￥{{shopDetail.v_package.price}}</text>
-			<image class="share" mode="cover" src="../../../assets/hospital_btn_share.png"></image>
+			<button class="btn-share" open-type="share"><image class="share" mode="cover" src="../../../assets/hospital_btn_share.png"></image></button>
 		</view>
 		<view class="shop-txt">{{shopDetail.v_package.title}}</view>
 		<view class="nice-king" wx:if="{{shopDetail.v_package.freeAllowanceAllocation}}">美丽金配额: <text class="mon" bindtap="niceGlodShow">￥{{shopDetail.v_package.freeAllowanceAmount}}</text><text bindtap="niceGlodShow" class="mon num">(查看使用说明)</text></view>

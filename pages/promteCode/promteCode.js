@@ -3,9 +3,63 @@ Page({
   /**
    * 页面的初始数据
    */
-	debugShare:false,
 	data: {
 		statusNowTime:0, // 0 正在加载的时候 1 点击加入 2 我的二维码页  4 登录验证
+		alertText:'3秒后前往购买页'
+	},
+	// 绑定我们
+	bindMyTeam:function(){
+		if(this.shareOptions.pId){
+			let {pId,hospitalId} = this.shareOptions;
+			app.postRequest('/rest/team/bind/token',{
+				pPhone:'',
+				pId:pId,
+				token:app.globalData.myUserInfo.token,
+				hospitalId:hospitalId
+			},data=>{
+				if(data.messageCode==900){
+					this.setData({
+						statusNowTime:3
+					})
+				    let numtime = 3;
+				    let timp = null;
+				    clearInterval(timp);
+				    timp = setInterval(() => {
+					numtime -= 1;
+					this.setData({
+						alertText:`${numtime}秒后回到首页`
+					})
+					if (numtime <= 0) {
+					  clearInterval(timp);
+					  wx.reLaunch({
+						url:'/pages/toPromote/toPromote'
+					  })
+					}
+				    }, 1000);
+				}else if(data.messageCode==1409){
+					this.judgeScan(this.shareOptions);
+				}else if(data.messageCode==1402){
+					wx.showToast({
+						title:'上级没有权限分享',
+						icon:'none',
+						duration:2000
+					})
+				}else{
+					wx.showToast({
+						title:data.message?data.message:'上下级绑定失败',
+						icon:'none',
+						duration:2000
+					})
+				}
+			})
+		}else{
+			wx.showToast({
+				title:'小程序分享出问题了，请跟技术联系',
+				icon:'none',
+				duration:3000
+			})
+		}
+		
 	},
 	// 电话格式化
 	formatPhone(phone) {
@@ -16,7 +70,7 @@ Page({
 		this.setData({
 			statusNowTime:2
 		})
-		app.postRequest('/rest/user/getAppletCodeUrl',{pId:pId,hospitalId:'',page:'/pages/promteCode/promteCode'},data=>{
+		app.postRequest('/rest/user/getAppletCodeUrl',{pId:pId,hospitalId:hospitalId,page:'/pages/promteCode/promteCode'},data=>{
 			if(data.messageCode==900){
 				this.setData({
 					codeUrl:data.data.codeUrl
@@ -55,6 +109,7 @@ Page({
 		})
 		app.postRequest('/rest/team/getpUserAndHospital',{pId:options.pId,hospitalId:options.hospitalId},data=>{
 			wx.hideLoading();
+			console.log(data,'data')
 			if(data.messageCode==900){
 				this.setData({
 					hospital_logo:data.data.hospital_logo,
@@ -66,6 +121,7 @@ Page({
 						token:app.globalData.myUserInfo.token,
 						hospitalId:options.hospitalId
 					},data=>{
+						console.log(data,'data1')
 						if(data.messageCode==900 || data.messageCode==1402){
 							 // 判断是否在团队中的时候
 							if (data.data.isAllow == 1) {
@@ -85,13 +141,23 @@ Page({
 								}else{
 									wx.showModal({
 									  title: '温馨提示',
-									  content: '您已在该团队中,点确认将跳转到套餐购买页',
+									  content: options.hospitalId?'您已在该团队中,点确认将跳转到首页':'您已在该团队中,点确认将跳转到套餐购买页',
 									  success(res) {
 										if (res.confirm) {
+											if(options.hospitalId){
+												wx.reLaunch({
+													url:'/pages/buyShop/shopList/shopList?hospitalid='+options.hospitalId
+												})
+											}else{
+												wx.reLaunch({
+													url:"/pages/toPromote/toPromote"
+												})
+											}
+										} else if (res.cancel) {
 											wx.reLaunch({
-												url:'/pages/shopList/shopList'
+												url:"/pages/toPromote/toPromote"
 											})
-										} else if (res.cancel) {}
+										}
 									  }
 									})
 								}
@@ -101,7 +167,7 @@ Page({
 								if(options.pId==data.data.userId){
 									this.getQrCodeData(data.data.userId,options.hospitalId);
 								}else{
-									let vphone = this.formatPhone(data.data.phone)
+									let vphone = this.formatPhone(data.data.phone);
 									this.setData({
 										statusNowTime:1,
 										vphone:vphone
@@ -132,7 +198,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad: function (options) {
-
 		if(options.myApp=='myApp'){
 			let {avatar,nickname,id} = app.globalData.myUserInfo;
 			wx.setNavigationBarTitle({
@@ -145,11 +210,24 @@ Page({
 			})
 			this.id = id;
 			this.hospitalId = options.hospitalId;
-			let hospitalId = this.debugShare?'':options.hospitalId;
+			let hospitalId = options.hospitalId;
 			this.getHospitalData(id,hospitalId);   // options.hospitalId
 			this.getQrCodeData(id,hospitalId);     // options.hospitalId
 		}
-		if(options.share=='share'){
+		if(options.share=='share' || options.scene){
+			wx.setNavigationBarTitle({
+				title:"加入我们",
+			})
+			if(options.scene){
+				let scene = decodeURIComponent(options.scene).split("&");
+				this.shareOptions = {
+					pId:scene[0],
+					hospitalId:scene[1]
+				};
+			}else{
+				this.shareOptions = options;
+			}
+			
 			if(app.globalData.myUserInfo){
 				this.judgeScan(options);
 			}else{
@@ -164,7 +242,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-	 let hospitalId = this.debugShare?'':this.hospitalId;// this.hospitalId;
+	 let hospitalId = this.hospitalId;// this.hospitalId;
 	 let path = `/pages/promteCode/promteCode?share=share&pId=${this.id}&hospitalId=${hospitalId}`;
 	 return {
 	  title: this.data.nickname + '向你推荐'+this.data.hospital_name,

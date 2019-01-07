@@ -49,3 +49,18 @@ input{
 	padding: 0;
 	z-index: 10000;
 }
+.nodata{
+	width: 50%;
+	margin: 0 auto;
+	padding-top: 160rpx;
+	text-align: center;
+}
+.nodata image{
+	display: block;
+	width: 100%;
+}
+.nodata text{
+	display: block;
+	padding-top: 20rpx;
+	color: #888888;
+}

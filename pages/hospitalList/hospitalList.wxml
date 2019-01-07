@@ -1,23 +1,49 @@
 <view class="container">
-	<view class="search-text">
-		<view class="search-input">
-			<input type="text" placeholder="搜索商家" />
+	<view class="header-top">
+		<view class="search-text">
+			<view class="search-input">
+				<input type="text" bindinput="searchInput" placeholder="搜索商家" />
+			</view>
+			<view class="btn-click">
+				<icon class="search" type="search" size="20" color="#ffffff" bindtap="searchClick"></icon>
+			</view>
 		</view>
-		<view class="btn-click">
-			<icon class="search" type="search" size="20" color="#ffffff"></icon>
+		<view class="h-top">
+			<view class="nav-list">
+				<text wx:for="{{firstNav}}" wx:key="{{index}}" bindtap="firstNavClick" data-index="{{index}}" class="{{index==firsIndex?'on':''}}">{{item}}</text>
+			</view>
+			<view class="sec-list">
+				<text wx:for="{{secNav}}" wx:key="{{index}}" bindtap="secNavClick" data-index="{{index}}" class="{{index==secIndex?'on':''}}">{{item}}</text>
+			</view>
 		</view>
+		<text class="header-line"></text>
 	</view>
-	<view class="h-top">
-		<view class="nav-list">
-			<text class="on">默认</text>
-			<text>最热</text>
-			<text>最新</text>
-			<text>最新</text>
-		</view>
-		<view class="sec-list">
-			<text>全部</text>
-			<text>医院</text>
-			<text>美容院</text>
-		</view>
+	<view class="hospital-list">
+		<scroll-view 
+		scroll-y 
+		style="height: 100%;"
+		bindscrolltoupper="upper"
+		bindscrolltolower="lower"
+		scroll-top="{{scrollTop}}"
+		>
+			<view class="hospital-content">
+				<view class="hospital-item" wx:for="{{hospitalList}}" wx:key="{{index}}" bindtap="goToPayList" data-id="{{item.id}}">
+					<view class="item-left">
+						<image mode="aspectFit" src="{{item.thumbnail}}"></image>
+					</view>
+					<view class="item-right">
+						<view class="txt">{{item.name}}</view>
+						<view class="item-icon">
+							<text class="icon iconfont icon-weibiaoti-3"></text>
+							<text>{{item.distance}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="nodata" wx:if="{{hospitalList.length==0}}">
+				<image mode="widthFix" src="../../assets/nodata.png"></image>
+				<text>没有更多内容</text>
+			</view>
+		</scroll-view>
 	</view>
 </view>

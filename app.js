@@ -6,10 +6,15 @@ App({
 	wxValidate: (rules, messages) => new wxValidate(rules, messages),
     onLaunch: function (e) {
     // 登录
-	console.log('hello this is first step');
+	console.log(e)
+	console.log('hello this is first step',e.path);
 	// 登陆路径的白名单
+	let query = "";
+	for(let key in e.query){
+		query += key+'='+e.query[key]+'&'	
+	}
 	const PRIVATE_URL = ["index","login","register"];
-	this.globalData.navigateBackUrl = PRIVATE_URL.indexOf(e.path.split('/')[1]) == -1 ? '/'+e.path : '/pages/toPromote/toPromote';
+	this.globalData.navigateBackUrl = PRIVATE_URL.indexOf(e.path.split('/')[1]) == -1 ? '/'+e.path+'?'+ query : '/pages/toPromote/toPromote';
     // 获取用户信息
     wx.getSetting({
       success: res => {
