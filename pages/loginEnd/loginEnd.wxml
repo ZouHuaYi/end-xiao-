@@ -1,0 +1,17 @@
+<view class="container">
+	<view class="cont-pages">
+		<view class="form-row">
+			<input class="input" type="number" placeholder="手机号" />
+			<button class="btn" type="default" size="mini">获取验证码</button>
+		</view>
+		<view class="form-row">
+			<input class="input" type="number" placeholder="验证码" />
+		</view>
+		<view class="tip-box">
+			温馨提示：未注册美上美App账号的手机号，登录时将会自动注册，且代表您已同意<text class="vip">《用户注册协议》</text>
+		</view>
+		<view class="form-btn">
+			<button class="in-btn" type="default" bindtap="loginHandler">登录</button>
+		</view>
+	</view>
+</view>

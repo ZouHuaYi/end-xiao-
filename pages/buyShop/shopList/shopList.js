@@ -57,5 +57,5 @@ Page({
 				nodataStatus:true
 			})
 		})
-  }
+    }
 })

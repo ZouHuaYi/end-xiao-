@@ -316,3 +316,6 @@ button.add-news-btn .icon{
 .si-item.on{
 	color: #15CEBC;
 }
+.select-list{
+	padding-bottom: 30rpx;
+}

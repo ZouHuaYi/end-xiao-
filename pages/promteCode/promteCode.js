@@ -5,7 +5,15 @@ Page({
    */
 	data: {
 		statusNowTime:0, // 0 正在加载的时候 1 点击加入 2 我的二维码页  4 登录验证
-		alertText:'3秒后前往购买页'
+		alertText:'3秒后回到首页'
+	},
+	// 图片预览
+	preImgFun:function(e){
+		let img = e.currentTarget.dataset.img;
+		wx.previewImage({
+		  current: img,  // 当前显示图片的http链接
+		  urls: [img]      // 需要预览的图片http链接列表
+		})
 	},
 	// 绑定我们
 	bindMyTeam:function(){
@@ -15,7 +23,7 @@ Page({
 				pPhone:'',
 				pId:pId,
 				token:app.globalData.myUserInfo.token,
-				hospitalId:hospitalId
+				hospitalId:hospitalId?hospitalId:''
 			},data=>{
 				if(data.messageCode==900){
 					this.setData({
@@ -70,7 +78,7 @@ Page({
 		this.setData({
 			statusNowTime:2
 		})
-		app.postRequest('/rest/user/getAppletCodeUrl',{pId:pId,hospitalId:hospitalId,page:'/pages/promteCode/promteCode'},data=>{
+		app.postRequest('/rest/user/getAppletCodeUrl',{pId:pId,hospitalId:hospitalId?hospitalId:'',page:'pages/promteCode/promteCode'},data=>{
 			if(data.messageCode==900){
 				this.setData({
 					codeUrl:data.data.codeUrl
@@ -83,7 +91,11 @@ Page({
 		wx.showLoading({
 			title:"正在加载"
 		})
-		app.postRequest('/rest/team/getpUserAndHospital',{pId:pId,hospitalId:hospitalId},data=>{
+		app.globalData.navigateBackUrl = null;
+		app.postRequest('/rest/team/getpUserAndHospital',{
+			   pId: pId,
+			   hospitalId:hospitalId?hospitalId:'',
+			},data=>{
 			wx.hideLoading();
 			if(data.messageCode==900){
 				this.setData({
@@ -92,7 +104,7 @@ Page({
 				})
 			}else{
 				wx.showToast({
-					title:'无法获取医院信息',
+					title:data.message?data.message:'无法获取医院信息',
 					icon:'none',
 					duration:3000
 				})
@@ -107,9 +119,9 @@ Page({
 		wx.showLoading({
 			title:"正在加载"
 		})
+		app.globalData.navigateBackUrl = null;
 		app.postRequest('/rest/team/getpUserAndHospital',{pId:options.pId,hospitalId:options.hospitalId},data=>{
 			wx.hideLoading();
-			console.log(data,'data')
 			if(data.messageCode==900){
 				this.setData({
 					hospital_logo:data.data.hospital_logo,
@@ -121,7 +133,6 @@ Page({
 						token:app.globalData.myUserInfo.token,
 						hospitalId:options.hospitalId
 					},data=>{
-						console.log(data,'data1')
 						if(data.messageCode==900 || data.messageCode==1402){
 							 // 判断是否在团队中的时候
 							if (data.data.isAllow == 1) {
@@ -198,6 +209,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad: function (options) {
+		if(app.loginTest()) return;
 		if(options.myApp=='myApp'){
 			let {avatar,nickname,id} = app.globalData.myUserInfo;
 			wx.setNavigationBarTitle({
@@ -209,52 +221,54 @@ Page({
 				avatar:avatar?avatar:'../../assets/default.png'
 			})
 			this.id = id;
-			this.hospitalId = options.hospitalId;
-			let hospitalId = options.hospitalId;
-			this.getHospitalData(id,hospitalId);   // options.hospitalId
-			this.getQrCodeData(id,hospitalId);     // options.hospitalId
+			this.hospitalId = options.hospitalId?options.hospitalId:'';
+			this.getHospitalData(id,this.hospitalId);   
+			this.getQrCodeData(id,this.hospitalId);    
 		}
 		if(options.share=='share' || options.scene){
 			wx.setNavigationBarTitle({
 				title:"加入我们",
 			})
-			if(options.scene){
+			if(options.scene){	
 				let scene = decodeURIComponent(options.scene).split("&");
-				this.shareOptions = {
-					pId:scene[0],
-					hospitalId:scene[1]
-				};
+				if(!isNaN(scene[0])){
+					this.shareOptions = {
+						pId:Number(scene[0]),
+						hospitalId:scene[1]&&scene[1]!=='null'&&scene[1]!=='undefined'?Number(scene[1]):''
+					};
+				}else{
+					wx.showToast({
+						title: '分享二维码错误啦！',
+						icon: 'none',
+						duration: 2000
+					})
+				}
 			}else{
 				this.shareOptions = options;
 			}
 			
 			if(app.globalData.myUserInfo){
-				this.judgeScan(options);
+				this.judgeScan(this.shareOptions);
 			}else{
 				app.userInfoReadyCallback = res =>{
 					// 有了登录权限的时候要走的方法
-					this.judgeScan(options);
+					this.judgeScan(this.shareOptions);
 				}
 			}
 		}
-   },
-   /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+    },
+    /**
+    * 用户点击右上角分享
+    */
+    onShareAppMessage: function () {
 	 let hospitalId = this.hospitalId;// this.hospitalId;
 	 let path = `/pages/promteCode/promteCode?share=share&pId=${this.id}&hospitalId=${hospitalId}`;
 	 return {
 	  title: this.data.nickname + '向你推荐'+this.data.hospital_name,
 	  imageUrl:this.data.hospital_logo,
 	  path: path,
-	  success: function (res) {
-	    // 转发成功  
-		app.globalData.navigateBackUrl = path;
-	  },
-	  fail: function (res) {
-	    // 转发失败
-	  }
+	  success: function (res) {},
+	  fail: function (res) {}
 	}
   }
 })

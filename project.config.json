@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 18,
 			"list": [
 				{
 					"id": -1,
@@ -84,7 +84,8 @@
 					"id": 7,
 					"name": "推广二维码",
 					"pathName": "pages/promteCode/promteCode",
-					"query": "share=share&pId=4669&hospitalId="
+					"query": "",
+					"scene": "1011"
 				},
 				{
 					"id": -1,
@@ -133,6 +134,34 @@
 					"name": "推广医院列表",
 					"pathName": "pages/hospitalList/hospitalList",
 					"query": "name=0&ok=name"
+				},
+				{
+					"id": 16,
+					"name": "登录页",
+					"pathName": "pages/loginEnd/loginEnd",
+					"query": "type=code&phone=15016447087",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "完善密码",
+					"pathName": "pages/loginPassw/loginPassw",
+					"query": "",
+					"scene": "1011"
+				},
+				{
+					"id": 18,
+					"name": "登录注册",
+					"pathName": "pages/enLogin/enLogin",
+					"query": "type=code&phone=15016447087",
+					"scene": "1011"
+				},
+				{
+					"id": 19,
+					"name": "登录密码完善",
+					"pathName": "pages/enLogin/passw/passw",
+					"query": "type=code&phone=15016447087",
+					"scene": "1011"
 				}
 			]
 		}

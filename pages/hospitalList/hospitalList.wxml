@@ -34,7 +34,7 @@
 					<view class="item-right">
 						<view class="txt">{{item.name}}</view>
 						<view class="item-icon">
-							<text class="icon iconfont icon-weibiaoti-3"></text>
+							<text wx:if="{{item.distance}}" class="icon iconfont icon-weibiaoti-3"></text>
 							<text>{{item.distance}}</text>
 						</view>
 					</view>

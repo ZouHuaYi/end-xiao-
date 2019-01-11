@@ -1,7 +1,6 @@
-import {postRequest} from '../../utils/ajax.js'; 
+const app = getApp()
 
 Page({
-
     /**
      * 页面的初始数据
     */
@@ -19,6 +18,48 @@ Page({
 		passw:'',
 		repassw:''
     },
+	// 登录函数
+	loginFun:function(phone,passw){
+		
+		app.postRequest('/rest/user/login',{
+			phone:phone,
+			password:passw
+		},data=>{
+			wx.hideLoading();
+			if(data.messageCode==900){
+				app.globalData.myUserInfo = data.data;
+				app.globalData.tokenStatus = false;
+				
+				if(app.globalData.navigateBackUrl){
+					wx.reLaunch({
+						url:app.globalData.navigateBackUrl
+					})
+					app.globalData.navigateBackUrl = null;
+				}else{
+					wx.reLaunch({
+						url:"/pages/toPromote/toPromote"
+					})
+				}
+				app.postRequest('/rest/user/open_bind_unbundled',{
+					wechat:app.globalData.unionId,
+					unionId:app.globalData.unionId,
+					id:data.data.id,
+					action:0
+				},resd=>{
+					if(resd.messageCode==900){
+						console.log('静默式绑定成功');
+					}
+				})
+			}else{
+				wx.showToast({
+					title: data.message,
+					icon: 'none',
+					duration: 2000
+				})
+			}
+		})
+		
+	},
 	// 提交注册
 	formSubmile:function(){
 		let {passw,repassw,forgetType,phone,vcode} = this.data;
@@ -47,7 +88,7 @@ Page({
 			return;
 		}
 		if(forgetType==0){
-			postRequest('/rest/user/register',{
+			app.postRequest('/rest/user/register',{
 				phone:phone,
 				password:passw,
 				code:vcode
@@ -59,7 +100,7 @@ Page({
 						duration: 2000
 					})
 					// 自动登陆
-					
+					this.loginFun(phone,passw);
 				}else{
 					wx.showToast({
 						title: data.message,
@@ -69,7 +110,7 @@ Page({
 				}
 			})
 		}else if(forgetType==1){
-			postRequest('/rest/user/forgot_password',{
+			app.postRequest('/rest/user/forgot_password',{
 				phone:phone,
 				password:passw,
 				code:vcode
@@ -137,8 +178,12 @@ Page({
 			return;
 		}
 		if(this.clickStatus) return;
-		this.clickStatus = true;
-		postRequest('/rest/user/send_code',{type:forgetType,phone:phone},(data)=>{
+			this.clickStatus = true;
+			wx.showLoading({
+				title:"正在发送"
+			})
+		app.postRequest('/rest/user/send_code',{type:forgetType,phone:phone},(data)=>{
+			wx.hideLoading();
 			if(data.messageCode==900){
 				wx.showToast({
 					title: '发送成功',
@@ -211,10 +256,10 @@ Page({
 			animationPhone:that.animation.export()
 		})
 	},
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+    /**
+    * 生命周期函数--监听页面加载
+    */
+    onLoad: function (options) {
 		if(options.type=='forget'){
 			// 忘记密码
 			this.setData({
@@ -249,14 +294,6 @@ Page({
 		}
 		
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-			
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -267,39 +304,10 @@ Page({
   	  timingFunction: 'ease',
     })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+	
   }
 })

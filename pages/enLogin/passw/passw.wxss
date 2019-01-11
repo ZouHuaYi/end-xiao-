@@ -1,0 +1,45 @@
+.login-text{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 60rpx 30rpx 30rpx;
+}
+.login-header{
+	font-weight: 800;
+	font-size: 70rpx;
+	line-height: 70rpx;
+}
+.login-tip{
+	font-size: 32rpx;
+	padding-top: 20rpx;
+	color: #B2B2B2;
+	margin-bottom: 60rpx;
+}
+.login-form{
+	width: 100%;
+	margin-bottom: 30rpx;
+	background: #F7F7F7;
+	box-sizing: border-box;
+	padding: 20rpx 40rpx;
+	border-radius: 12rpx;
+}
+.login-form .phone{
+	display: block;
+	font-size: 36rpx;
+	letter-spacing: 3px;
+}
+.form-btn{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 80rpx 30rpx 0;
+}
+.yanz-tip{
+	padding-top: 60rpx;
+}
+.yanz-tip .tit{
+	font-size: 36rpx;
+	padding-bottom: 10rpx;
+}
+.yanz-tip .text{
+	font-size: 24rpx;
+	color: #989898;
+}

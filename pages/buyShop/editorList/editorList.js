@@ -5,10 +5,10 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
+	data: {
 		areaList:[],
 		selectId:0
-  },
+   },
 	// 选择地址
 	selectAction:function(e){
 		let {id,index} = e.currentTarget.dataset;
@@ -39,6 +39,9 @@ Page({
 										this.setData({
 											selectId:0
 										})
+									}
+									if(areaList.length<=0){
+										app.globalData.areaSelect = null;
 									}
 								}else{
 									wx.showToast({
@@ -109,6 +112,6 @@ Page({
 				})
 			}
 		})
-  }
+   }
 
 })

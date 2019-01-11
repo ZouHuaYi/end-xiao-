@@ -19,7 +19,24 @@ var postRequest = function(url,data,callback){
 		dataType:"JSON",
 		success:data=>{
 				try{
-					callback&&callback(JSON.parse(data.data));
+					
+					let dat = JSON.parse(data.data)
+					if(dat.messageCode==904){
+						
+						wx.showToast({
+							title: '该账号已在App登陆，请',
+							icon: 'none',
+							duration: 2000
+						})
+						
+						wx.reLaunch({
+							url:"/pages/enLogin/enLogin"
+						})
+						
+					}else{
+						callback&&callback(dat);
+					}
+					
 				}catch(e){
 					wx.hideLoading()
 				}

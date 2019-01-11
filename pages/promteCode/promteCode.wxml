@@ -8,7 +8,7 @@
 			</view>
 		</view>
 		<view class="code-conter">
-			<view class="img">
+			<view class="img" >
 				<image mode="widthFix" src="{{hospital_logo}}"></image>
 			</view>
 			<view class="code-c-txt">
@@ -22,7 +22,7 @@
 		</view>
 		<view class="code-bottom">
 			<view class="code-img" wx:if="{{statusNowTime==2}}">
-				<image mode="widthFix" src="{{codeUrl}}"></image>
+				<image bindtap="preImgFun" bindlongpress="downLoadImg" data-img="{{codeUrl}}" mode="widthFix" src="{{codeUrl}}"></image>
 			</view>
 			<view class="code-input" wx:if="{{statusNowTime==1}}">
 				<text class="ok">当前登陆账号</text>

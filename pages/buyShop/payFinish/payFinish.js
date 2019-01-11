@@ -1,7 +1,6 @@
 const app = getApp();
 
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -24,22 +23,28 @@ Page({
 			  console.log(data.data,'pay')
 			  let {timestamp,total_fee,noncestr,partnerid,prepayid,sign} = data.data;
 			    wx.requestPayment({
-					  timeStamp: String(timestamp),
-					  nonceStr: noncestr,
-					  package: `prepay_id=${prepayid}`,
-					  signType: 'MD5',
-					  paySign: sign,
-					  total_fee:total_fee,
+					timeStamp: String(timestamp),
+					nonceStr: noncestr,
+					package: `prepay_id=${prepayid}`,
+					signType: 'MD5',
+					paySign: sign,
+					total_fee:total_fee,
 					success:res=> { 
 						  wx.showToast({
 						  	title: '支付成功',
 						  	icon: 'none',
 						  	duration: 2000
 						  }) 
-						  wx.navigateTo({
+						  setTimeout(()=>{
+							  wx.reLaunch({
+								url:"/pages/toPromote/toPromote"
+							  }) 
+						  },2000)
+						  /*
+						  wx.reLaunch({
 						  	url:`/pages/promteCode/promteCode?pId=${this.options.userId}&hospitalId=${this.options.hospitalid}&myApp=myApp`
 						  })
-						  
+						  */
 					  },
 					 fail:res=> {
 						   wx.showToast({

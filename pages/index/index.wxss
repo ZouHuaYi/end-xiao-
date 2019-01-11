@@ -1,6 +1,6 @@
 page{
 	height: 100%;
-	background: #EAEAEB;
+	background: #FFFFFF;
 }
 .start-page{
 	width: 100%;
@@ -14,7 +14,7 @@ page{
 .btn-get-info{
 	position: fixed;
 	left: 50%;
-	top:24%;
+	top:15%;
 	transform: translateX(-50%);
 	border: 1px solid #14CEBC;
 	color: #14CEBC;

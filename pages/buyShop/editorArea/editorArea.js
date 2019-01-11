@@ -7,12 +7,12 @@ Page({
    */
   data: {
 		animationAddressMenu: {},
-    addressMenuIsShow: false,
-    value: [0, 0, 0],
-    provinces: [],
-    citys: [],
-    areas: [],
-    areaInfo:'',
+		addressMenuIsShow: false,
+		value: [0, 0, 0],
+		provinces: [],
+		citys: [],
+		areas: [],
+		areaInfo:'',
 		receivePhone:'',
 		receiveName:'',
 		address:''
@@ -193,23 +193,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-		if(options.id){
-			this.data.id = options.id;
-			if(app.globalData.areaSelect){
-				let {area,receivePhone,receiveName,address} = app.globalData.areaSelect;
-				this.setData({
-					areaInfo:area,
-					receivePhone:receivePhone,
-					receiveName:receiveName,
-					address:address
-				})
-				app.globalData.areaSelect = null;
-			}
+	if(options.id){
+		wx.setNavigationBarTitle({
+			title:"修改地址",
+		})
+		this.data.id = options.id;
+		if(app.globalData.areaSelect){
+			let {area,receivePhone,receiveName,address} = app.globalData.areaSelect;
+			this.setData({
+				areaInfo:area,
+				receivePhone:receivePhone,
+				receiveName:receiveName,
+				address:address
+			})
+			app.globalData.areaSelect = null;
 		}
-		if(options.add=='add'){
-			this.add = options.add;
-		}
-		var id = address.provinces[0].id
+	}
+	if(options.add=='add'){
+		wx.setNavigationBarTitle({
+			title:"新建地址",
+		})
+		this.add = options.add;
+	}
+	var id = address.provinces[0].id
     this.setData({
       provinces: address.provinces,
       citys: address.citys[id],

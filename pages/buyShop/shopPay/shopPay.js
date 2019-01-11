@@ -14,7 +14,15 @@ Page({
 	pay:function(){
 		/**业务类型0:套餐, 1:会员购买, 2:服务, 3:MM卖场*/
 		let {hospitalId,price,id,title} = this.data.shopDetail.v_package;
-		let item = [{"number":"1","productId":id,"specificationGroup":title}]
+		let item = [{"number":"1","productId":id,"specificationGroup":title}];
+		if(!this.data.areaList){
+			wx.showToast({
+				title: '收货地址不能为空',
+				icon: 'none',
+				duration: 2000
+			})
+			return;
+		}
 		app.postRequest("/rest/order/place",{
 			addressId:this.data.areaList.id,
 			amount:price,
@@ -92,10 +100,8 @@ Page({
 					})
 				}
 			}else{
-				wx.showToast({
-					title: data.message,
-					icon: 'none',
-					duration: 2000
+				this.setData({
+					areaList:null
 				})
 			}
 		})

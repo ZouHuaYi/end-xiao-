@@ -125,7 +125,23 @@ Page({
 						alertSelect:alertSelect
 					})
 					this.renderFun(this.data.allShowData[0])
-				}else{}
+				}else{
+					wx.showModal({
+					  title: '温馨提示',
+					  cancelText:'取消',
+					  confirmText:'去推广',
+					  content: '您当前没有可推广的医院或美容院',
+					  success(res) {
+						if (res.confirm) {
+						  wx.reLaunch({
+						  	url:"/pages/hospitalList/hospitalList"
+						  })
+						} else if (res.cancel) {
+						  wx.navigateBack();
+						}
+					  }
+					})
+				}
 			}else if(data.messageCode==902){
 				wx.showModal({
 				  title: '温馨提示',
@@ -134,9 +150,11 @@ Page({
 				  content: '您当前没有可推广的医院或美容院',
 				  success(res) {
 					if (res.confirm) {
-					  console.log('用户点击确定')
+					  wx.reLaunch({
+					  	url:"/pages/hospitalList/hospitalList"
+					  })
 					} else if (res.cancel) {
-					  console.log('用户点击取消')
+					  wx.navigateBack();
 					}
 				  }
 				})
@@ -153,6 +171,7 @@ Page({
     * 生命周期函数--监听页面加载
     */
 	onLoad: function (options) {
+		if(app.loginTest()) return;
 		if(app.globalData.myUserInfo){
 			this.gainAllData(app.globalData.myUserInfo.id,app.globalData.myUserInfo.token)
 		}else{

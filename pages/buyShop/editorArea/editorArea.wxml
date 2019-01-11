@@ -8,7 +8,7 @@
 			</view>
 			<view class="form-groud">
 				<text class="label">联系电话</text>
-				<input class="inp" type="text" bindinput="inputInfo" data-key="receivePhone" value="{{receivePhone}}" placeholder="请输入联系电话" />
+				<input class="inp" type="number" bindinput="inputInfo" data-key="receivePhone" value="{{receivePhone}}" placeholder="请输入联系电话" />
 			</view>
 			<view class="form-groud">
 				<text class="label">所在地址</text>
