@@ -7,13 +7,13 @@ Page({
     data: {
 		niceGlod:false,
 		shopDetail:{},
-		grade:['无','A','B','C','D','E','F','G','H','I','K','L','M','N']
+		grade:['无','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
     },
 	//去购买详情页 
 	gotoBuy:function(){
 		app.globalData.shopList = this.data.shopDetail;
 		wx.navigateTo({
-			url:"../shopPay/shopPay"
+			url:"../shopPay/shopPay?visible=" + this.options.visible
 		})
 	},
 	// 显示美丽金额
@@ -62,6 +62,7 @@ Page({
 				 this.getDetailData(options);
 				}
 			}
+			this.options = options;
 		}else{
 			wx.showToast({
 				title: '医院id不能为空',

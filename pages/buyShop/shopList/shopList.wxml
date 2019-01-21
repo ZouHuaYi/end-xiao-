@@ -10,7 +10,7 @@
 	</view>
 	<view class="shop-list">
 		<block wx:for="{{shopList}}" wx:key="{{index}}">
-			<view class="shop-item" bindtap="gotoDetail" data-id="{{item.id}}" data-index="{{index}}">
+			<view class="shop-item" bindtap="gotoDetail" data-id="{{item.id}}" data-visible="{{item.visible}}" data-index="{{index}}">
 				<view class="s-img">
 					<image mode="aspectFit" src="{{item.thumbnail}}"></image>
 				</view>

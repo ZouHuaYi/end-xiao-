@@ -7,7 +7,7 @@ Page({
 	*/
 	data: {
 		shopDetail:{},
-		grade:['无','A','B','C','D','E','F','G','H','I','K','L','M','N'],
+		grade:['无','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
 		areaList:null
 	},
 	// 支付给钱
@@ -40,7 +40,7 @@ Page({
 					"amount":data.data.amount
 				}
 				wx.navigateTo({
-					url:`../payFinish/payFinish?userId=${data.data.userId}&hospitalId=${hospitalId}`
+					url:`../payFinish/payFinish?userId=${data.data.userId}&hospitalId=${hospitalId}&visible=${this.options.visible}`
 				})
 			}else{
 				wx.showToast({
@@ -71,6 +71,7 @@ Page({
 			url:"/pages/toPromote/toPromote"
 		})
 	}
+	this.options = options;
   },
   /**
    * 生命周期函数--监听页面显示

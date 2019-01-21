@@ -213,7 +213,7 @@ Page({
 		if(options.myApp=='myApp'){
 			let {avatar,nickname,id} = app.globalData.myUserInfo;
 			wx.setNavigationBarTitle({
-				title:"推广二维码",
+				title:"我要推广",
 			})
 			this.setData({
 				nickname:nickname,

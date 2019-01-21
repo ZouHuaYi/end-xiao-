@@ -7,7 +7,7 @@ Page({
   data: {
 		shopList:[],
 		nodataStatus:false,
-		grade:['无','A','B','C','D','E','F','G','H','I','K','L','M','N'],
+		grade:['无','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
 		shopHospital:{}
   },
   // 使用激活卡页
@@ -18,9 +18,9 @@ Page({
   },
 	// 去列表详情
 	gotoDetail:function(e){
-		let {index,id} = e.currentTarget.dataset;
+		let {index,id,visible} = e.currentTarget.dataset;
 		wx.navigateTo({
-			url:'../shopDetail/shopDetail?id='+id
+			url:'../shopDetail/shopDetail?id='+id+'&'+'visible='+visible
 		})
 	},
   /**

@@ -44,9 +44,10 @@
 			</view>
 		</view>
 	</view>
-	<view class="vip-xy">
-		<text>购买即视同意</text>
-		<text class="vip">《美上美VIP-用户协议》</text>
+	<view class="vip-xy" wx:if="{{visible}}">
+		<icon bindtap="selectAgree" class="vip-icon" type="success" size="13" color="{{ agreeStatus?'#1CAC23':'#cccccc'}}" />
+		<text>阅读并同意</text>
+		<text class="vip" bindtap="goToWebVip">《美上美套餐协议》</text>
 	</view>
 	<view class="form-btn">
 		<button class="in-btn" type="default" bindtap="payMonney">确认支付</button>

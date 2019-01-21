@@ -111,14 +111,14 @@ Page({
 	   
 	   if(num==focusStatus){
 		   if(!text){
-			  if(focusStatus==0){
-				 focusStatus = num;
-			  }else{
-				 if(!vcode[5]){
-					 vcode[num-1] = '';
-					 focusStatus = num -1;
-				 }
-			  }
+// 			  if(focusStatus==0){
+// 				 focusStatus = num;
+// 			  }else{
+// 				 if(!vcode[5]){
+// 					 vcode[num-1] = '';
+// 					 focusStatus = num -1;
+// 				 }
+// 			  }
 		   }else{
 				if(focusStatus<5){
 				   focusStatus = num + 1
@@ -126,12 +126,12 @@ Page({
 		   }
 	   }
 	   
-	   if(text.length>1){
-			text = (text+'').substr(1,1);
-		}
+// 	   if(text.length>1){
+// 			text = (text+'').substr(1,1);
+// 		}
 	    vcode[num] = text;
+		this.data.vcode = vcode;
 	    this.setData({
-		   vcode:vcode,
 		   focusStatus:focusStatus
 	    })
 		

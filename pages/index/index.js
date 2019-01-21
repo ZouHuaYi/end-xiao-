@@ -19,7 +19,7 @@ Page({
 				url:'/pages/toPromote/toPromote'
 			})
 		}
-	},1000)
+	},2000)
   },
   onLoad: function (options) {
 	  if(app.globalData.myUserInfo){
@@ -54,13 +54,12 @@ Page({
 					// app没有绑定微信小程序的时候
 					app.globalData.tokenStatus = true;
 					wx.reLaunch({
-						url:'/pages/enLogin/enLogin',
+						url:'/pages/loginEnd/loginEnd',
 						success:(res)=>{
 							app.globalData.unionId = data.data.unionid;
 							app.globalData.openId = data.data.openid;
 						}
 					})
-					
 				}
 			})
 		}

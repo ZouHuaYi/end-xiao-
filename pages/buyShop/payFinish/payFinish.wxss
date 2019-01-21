@@ -88,3 +88,9 @@ page{
 	width: 100%;
 	padding: 60rpx 30rpx 0;
 }
+.vip-icon{
+	display: inline-block;
+	margin-right: 20rpx;
+	margin-top: 0rpx;
+	vertical-align: top;
+}

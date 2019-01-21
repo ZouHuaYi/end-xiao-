@@ -8,6 +8,7 @@
     "pages/enLogin/enLogin",
     "pages/enLogin/passw/passw",
     "pages/loginEnd/loginEnd",
+    "pages/loginEnd/passw/passw",
     "pages/buyShop/buyShop",
 		"pages/buyShop/editorArea/editorArea",
     "pages/buyShop/editorList/editorList",
@@ -16,7 +17,8 @@
     "pages/buyShop/shopList/shopList",
     "pages/buyShop/shopDetail/shopDetail",
     "pages/buyShop/shopPay/shopPay",
-    "pages/hospitalList/hospitalList"
+    "pages/hospitalList/hospitalList",
+    "pages/webView/webView"
   ],
   "window":{
     "backgroundTextStyle":"light",

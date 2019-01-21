@@ -1,5 +1,5 @@
 <view class="container">
-	<view class="pre-page" wx:if="{{loginStatus==1}}">
+	<view class="pre-page" wx:if="{{loginStatus==2}}">
 		<view class="login-text">
 			<view class="login-header">登录/注册</view>
 			<view class="login-tip">请输入手机号</view>
@@ -11,13 +11,14 @@
 			<button class="in-btn" type="default" bindtap="loginHandler">下一步</button>
 		</view>
 	</view>
-	<view class="next-page" wx:if="{{loginStatus==2}}">
+	<view class="next-page" wx:if="{{loginStatus==1}}">
 		
 		<view class="login-text">
 			<view class="login-header">登录/注册</view>
 			<view class="login-tip">请输入验证码</view>
 			<view class="yan-input">
-				<input class="{{focusStatus==index?'on':''}}" focus="{{focusStatus>=index?true:false}}"  value="{{vcode[index]}}" disabled="{{focusStatus==index?false:true}}" data-num="{{index}}" type="number" wx:for="{{6}}" wx:key="{{index}}" bindinput="vcodeInput" />
+				<input class="{{focusStatus==index?'on':''}}" maxlength="1" focus="{{focusStatus==index?true:false}}" autofocus  value="" data-num="{{index}}" type="number" wx:for="{{6}}" wx:key="{{index}}" bindinput="vcodeInput" />
+				
 			</view>
 			<view class="yanz-tip">
 				<view class="tit">温馨提示</view>

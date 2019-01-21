@@ -9,7 +9,7 @@ App({
 		for(let key in e.query){
 			query += key+'='+e.query[key]+'&'	
 		}
-		const PRIVATE_URL = ["index","enLogin"];
+		const PRIVATE_URL = ["index","enLogin","loginEnd"];
 
 		this.globalData.navigateBackUrl = PRIVATE_URL.indexOf(e.path.split('/')[1]) == -1 ? '/'+e.path+'?'+ query : '/pages/toPromote/toPromote';
 	
@@ -43,7 +43,7 @@ App({
 							this.globalData.openId = data.data.openid;
 
 							wx.reLaunch({
-								url:'/pages/enLogin/enLogin'
+								url:'/pages/loginEnd/loginEnd'
 							})
 						} else {
 							// 没有授权的情况下
@@ -109,6 +109,7 @@ App({
 										if(dt.messageCode==900){
 											this.globalData.myUserInfo = dt.data.user;
 											this.globalData.openId = dt.data.openid;
+											this.globalData.unionId = dt.data.unionid
 											data.token = dt.data.user.token;
 											if(data.openid){
 												data.openid = dt.data.openid;
@@ -165,14 +166,14 @@ App({
 	loginTest:function(){
 		if(this.globalData.tokenStatus){
 			wx.reLaunch({
-				url:'/pages/enLogin/enLogin'
+				url:'/pages/loginEnd/loginEnd'
 			})
 			return true;
 		}	
 		return false;
 	},
 	globalData: {
-		root_url:'https://test.topmei3mei.com',
+		root_url:'https://admin.topmei3mei.com',
 		userInfo: null,
 		unionId:null,
 		openId:null,
@@ -184,5 +185,5 @@ App({
 		areaSelect:null,
 		orderPlace:null,
 		recommended:null
-    }
+  }
 })

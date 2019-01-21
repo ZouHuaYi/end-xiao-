@@ -10,7 +10,8 @@ Page({
 			alertSelect:[{"hospital":"医院","icon":"icon-yiyuan","list":[]},{"hospital":"美容院","icon":"icon-yiyuan-2","list":[]}],
 			alertStatus:false,
 			animationData:{},
-			opacityData:{}
+			opacityData:{},
+			avatar:''
 	},
 	// 去推广医院
 	goToHospitalList:function(){
@@ -83,16 +84,21 @@ Page({
 	// 渲染现在的数据
 	renderFun:function(data){
 		app.globalData.recommended = data.pUserNickname;
+		wx.setStorage({
+			key:'hosiptalId',
+			data:data.id,
+		})
 		this.setData({
 			newShowData:data
 		})
+		
 		wx.setNavigationBarTitle({
 			title: data.hospitalName
 		})
 	},
 	// 获取用户信息
 	gainAllData:function(userId,token){
-		let pack = ['无','A','B','C','D','E','F','G','H','I','K','L','M','N'];
+		let pack = ['无','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 		let grade =['一','二','三','四','五','六','七','八','九','十'];
 		let formData={
 			"userId":userId,
@@ -107,24 +113,43 @@ Page({
 			wx.hideLoading();
 			if(data.messageCode==900){
 				if(data.data&&data.data.length>0){
-					this.setData({
-						allShowData:data.data.map((data,key)=>{
+					let allShowData = data.data.map((data,key)=>{
 							data.pack = pack[data.packageType]+'套餐';
 							if(data.gradeText>0){
 								data.gradeText = grade[data.grade-1]+'星级';
 							}
-							alertSelect[data.hospitalType].list.push({
-								"title":data.hospitalName,
-								"key":key,
-								"select":key==0?true:false
-							})
 							return data;
-						})
 					})
+					
 					this.setData({
-						alertSelect:alertSelect
+						allShowData:allShowData
 					})
-					this.renderFun(this.data.allShowData[0])
+					
+					try {
+					  const value = wx.getStorageSync('hosiptalId');
+					  this.setStoreStatus = false;
+					  for(let k=0;k<allShowData.length;k++){
+					  		if(allShowData[k].id == value){
+					  		    this.renderFun(allShowData[k]);
+					  			this.setStoreStatus = true;
+					  		}
+							alertSelect[allShowData[k].hospitalType].list.push({
+								"title":allShowData[k].hospitalName,
+								"key":k,
+								"select":allShowData[k].id == value?true:false
+							})
+					  	}
+					  	if(!this.setStoreStatus){
+					  		this.renderFun(allShowData[0]);
+							alertSelect[allShowData[0].hospitalType].list[0]["select"] = true;
+					  	}
+					} catch (e) {
+					  this.renderFun(allShowData[0]);
+					  alertSelect[allShowData[0].hospitalType].list[0]["select"] = true;
+					}
+					 this.setData({
+					  	alertSelect:alertSelect
+					  })
 				}else{
 					wx.showModal({
 					  title: '温馨提示',
@@ -137,7 +162,9 @@ Page({
 						  	url:"/pages/hospitalList/hospitalList"
 						  })
 						} else if (res.cancel) {
-						  wx.navigateBack();
+						   wx.reLaunch({
+						  	url:"/pages/hospitalList/hospitalList"
+						  })
 						}
 					  }
 					})
@@ -173,10 +200,16 @@ Page({
 	onLoad: function (options) {
 		if(app.loginTest()) return;
 		if(app.globalData.myUserInfo){
-			this.gainAllData(app.globalData.myUserInfo.id,app.globalData.myUserInfo.token)
+			this.gainAllData(app.globalData.myUserInfo.id,app.globalData.myUserInfo.token);
+			this.setData({
+				avatar:app.globalData.myUserInfo.avatar
+			})
 		}else{
 			app.userInfoReadyCallback = info => {		
-				this.gainAllData(info.id,info.token)
+				this.gainAllData(info.id,info.token);
+				this.setData({
+					avatar:app.globalData.myUserInfo.avatar
+				})
 			}
 		}
 	},

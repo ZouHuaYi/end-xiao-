@@ -3,7 +3,7 @@
 	<view class="header">
 		<image class="main-back" src="../../assets/main_back.png"></image>
 		<view class="h-top">
-			<image class="avatar" src="../../assets/default.png"></image>
+			<image class="avatar" mode="aspectFill" src="{{avatar?avatar:'../../assets/default.png'}}"></image>
 			<view class="h-content">
 				<view class="h-title">{{newShowData.userNickname}}</view>
 				<view class="h-bay">
@@ -56,7 +56,7 @@
 		
 	</view>
 </view>
-<view class="select-mak" wx:if="{{alertStatus}}">
+<view class="select-mak"  wx:if="{{alertStatus}}">
 	<view class="mak-hidden" bindtap="initSelectStatus" animation="{{opacityData}}"></view>
 	<view class="select-box" animation="{{animationData}}">
 		<view class="select-content">

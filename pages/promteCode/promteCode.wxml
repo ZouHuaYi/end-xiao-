@@ -5,6 +5,7 @@
 			<view class="code-t-tit">
 				<text class="tit">推广人</text>
 				<text class="name">{{nickname}}</text>
+				<button class="share-btn" wx:if="{{statusNowTime==2}}" type="primary" size="mini" open-type="share">分享</button>
 			</view>
 		</view>
 		<view class="code-conter">
