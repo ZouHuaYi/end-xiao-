@@ -8,7 +8,7 @@
 			<input class="input" data-status="vcode" type="number" placeholder="验证码" bindinput="bindAllInput"  />
 		</view>
 		<view class="tip-box">
-			温馨提示：未注册美上美App账号的手机号，登录时将会自动注册，且代表您已同意<text class="vip">《用户注册协议》</text>
+			温馨提示：未注册美上美App账号的手机号，登录时将会自动注册，且代表您已同意<text class="vip" bindtap="goToVip">《用户注册协议》</text>
 		</view>
 		<view class="form-btn">
 			<button class="in-btn" type="default" bindtap="loginHandler">登录</button>

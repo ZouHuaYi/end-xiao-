@@ -11,6 +11,13 @@ Page({
 		vcodeText:'发送验证码',
 		clickStatus:true
     },
+	// 跳转到用户协议上
+	goToVip:function(){
+		let url = app.globalData.root_url+'/wxchat/agreement.html'
+		wx.navigateTo({
+			url:  '/pages/webView/webView?url='+encodeURIComponent(url)
+		})
+	},
 	// 登录 接口
 	loginHandler:function(){
 		let {vcode,phone} = this.data;
@@ -53,7 +60,7 @@ Page({
 					app.globalData.navigateBackUrl = null;
 				}else{
 					wx.reLaunch({
-						url:"/pages/toPromote/toPromote"
+						url:"/pages/pageIndex/pageIndex"
 					})
 				}
 				

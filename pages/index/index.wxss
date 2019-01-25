@@ -13,10 +13,13 @@ page{
 }
 .btn-get-info{
 	position: fixed;
+	font-size: 36rpx;
 	left: 50%;
-	top:15%;
+	bottom:40rpx;
 	transform: translateX(-50%);
 	border: 1px solid #14CEBC;
 	color: #14CEBC;
 	line-height: 70rpx;
+	background: rgba(255,255,255,.1);
+	border-radius: 40rpx;
 }

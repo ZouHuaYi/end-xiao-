@@ -115,7 +115,7 @@ Page({
 				if(data.data&&data.data.length>0){
 					let allShowData = data.data.map((data,key)=>{
 							data.pack = pack[data.packageType]+'套餐';
-							if(data.gradeText>0){
+							if(data.grade>0){
 								data.gradeText = grade[data.grade-1]+'星级';
 							}
 							return data;
@@ -230,6 +230,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+	return {
+		path: '/pages/pageIndex/pageIndex',
+		success: function (res) {},
+		fail: function (res) {}
+	}
   }
 })

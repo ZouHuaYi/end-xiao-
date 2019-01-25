@@ -10,10 +10,12 @@
 					<view class="hb-item"><image class="icon" src="../../assets/taocan.png" mode="cover"></image><text class="tit">{{newShowData.pack}}</text></view>
 					<view class="hb-item" wx:if="{{newShowData.gradeText}}"><image class="icon" src="../../assets/star.png" mode="cover"></image><text class="tit">{{newShowData.gradeText}}</text></view>
 				</view>
-				<view class="h-prom">推广: {{newShowData.pUserNickname}}</view>
+				<view class="h-prom" wx:if="{{false}}">推广: {{newShowData.pUserNickname}}</view>
 			</view>
 		</view>
-		<button class="h-href" wx:if="{{newShowData.packageType==0}}" data-hospitalId="{{newShowData.hospitalId}}"  bindtap="goToPay"><text class="icon iconfont icon-huiyuanqiaguanli"></text>购买套餐<text class="icon iconfont icon-jiantou"></text></button>
+		<button class="h-href" wx:if="{{newShowData.packageType==0}}" data-hospitalId="{{newShowData.hospitalId}}"  bindtap="goToPay">
+			<text class="icon iconfont icon-huiyuanqiaguanli"></text>购买套餐<text class="icon iconfont icon-jiantou"></text>
+		</button>
 		<button class="h-href" bindtap="gotoScanMak" data-title="{{newShowData.hospitalName}}" data-pId="{{newShowData.userId}}" data-hospitalId="{{newShowData.hospitalId}}" wx:if="{{newShowData.packageType!=0}}"><text class="icon iconfont icon-erweima"></text>推广二维码<text class="icon iconfont icon-jiantou"></text></button>
 	</view>
 	<view class="goto-hospital">

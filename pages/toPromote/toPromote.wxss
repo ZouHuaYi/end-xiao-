@@ -47,8 +47,8 @@ page{
 }
 .h-title{
 	font-size: 36rpx;
-	padding-top: 10rpx;
-	padding-bottom: 20rpx;
+	padding-top: 30rpx;
+	padding-bottom: 30rpx;
 	line-height: 36rpx;
 }
 .h-prom{
@@ -75,7 +75,7 @@ page{
 	padding-top: 2rpx;
 }
 .hb-item:last-child{
-	margin-left: 10rpx;
+	margin-left: 20rpx;
 }
 .hb-item .icon{
 	display: inline-block;

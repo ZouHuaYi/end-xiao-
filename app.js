@@ -4,14 +4,14 @@ App({
 	//优雅的表单验证
 	wxValidate: (rules, messages) => new wxValidate(rules, messages),
     onLaunch: function (e) {
-	// 登陆路径的白名单
+		// 登陆路径的白名单
 		let query = "";
 		for(let key in e.query){
 			query += key+'='+e.query[key]+'&'	
 		}
 		const PRIVATE_URL = ["index","enLogin","loginEnd"];
 
-		this.globalData.navigateBackUrl = PRIVATE_URL.indexOf(e.path.split('/')[1]) == -1 ? '/'+e.path+'?'+ query : '/pages/toPromote/toPromote';
+		this.globalData.navigateBackUrl = PRIVATE_URL.indexOf(e.path.split('/')[1]) == -1 ? '/'+e.path+'?'+ query : '/pages/pageIndex/pageIndex';
 	
 		// 获取用户信息
 		wx.getSetting({
@@ -184,6 +184,7 @@ App({
 		shopList:null,
 		areaSelect:null,
 		orderPlace:null,
-		recommended:null
+		recommended:null,
+		templateHtml:null
   }
 })

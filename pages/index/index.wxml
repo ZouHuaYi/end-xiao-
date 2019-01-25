@@ -1,4 +1,21 @@
 <view class="container">
-	<view class="start-page"><image mode="widthFix" src="https://admin.topmei3mei.com/images/startpage.png"></image></view>
+	<!-- <view class="start-page"><image mode="widthFix" src="https://admin.topmei3mei.com/images/startpage.png"></image></view> -->
+	
+	<swiper 
+	    class="start-page"
+		indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}"
+		interval="{{interval}}"
+		duration="{{duration}}"
+		indicator-color="rgba(20,206,188,.2)"
+		indicator-active-color="rgba(20,206,188,1)"
+		bindchange="changeBanner"
+	>
+		<block wx:for="{{bannerList}}" wx:key="{{index}}">
+			<swiper-item>
+				<image mode="widthFix" lazy-load="true" src="{{item}}"/>
+			</swiper-item>
+		</block>
+	</swiper>
 	<button class="btn-get-info" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击进入</button>
 </view>

@@ -5,7 +5,7 @@ Page({
    */
 	data: {
 		statusNowTime:0, // 0 正在加载的时候 1 点击加入 2 我的二维码页  4 登录验证
-		alertText:'3秒后回到首页'
+		alertText:'3秒后回到推广中心'
 	},
 	// 图片预览
 	preImgFun:function(e){
@@ -35,7 +35,7 @@ Page({
 				    timp = setInterval(() => {
 					numtime -= 1;
 					this.setData({
-						alertText:`${numtime}秒后回到首页`
+						alertText:`${numtime}秒后回到推广中心`
 					})
 					if (numtime <= 0) {
 					  clearInterval(timp);
@@ -261,14 +261,14 @@ Page({
     * 用户点击右上角分享
     */
     onShareAppMessage: function () {
-	 let hospitalId = this.hospitalId;// this.hospitalId;
-	 let path = `/pages/promteCode/promteCode?share=share&pId=${this.id}&hospitalId=${hospitalId}`;
-	 return {
-	  title: this.data.nickname + '向你推荐'+this.data.hospital_name,
-	  imageUrl:this.data.hospital_logo,
-	  path: path,
-	  success: function (res) {},
-	  fail: function (res) {}
-	}
+			 let hospitalId = this.hospitalId;// this.hospitalId;
+			 let path = `/pages/promteCode/promteCode?share=share&pId=${this.id}&hospitalId=${hospitalId}`;
+			 return {
+						title: this.data.nickname + '向你推荐'+this.data.hospital_name,
+						imageUrl:this.data.hospital_logo,
+						path: path,
+						success: function (res) {},
+						fail: function (res) {}
+				}
   }
 })

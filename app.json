@@ -1,12 +1,12 @@
 {
   "pages":[
 		"pages/index/index",
+    "pages/details/details",
+    "pages/pageIndex/pageIndex",
 		"pages/toPromote/toPromote",
     "pages/promteCode/promteCode",
     "pages/register/register",
     "pages/login/login",
-    "pages/enLogin/enLogin",
-    "pages/enLogin/passw/passw",
     "pages/loginEnd/loginEnd",
     "pages/loginEnd/passw/passw",
     "pages/buyShop/buyShop",

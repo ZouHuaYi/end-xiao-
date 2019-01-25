@@ -1,0 +1,50 @@
+<view class="container">
+	<view class="cont-page">
+		<swiper
+		  indicator-dots="{{indicatorDots}}"
+		  autoplay="{{autoplay}}"
+		  interval="{{interval}}"
+		  duration="{{duration}}"
+		  class="banner-list"
+		  indicator-active-color="rgba(20, 206, 188, .8)"
+		>
+		  <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+			<swiper-item >
+			  <image src="{{item.banner}}" data-index="{{index}}" bindtap="goToBanner" class="slide-image" mode="widthFix"  />
+			</swiper-item>
+		  </block>
+		</swiper>
+	</view>
+	<view class="cont-nav">
+		<view class="nav-list">
+			<block wx:for="{{navList}}" wx:key="{{index}}">
+				<view class="nav-item" bindtap="goToNav" data-url="{{item.url}}" data-link="{{item.link}}">
+					<image src="{{item.img}}" mode="cover"></image>
+					<text>{{item.title}}</text>
+				</view>
+			</block>
+		</view>
+	</view>
+	<!-- 广告位置 -->
+	<view class="advertising">
+		
+	</view>
+	<!-- end 广告位置 -->
+	<view class="hospital-list" wx:if="{{hospitalList.length>0}}">
+		<view class="hosp-title">医院/美容院</view>	
+		<view class="hospital-content">
+			<view class="hospital-item" wx:for="{{hospitalList}}" wx:key="{{index}}" bindtap="goToPayList" data-id="{{item.id}}">
+				<view class="item-left">
+					<image mode="aspectFit" src="{{item.thumbnail}}"></image>
+				</view>
+				<view class="item-right">
+					<view class="txt">{{item.name}}</view>
+					<view class="item-icon">
+						<text wx:if="{{item.distance}}" class="icon iconfont icon-weibiaoti-3"></text>
+						<text>{{item.distance}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

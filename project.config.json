@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 21,
+			"current": 23,
 			"list": [
 				{
 					"id": -1,
@@ -178,6 +178,18 @@
 					"pathName": "pages/webView/webView",
 					"query": "",
 					"scene": "1011"
+				},
+				{
+					"id": 22,
+					"name": "主页",
+					"pathName": "pages/pageIndex/pageIndex",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "富文本编译器",
+					"pathName": "pages/details/details",
+					"query": ""
 				}
 			]
 		}

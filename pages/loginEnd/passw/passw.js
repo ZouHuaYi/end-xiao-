@@ -88,7 +88,7 @@ Page({
 				app.globalData.navigateBackUrl = null;
 			}else{
 				wx.reLaunch({
-					url:"/pages/toPromote/toPromote"
+					url:"/pages/pageIndex/pageIndex"
 				})
 			}
 			
