@@ -34,7 +34,7 @@ page{
 	width: 100%;
 	padding: 0rpx 25rpx;
 	left: 0;
-	bottom: 120rpx;
+	bottom: 25rpx;
 }
 .picker-view {
   width: 100%;

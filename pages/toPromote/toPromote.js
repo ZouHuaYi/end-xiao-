@@ -89,11 +89,8 @@ Page({
 			data:data.id,
 		})
 		this.setData({
-			newShowData:data
-		})
-		
-		wx.setNavigationBarTitle({
-			title: data.hospitalName
+			newShowData:data,
+			barTitle: data.hospitalName
 		})
 	},
 	// 获取用户信息
@@ -158,13 +155,13 @@ Page({
 					  content: '您当前没有可推广的医院或美容院',
 					  success(res) {
 						if (res.confirm) {
-						  wx.reLaunch({
+						  wx.redirectTo({
 						  	url:"/pages/hospitalList/hospitalList"
 						  })
 						} else if (res.cancel) {
 						   wx.reLaunch({
-						  	url:"/pages/hospitalList/hospitalList"
-						  })
+						   	url:"/pages/pageIndex/pageIndex"
+						   })
 						}
 					  }
 					})
@@ -198,6 +195,11 @@ Page({
     * 生命周期函数--监听页面加载
     */
 	onLoad: function (options) {
+		this.setData({
+			showBack:true,
+			barHeight:app.globalData.statusBarHeight
+		})
+		
 		if(app.loginTest()) return;
 		if(app.globalData.myUserInfo){
 			this.gainAllData(app.globalData.myUserInfo.id,app.globalData.myUserInfo.token);

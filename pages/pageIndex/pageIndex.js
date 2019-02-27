@@ -1,4 +1,6 @@
 const app = getApp();
+var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+var qqmapsdk;
 
 Page({
 
@@ -19,16 +21,16 @@ Page({
 				link:''
 			},
 			{
-				title:'购买套餐',
+				title:'精选套餐',
 				img:'../../assets/buy_go.png',
-				url:'/pages/hospitalList/hospitalList',
+				url:'/pages/buyShop/mmBuy/mmBuy',
 				link:''
 			},
 			{
-				title:'使用培训',
+				title:'案例视频',
 				img:'../../assets/team_go.png',
-				url:'/pages/webView/webView',
-				link:app.globalData.root_url+'/wxchat/train.html'
+				url:'/pages/videoList/videoList',
+				link:''
 			},
 			{
 				title:'重要通知',
@@ -44,12 +46,14 @@ Page({
 			}
 		],
 		hospitalList:[],
-		firsIndex:3,
+		firsIndex:0,
 		secIndex:0,
-		pageRows:10,	
+		pageRows:15,	
 		pagesNumber:1,
 		searchKey:'',
-		advertList:[]
+		loading:true,
+		advertList:[],
+		noDataStatus:false
     },
 	// 跳转广告页
 	goToBanner:function(e){
@@ -68,26 +72,27 @@ Page({
 	},
 	// 跳转到购买列表页
 	goToPayList:function(e){
-		  let id = e.currentTarget.dataset.id;
-		  wx.navigateTo({
+		let id = e.currentTarget.dataset.id;
+		wx.navigateTo({
 		  	url:"/pages/buyShop/shopList/shopList?hospitalid="+id
-		  })
+		})
 	},
 	// 获取医院数据
-	getHospitalData:function(area){
-		let {firsIndex,secIndex,hospitalList,pageRows,pagesNumber,searchKey} = this.data;
-		
+	getHospitalData:function(area,city){
+		let {firsIndex,secIndex,hospitalList,pageRows,pagesNumber,searchKey,advertList} = this.data;
 		app.globalData.navigateBackUrl = null;
-		app.postRequest('/rest/distribution/hospital',{
-			condition:firsIndex,        // 0 默认 1 最热 2 最新 3 最近
+		app.postRequest('/rest/hospital/list',{
+			area: city,
+			district:'',
+			orderType:firsIndex,                // 0 默认 1 最热 2 最新 3 最近
 			latitude:area.latitude,
 			longitude:area.longitude,
-			page:pagesNumber,                  // 页数
-			rows:pageRows,                   // 分页的条数				
-			type:secIndex==0?'':secIndex-1,                 // null 全部 0 医院 1 美容院
-			key:searchKey,					 // 查找
+			page:pagesNumber,                    // 页数
+			rows:pageRows,                      // 分页的条数				
+			type:'',                 			// null 全部 0 医院 1 美容院
 			userId:app.globalData.myUserInfo.id,
-			token:app.globalData.myUserInfo.token
+			token:app.globalData.myUserInfo.token,
+			isAllowDistribution:1
 		},data=>{
 			if(data.messageCode==900){
 				if(data.data && data.data.length>0){
@@ -97,37 +102,36 @@ Page({
 						}else{
 							el.distance = el.distance+'米';
 						}
+						if(el.advertiseList&&el.advertiseList.length>0){
+							advertList = advertList.concat(el.advertiseList);
+						}
 						return el;
 					})
-					if(pagesNumber==1){
-						hospitalList = dat;
-					}else{
-						hospitalList = hospitalList.concat(dat);
-					}
+					hospitalList = dat;
 					this.setData({
 						hospitalList:hospitalList,
-						pagesNumber:pagesNumber+1
+						pagesNumber:pagesNumber+1,
+						advertList:advertList
 					})
-				}else{
-					if(pagesNumber==1){
-						this.setData({
-							hospitalList:[]
-						})
-					}
 				}
 			}else if(data.messageCode==902){
-				if(pagesNumber==1){
-					this.setData({
-						hospitalList:[]
-					})
+				this.setData({
+					hospitalList:[]
+				})
+			}else if(data.messageCode==905){
+				if(city){
+					this.getHospitalData(this.areaPlace,'');
 				}
 			}else{
 				wx.showToast({
-					title: data.message?data.message:'无法获得医院数据',
-					icon: 'none',
-					duration: 2000
+				  title: data.message?data.message:'出错啦！！！',
+				  icon: 'none',
+				  duration: 2000
 				})
 			}
+			this.setData({
+				loading:false
+			})
 		})  
 	},
 	// 去到
@@ -147,7 +151,7 @@ Page({
 		app.postRequest('/rest/banner/list',{
 			  page:1,
 			  row:10,
-		      position:9
+		      position:0
 		   },data=>{
 			   wx.hideLoading();
 		   if(data.messageCode==900){
@@ -175,6 +179,9 @@ Page({
 									icon: 'success',
 									duration: 1000
 								})
+								that.setData({
+									loading:false
+								})
 							} else if (res.confirm) {
 								wx.openSetting({
 									success: function (dataAu) {
@@ -199,19 +206,19 @@ Page({
 						}
 					})
 				} else if (res.authSetting['scope.userLocation'] == undefined) {//初始化进入
-				 wx.getLocation({
-					 type: 'wgs84',
-					 success:  (res) =>{
-							that.areaPlace = res;
-							callback&&callback(res);
-					 }
-				 })  
+					wx.getLocation({
+						type: 'wgs84',
+						success:  (res) =>{
+								that.areaPlace = res;
+								callback&&callback(res);
+						 }
+					})  
 				} else  { //授权后默认加载
 					wx.getLocation({
 						type: 'wgs84',
 						success:  (res) =>{
-						that.areaPlace = res;
-						callback&&callback(res);
+							that.areaPlace = res;
+							callback&&callback(res);
 						}
 					})  
 				}
@@ -221,45 +228,51 @@ Page({
     // 整合分享授权部分
 	shareAllData:function(){
   	  if(this.areaPlace){
-  	  	this.getHospitalData(this.areaPlace);
+  	  	this.getLocalCity(this.areaPlace);
   	  }else{
   	  	this.getAreaData((res)=>{
-  	  		this.getHospitalData(res);
+			this.getLocalCity(res);
   	  	})
   	  }
+
+	},
+	// 获取当前市
+	getLocalCity:function(area){
+		qqmapsdk.reverseGeocoder({
+		  location: {
+			latitude: area.latitude,
+			longitude: area.longitude
+		  },
+		  success: (res) => {
+				const city = res.result.address_component.city;
+				this.getHospitalData(area,city);
+			}
+		});
 	},
     /**
     * 生命周期函数--监听页面加载
     */
     onLoad: function (options) {
+		this.setData({
+			showBack:false,
+			barTitle:'美上美-美丽私人管家',
+			barHeight:app.globalData.statusBarHeight
+		})
 		if(app.loginTest()) return;
-		  this.bannerList();
-		if(app.globalData.myUserInfo){
+		this.bannerList();
+		qqmapsdk = new QQMapWX({
+		  key: app.globalData.map_key
+		});
+	},
+	// 路由切换
+	onShow:function(){
+		if(this.data.hospitalList.length>0) return;
+	   if(app.globalData.myUserInfo){
 			this.shareAllData();
 		}else{
 			app.userInfoReadyCallback = info => {		
 				this.shareAllData();
 			}
 		}
-   },
- 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-		this.getHospitalData(this.areaPlace);
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+   }
 })

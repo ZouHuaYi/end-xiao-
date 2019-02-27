@@ -1,0 +1,23 @@
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="video-content" style="padding-top:{{barHeight}}px;">
+	
+	<view class="video-page">
+		<video class="video" src="http://ebk.oss-cn-shenzhen.aliyuncs.com/MSM/APP%E6%A1%88%E4%BE%8B%E8%A7%86%E5%B1%8F/6V%E8%84%B8/V%E8%84%B84.mp4" autoplay></video>
+		<view class="header">
+			<view class="title">
+				<text class="tit fl">黑鼻头水氧小气泡</text>
+				<text class="fr iconfont icon-fenxiang"></text>
+				<text class="fr iconfont icon-aixin1"></text>
+			</view>
+			<view class="sec-data">
+				<text>播放量:123</text>
+				<text class="circle"></text>
+				<text>点赞量:123</text>
+			</view>
+		</view>
+	</view>
+	<view class="line"></view>
+	
+	
+</view>

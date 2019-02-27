@@ -1,4 +1,6 @@
-<view class="container">
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="container-host" style="padding-top: {{barHeight}}px;">
 	<view class="header-top">
 		<view class="search-text">
 			<view class="search-input">
@@ -20,12 +22,11 @@
 	</view>
 	<view class="hospital-list">
 		<scroll-view 
-		scroll-y 
-		style="height: 100%;"
-		bindscrolltoupper="upper"
-		bindscrolltolower="lower"
-		scroll-top="{{scrollTop}}"
-		>
+			scroll-y
+			style="height: 100%;"
+			scroll-top="{{scrollTop}}"
+			bindscrolltolower="lower"
+		>	
 			<view class="hospital-content">
 				<view class="hospital-item" wx:for="{{hospitalList}}" wx:key="{{index}}" bindtap="goToPayList" data-id="{{item.id}}">
 					<view class="item-left">
@@ -39,10 +40,6 @@
 						</view>
 					</view>
 				</view>
-			</view>
-			<view class="nodata" wx:if="{{hospitalList.length==0}}">
-				<image mode="widthFix" src="../../assets/nodata.png"></image>
-				<text>没有更多内容</text>
 			</view>
 		</scroll-view>
 	</view>

@@ -1,5 +1,6 @@
 page{
 	background: #f2f2f2;
+	overflow: hidden;
 }
 .container-host{
 	width: 100%;
@@ -10,39 +11,35 @@ page{
 }
 .header-top{
 	width: 100%;
-	height: 226rpx;
 }
 .header-line{
 	display: block;
 	width: 100%;
-	height: 10rpx;
-}
-.search-text{
-	width: 100%;
-	height: 80rpx;
-	padding: 10rpx 30rpx 20rpx;
-	box-sizing: border-box;
-	background: #03D0BC;
-	display: flex;
-	justify-content: space-around;
-}
-.search-input{
-	width: 86%;
-	padding: 0 20rpx;
-	box-sizing: border-box;
-	background: #FFFFFF;
-	border-radius: 0.7rem;
-}
-.search-input input{
-	display: block;
-	height: 50rpx;
+	height: 2px;
 }
 .btn-click{
 	padding-top: 1px;
 }
 .h-top{
 	width: 100%;
+	height: 80rpx;
 	background: #FFFFFF;
+	position: relative;
+}
+.btn-city{
+	position: absolute;
+	right: 0rpx;
+	top: 50%;
+	transform: translateY(-50%);
+	background: #FFFFFF;
+	font-size: 28rpx;
+	line-height: 28rpx;
+	padding:18rpx 30rpx;
+	color: #03D0BC;
+}
+.btn-city .icon{
+	display: inline-block;
+	vertical-align: middle;
 }
 .h-top .nav-list{
 	width: 100%;
@@ -71,8 +68,7 @@ page{
 	width: 100%;
 	height: 64rpx;
 	box-sizing: border-box;
-	box-sizing: border-box;
-	border-top: 1px solid #EFEFEF;
+	padding-top: 8rpx;
 }
 .sec-list text{
 	font-size: 28rpx;
@@ -148,4 +144,42 @@ page{
 	font-size: 24rpx;
 	vertical-align: middle;
 	color: #666666;
+}
+.city-mak{
+	position: absolute;
+	width: 100%;
+	height:100vh;
+	background: rgba(0,0,0,.2);
+	z-index:990;
+	top: 80rpx;
+}
+.city-select{
+	width: 100%;
+	height: 0;
+	background: #FFFFFF;
+	position: absolute;
+	top: 80rpx;
+	z-index: 1000;
+	border-top: 1px solid #F2F2F2;
+	display: flex;
+}
+.city-list{
+	flex: 3;
+	height: 100%;
+}
+.city-list.end{
+	flex:1;
+}
+.city-list.ci{
+	background: #F2F2F2;
+}
+.city-item{
+	text-align: center;
+	font-size: 28rpx;
+	height: 60rpx;
+	line-height: 60rpx;
+}
+.city-item.active{
+	background: #FFFFFF;
+	color: #03D0BC;
 }

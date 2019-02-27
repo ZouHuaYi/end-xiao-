@@ -1,3 +1,5 @@
+<import src="/pages/component/header/header.wxml"/>
+<template is="navigatorBack" data="{{barHeight}}"></template>
 <view class="container {{niceGlod?'on':''}}">
 	<view class="shop-img">
 		<image mode="widthFix" src="{{shopDetail.v_package.thumbnail}}"></image>

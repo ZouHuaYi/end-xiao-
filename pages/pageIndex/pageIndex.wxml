@@ -1,4 +1,6 @@
-<view class="container">
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="container" style="padding-top: {{barHeight}}px;">
 	<view class="cont-page">
 		<swiper
 		  indicator-dots="{{indicatorDots}}"
@@ -6,11 +8,12 @@
 		  interval="{{interval}}"
 		  duration="{{duration}}"
 		  class="banner-list"
-		  indicator-active-color="rgba(20, 206, 188, .8)"
+		  indicator-color="rgba(255, 255, 255, 1)"
+		  indicator-active-color="rgba(255, 255, 255, .5)"
 		>
 		  <block wx:for="{{imgUrls}}" wx:key="{{index}}">
 			<swiper-item >
-			  <image src="{{item.banner}}" data-index="{{index}}" bindtap="goToBanner" class="slide-image" mode="widthFix"  />
+			  <image src="{{item.banner}}" data-index="{{index}}" bindtap="goToBanner" class="slide-image" mode="aspectFill"  />
 			</swiper-item>
 		  </block>
 		</swiper>
@@ -25,26 +28,53 @@
 			</block>
 		</view>
 	</view>
-	<!-- 广告位置 -->
-	<view class="advertising">
-		
-	</view>
-	<!-- end 广告位置 -->
-	<view class="hospital-list" wx:if="{{hospitalList.length>0}}">
-		<view class="hosp-title">医院/美容院</view>	
-		<view class="hospital-content">
-			<view class="hospital-item" wx:for="{{hospitalList}}" wx:key="{{index}}" bindtap="goToPayList" data-id="{{item.id}}">
-				<view class="item-left">
-					<image mode="aspectFit" src="{{item.thumbnail}}"></image>
-				</view>
-				<view class="item-right">
-					<view class="txt">{{item.name}}</view>
-					<view class="item-icon">
-						<text wx:if="{{item.distance}}" class="icon iconfont icon-weibiaoti-3"></text>
-						<text>{{item.distance}}</text>
+	<view class="list-index">
+		<!-- 广告位置 -->
+		<view class="banner" wx:if="{{advertList.length>0}}">
+			<swiper
+			  class="swiper-banner" 
+			  autoplay="{{autoplay}}"
+			  indicator-dots="{{indicatorDots}}"
+			   indicator-color="rgba(255, 255, 255, 1)"
+			  indicator-active-color="rgba(255, 255, 255, .5)"
+			>
+				<swiper-item wx:for="{{advertList}}" wx:key="{{index}}">
+					<view class="advertising" >
+						<view class="advert-item"  bindtap="goToPayList" data-id="{{item.hospitalId}}">
+							<image src="{{item.advertisementUrl}}"  mode="cover"></image>
+						</view>
+					</view>
+				</swiper-item>
+			</swiper>
+		</view>
+		<!-- end 广告位置 -->
+		<view class="hospital-list" >
+			<view class="hosp-title">医院 / 美容院</view>	
+			<view class="hospital-content" wx:if="{{hospitalList.length>0}}">
+				<view class="hospital-item" wx:for="{{hospitalList}}" wx:key="{{index}}" bindtap="goToPayList" data-id="{{item.id}}">
+					<view class="item-left">
+						<image mode="aspectFit" src="{{item.img}}"></image>
+					</view>
+					<view class="item-right">
+						<view class="txt">{{item.name}}</view>
+						<view class="item-icon">
+							<text wx:if="{{item.distance}}" class="icon iconfont icon-weibiaoti-3"></text>
+							<text>{{item.distance}}</text>
+						</view>
 					</view>
 				</view>
 			</view>
+			<button
+				wx:if="{{hospitalList.length==0}}"
+				class="btn-loading"
+				type="default"
+				loading="{{loading}}"
+				disabled="false"
+			>{{loading?'正在加载':'没有更多数据'}}</button>
 		</view>
+	</view>
+	<view class="on-data" hidden="{{true}}">
+		<text class="icon iconfont icon-chengshi"></text>
+		<view>该区域正在发展中</view>
 	</view>
 </view>

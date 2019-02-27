@@ -27,6 +27,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+		this.setData({
+			showBack:true,
+			barTitle:"套餐列表",
+			barHeight:app.globalData.statusBarHeight
+		})
+	  
 		let {id,token} = app.globalData.myUserInfo;
 		wx.showLoading({
 			title:"正在加载",
@@ -38,12 +44,18 @@ Page({
 			token:token
 		},data=>{
 			wx.hideLoading();
-			
 			if(data.messageCode==900){
 				if(data.data&&data.data.length>0){
 					this.setData({
 						shopList:data.data
 					})
+					if(data.data.length==1){
+						setTimeout(()=>{
+							wx.navigateTo({
+								url:'../shopDetail/shopDetail?id='+data.data[0].id+'&'+'visible='+data.data[0].visible
+							})
+						},1000)
+					}
 				}
 				
 			}else{

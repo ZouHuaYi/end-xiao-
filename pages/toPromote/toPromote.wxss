@@ -9,6 +9,7 @@ page{
 .container.on{
 	height: 100vh;
 	overflow: hidden;
+	box-sizing: border-box;
 }
 .bgk{
 	position: absolute;

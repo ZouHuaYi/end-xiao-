@@ -10,16 +10,18 @@ page{
 .start-page image{
 	display: block;
 	width: 100%;
+	height: 100%;
 }
 .btn-get-info{
 	position: fixed;
-	font-size: 36rpx;
-	left: 50%;
-	bottom:40rpx;
-	transform: translateX(-50%);
-	border: 1px solid #14CEBC;
-	color: #14CEBC;
-	line-height: 70rpx;
-	background: rgba(255,255,255,.1);
-	border-radius: 40rpx;
+	font-size: 28rpx;
+	right: 28px;
+	
+	color: #FFFFFF;
+	line-height: 30px;
+	background: rgba(0,0,0,.6);
+	/* transform: translateX(-50%); */
+	/* border: 1px solid #FFFFFF; */
+	/* border-radius: 40rpx; */
+	z-index: 10000;
 }

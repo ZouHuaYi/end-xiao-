@@ -1,0 +1,41 @@
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="video-page" style="padding-top:{{barHeight}}px;">
+	<view class="video-nav" >
+		<scroll-view
+			scroll-x="{{true}}"
+			style="height: 100%;"
+			class="nav-scroll"
+			
+		>
+			<view class="nav-box">
+				<text bindtap="clickNav" class="nav-btn {{index==startIndex?'active':''}}" data-pid="{{item.pid}}" data-index="{{index}}" data-id="{{item.id}}" wx:key="{{item.id}}"  wx:for="{{navList}}">{{item.name}}</text>
+			</view>
+		</scroll-view>
+	</view>
+	
+	<view class="video-list">
+		<scroll-view 
+			scroll-y 
+			style="height: 100%;" 
+			bindscrolltolower="pageUpdate"
+		>
+			<view class="video-box">
+				<view class="video-item" wx:for="{{videoList}}" wx:key="{{item.id}}" >
+					<view class="video">
+						<image bindtap="playVideo" data-playid="video{{index}}" data-src="{{item.video}}" wx:if="{{!playList[index].videoStatus}}" data-index="{{index}}" src="{{item.thumbnail}}"><text class="play iconfont icon-bofang"></text></image>
+						<view class="vbox" wx:if="{{playList[index].videoStatus}}">
+							<video id="video{{index}}" src="{{playList[index].videoSrc}}" objectFit="contain" show-center-play-btn="{{true}}" autoplay="{{true}}"  controls></video>
+						</view>
+					</view> 
+					<view class="tip">{{item.title}}</view>
+					<view class="eay">
+						<view class="fl"><text class="icon iconfont icon-yanjing"></text><text>{{item.clickNum}}</text></view>
+						<view class="fr"><text class="icon iconfont icon-xinxi"></text><text>{{item.commentNum}}</text></view>
+						<view class="fr cn"><text class="icon iconfont icon-aixin"></text><text>{{item.likeNum}}</text></view>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+</view>

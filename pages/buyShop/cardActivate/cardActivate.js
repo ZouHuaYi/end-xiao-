@@ -58,11 +58,52 @@ Page({
 		})
 		
 	},
-  /**
+	// 获取地址数据
+	getAreaData:function(){
+		app.postRequest("/rest/address/list",{
+			"token":app.globalData.myUserInfo.token,
+			"userId":app.globalData.myUserInfo.id,
+			"page":1,
+			"rows":1
+		},data=>{
+			if(data.messageCode==900){
+				if(data.data&&data.data.length>0){
+					let newsData = data.data[0];
+					this.receivePhone = newsData['receivePhone'];
+					newsData['receivePhone'] = this.receivePhone.substr(0, 3) + "****" + this.receivePhone.substr(7);
+					this.setData({
+						areaList:newsData
+					})
+				}
+			}else{
+				wx.showToast({
+					title: data.message,
+					icon: 'none',
+					duration: 2000
+				})
+			}
+		})
+	},
+   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+	  console.log(options,'activate');
+	this.setData({
+		showBack:true,
+		barTitle:"激活套餐",
+		barHeight:app.globalData.statusBarHeight
+	})
+	if(app.loginTest()) return;
+	if(app.globalData.myUserInfo){
+		this.getAreaData();
+	}else{
+		app.userInfoReadyCallback = info => {	
+			this.getAreaData();
+		}
+	}
+	
+	
   },
   /**
    * 生命周期函数--监听页面显示
@@ -74,30 +115,6 @@ Page({
   		newsData['receivePhone'] = this.receivePhone.substr(0, 3) + "****" + this.receivePhone.substr(7);
   		this.setData({
   			areaList:newsData
-  		})
-  	}else{
-  		app.postRequest("/rest/address/list",{
-  			"token":app.globalData.myUserInfo.token,
-  			"userId":app.globalData.myUserInfo.id,
-  			"page":1,
-  			"rows":1
-  		},data=>{
-  			if(data.messageCode==900){
-  				if(data.data&&data.data.length>0){
-  					let newsData = data.data[0];
-  					this.receivePhone = newsData['receivePhone'];
-  					newsData['receivePhone'] = this.receivePhone.substr(0, 3) + "****" + this.receivePhone.substr(7);
-  					this.setData({
-  						areaList:newsData
-  					})
-  				}
-  			}else{
-  				wx.showToast({
-  					title: data.message,
-  					icon: 'none',
-  					duration: 2000
-  				})
-  			}
   		})
   	}
   }

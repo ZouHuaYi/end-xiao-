@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-	hospitalList:[''],
+	hospitalList:[],
 	pageRows:10,
 	firstNav:['默认','最热','最新','最近'],
 	firsIndex:0,
@@ -15,10 +15,6 @@ Page({
 	pagesNumber:1,
 	scrollTop:0,
 	searchKey:''
-  },
-  // top
-  upper:function(){
-	
   },
   // 跳转到购买列表页
   goToPayList:function(e){
@@ -56,6 +52,9 @@ Page({
 			pagesNumber:1,
 			scrollTop:0
 		})
+		if(this.requestTask){
+			this.requestTask.abort();
+		}
 		this.getHospitalData(this.areaPlace);
   },
   // 点击第二个导航的时候
@@ -71,12 +70,14 @@ Page({
   // 获取数据
   getHospitalData:function(area){
 		let {firsIndex,secIndex,hospitalList,pageRows,pagesNumber,searchKey} = this.data;
+		if(this.startLower) return;
 		wx.showLoading({
 			title:"正在加载",
 			mask:true
 		})
+		this.startLower = true;
 		app.globalData.navigateBackUrl = null;
-		app.postRequest('/rest/distribution/hospital',{
+		this.requestTask = app.postRequest('/rest/distribution/hospital',{
 			condition:firsIndex,        // 0 默认 1 最热 2 最新 3 最近
 			latitude:area.latitude,
 			longitude:area.longitude,
@@ -87,6 +88,7 @@ Page({
 			userId:app.globalData.myUserInfo.id,
 			token:app.globalData.myUserInfo.token
 		},data=>{
+			this.startLower = false;
 			wx.hideLoading();
 			if(data.messageCode==900){
 				if(data.data && data.data.length>0){
@@ -202,6 +204,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+		this.setData({
+			showBack:true,
+			barTitle:'推广医院',
+			barHeight:app.globalData.statusBarHeight
+		})
 		if(app.loginTest()) return;
 		if(app.globalData.myUserInfo){
 			this.shareAllData();

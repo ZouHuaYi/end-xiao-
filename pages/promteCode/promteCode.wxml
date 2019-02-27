@@ -1,4 +1,6 @@
-<view class="container">
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="container" style="padding-top: {{barHeight}}px;">
 	<view class="code-content">
 		<view class="code-top">
 			<image mode="cover" src="{{avatar}}"></image>

@@ -1,5 +1,7 @@
-<view class="container {{alertStatus?'on':''}}">
-	<view class="bgk"></view>
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="container {{alertStatus?'on':''}}" style="padding-top: {{barHeight}}px;">
+	<view class="bgk" style="padding-top: {{barHeight}}px;"></view>
 	<view class="header">
 		<image class="main-back" src="../../assets/main_back.png"></image>
 		<view class="h-top">

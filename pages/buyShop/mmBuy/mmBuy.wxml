@@ -1,0 +1,70 @@
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="container-host" style="padding-top: {{barHeight}}px;">
+	<view class="header-top">
+		<view class="h-top">
+			<view class="sec-list">
+				<text wx:for="{{secNav}}" wx:key="{{index}}" bindtap="secNavClick" data-index="{{index}}" class="{{index==secIndex?'on':''}}">{{item}}</text>
+			</view>
+			<view class="btn-city" wx:if="{{titleName}}" bindtap="showMak">{{titleName}} <text class="icon iconfont icon-xiajiantou"></text></view>
+			<view class="city-mak" bindtap="showMak" hidden="{{!hiddenStatus}}"  ></view>
+			<view class="city-select"  animation="{{animationAddressMenu}}">
+				<view class="city-list ci">
+				<scroll-view
+					scroll-y
+					style="width: 100%;height: 100%;"
+				>
+					<view class="s-box">
+						<view class="city-item {{proIndex==-1?'active':''}}" bindtap="clickCity" data-index="{{-1}}" data-name="全国" data-id="{{-1}}">全国</view>
+						<block wx:for="{{provincesList}}" wx:key="{{item.id}}">
+							<view bindtap="clickCity" class="city-item {{index==proIndex?'active':''}}" data-index="{{index}}" data-name="{{item.name}}" data-id="{{item.id}}">{{item.name}}</view>
+						</block>
+					</view>
+				</scroll-view>	
+				</view>
+				<view class="city-list">
+					<scroll-view
+						scroll-y
+						style="width: 100%;height: 100%;"
+						scroll-top="{{scrollTop}}"
+					>
+						<view class="s-box">
+							<block wx:for="{{citysList}}" wx:key="{{item.id}}">
+								<view data-index="{{index}}" bindtap="selectArea" data-id="{{item.id}}" data-name="{{item.name=='市辖区'?cityName:item.name}}" class="city-item {{cityIndex[item.id]&&cityIndex[item.id]==index?'active':''}}">{{item.name=='市辖区'?cityName:item.name}}</view>
+							</block>
+						</view>
+					</scroll-view>
+				</view>
+				<view class="city-list end"></view>
+			</view>
+		</view>
+		<text class="header-line"></text>
+	</view>
+	<view class="hospital-list">
+		<scroll-view 
+			scroll-y
+			style="height: 100%;"
+			scroll-top="{{scrollTop}}"
+			bindscrolltolower="lower"
+		>	
+			<view class="hospital-content">
+				<view class="hospital-item" wx:for="{{hospitalList}}" wx:key="{{index}}" bindtap="goToPayList" data-id="{{item.id}}">
+					<view class="item-left">
+						<image mode="aspectFit" src="{{item.img}}"></image>
+					</view>
+					<view class="item-right">
+						<view class="txt">{{item.name}}</view>
+						<view class="item-icon">
+							<text wx:if="{{item.distance}}" class="icon iconfont icon-weibiaoti-3"></text>
+							<text>{{item.distance}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="nodata" wx:if="{{hospitalList==0&&noDataStatus}}">
+					<image mode="widthFix" src="../../../assets/nodata.png"></image>
+					<text>没有更多内容</text>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+</view>

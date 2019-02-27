@@ -193,9 +193,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+	  this.setData({
+	  	showBack:true,
+	  	barHeight:app.globalData.statusBarHeight
+	  })
 	if(options.id){
-		wx.setNavigationBarTitle({
-			title:"修改地址",
+		this.setData({
+			barTitle:"修改地址"
 		})
 		this.data.id = options.id;
 		if(app.globalData.areaSelect){
@@ -210,8 +214,8 @@ Page({
 		}
 	}
 	if(options.add=='add'){
-		wx.setNavigationBarTitle({
-			title:"新建地址",
+		this.setData({
+			barTitle:"新建地址"
 		})
 		this.add = options.add;
 	}

@@ -1,0 +1,55 @@
+.video-content{
+	width: 100%;
+	height: 100vh;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+}
+.video-page{
+	width: 100%;
+	height: 590rpx;
+}
+.video-page .video{
+	display: block;
+	width: 100%;
+	height: 422rpx;
+}
+.header{
+	width: 100%;
+	padding: 40rpx 28rpx 0;
+	box-sizing: border-box;
+}
+.title{
+	font-size: 36rpx;
+	color: #000000;
+	overflow: hidden;
+}
+.title text{
+	line-height: 36rpx;
+}
+.title .iconfont{
+	font-size: 36rpx;
+	margin-left: 40rpx;
+}
+.sec-data{
+	padding-top: 22rpx;
+}
+.sec-data .circle{
+	display: inline-block;
+	width: 4px;
+	height: 4px;
+	background: #000000;
+	border-radius: 50%;
+	vertical-align: middle;
+	margin: 0 5px;
+}
+.sec-data text{
+	font-size: 24rpx;
+	line-height: 24rpx;
+}
+.line{
+	width: 100%;
+	height: 20rpx;
+	background: #F0F0F0;
+}
+

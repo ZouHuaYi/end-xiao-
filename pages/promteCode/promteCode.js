@@ -209,11 +209,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad: function (options) {
+		this.setData({
+			showBack:true,
+			barHeight:app.globalData.statusBarHeight
+		})
 		if(app.loginTest()) return;
 		if(options.myApp=='myApp'){
 			let {avatar,nickname,id} = app.globalData.myUserInfo;
-			wx.setNavigationBarTitle({
-				title:"我要推广",
+			this.setData({
+				barTitle:"我要推广",
 			})
 			this.setData({
 				nickname:nickname,
@@ -226,8 +230,8 @@ Page({
 			this.getQrCodeData(id,this.hospitalId);    
 		}
 		if(options.share=='share' || options.scene){
-			wx.setNavigationBarTitle({
-				title:"加入我们",
+			this.setData({
+				barTitle:"加入我们",
 			})
 			if(options.scene){	
 				let scene = decodeURIComponent(options.scene).split("&");

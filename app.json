@@ -1,30 +1,31 @@
 {
   "pages":[
 		"pages/index/index",
-    "pages/details/details",
-    "pages/pageIndex/pageIndex",
+		"pages/details/details",
+		"pages/pageIndex/pageIndex",
 		"pages/toPromote/toPromote",
-    "pages/promteCode/promteCode",
-    "pages/register/register",
-    "pages/login/login",
-    "pages/loginEnd/loginEnd",
-    "pages/loginEnd/passw/passw",
-    "pages/buyShop/buyShop",
+		"pages/promteCode/promteCode",
+		"pages/loginEnd/loginEnd",
+		"pages/loginEnd/passw/passw",
 		"pages/buyShop/editorArea/editorArea",
-    "pages/buyShop/editorList/editorList",
-    "pages/buyShop/cardActivate/cardActivate",
-    "pages/buyShop/payFinish/payFinish",
-    "pages/buyShop/shopList/shopList",
-    "pages/buyShop/shopDetail/shopDetail",
-    "pages/buyShop/shopPay/shopPay",
-    "pages/hospitalList/hospitalList",
-    "pages/webView/webView"
+		"pages/buyShop/editorList/editorList",
+		"pages/buyShop/cardActivate/cardActivate",
+		"pages/buyShop/payFinish/payFinish",
+		"pages/buyShop/shopList/shopList",
+		"pages/buyShop/shopDetail/shopDetail",
+		"pages/buyShop/shopPay/shopPay",
+    "pages/buyShop/mmBuy/mmBuy",
+		"pages/hospitalList/hospitalList",
+		"pages/webView/webView",
+    "pages/videoList/videoList",
+    "pages/videoList/detail/detail"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#15cebc",
     "navigationBarTitleText": "正在加载",
-    "navigationBarTextStyle":"#fff"
+    "navigationBarTextStyle":"white",
+		"navigationStyle":"custom"
   },
 	"permission":{
 		"scope.userLocation": {

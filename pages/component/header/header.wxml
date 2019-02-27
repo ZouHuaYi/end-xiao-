@@ -1,0 +1,11 @@
+<template name="header">
+	<view class="nav-header-title" style="height: {{barHeight}}px;">
+		<navigator wx:if="{{showBack}}" open-type="navigateBack" class="nav-back" style="top:{{barHeight-44}}px"><text class="icon iconfont icon-jiantou4"></text></navigator>
+		<view style="padding-top: {{barHeight-44}}px;" class="title"><text class="tit">{{barTitle?barTitle:'正在加载'}}</text></view>
+	</view>
+</template>
+<template name="navigatorBack">
+	<view class="navigator-back" style="top:{{barHeight-40}}px">
+		<navigator open-type="navigateBack"><text class="icon iconfont icon-jiantou4"></text></navigator>
+	</view>
+</template>

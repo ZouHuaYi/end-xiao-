@@ -1,4 +1,6 @@
-<view class="container">
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="container" style="padding-top: {{barHeight}}px;">
 	<view class="cont-pages">
 		<view class="form-row">
 			<input class="input" type="number" data-status="phone" placeholder="手机号" bindinput="bindAllInput" />

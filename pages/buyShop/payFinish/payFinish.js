@@ -89,6 +89,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+	  	this.setData({
+	    	showBack:true,
+	    	barTitle:'购买套餐',
+	    	barHeight:app.globalData.statusBarHeight
+	   })
 	    if(options.userId){
 		  this.options = options;
 	    }
