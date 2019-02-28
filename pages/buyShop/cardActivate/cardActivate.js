@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-	areaList:null
+	areaList:null,
+	shopDetail:null,
+	grade:['无','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
   },
 	// 选择地点
 	selectArea:function(e){
@@ -84,17 +86,42 @@ Page({
 			}
 		})
 	},
+   // 获取套餐信息
+   getCardInfo:function(data){
+	 app.postRequest('/rest/wechat/giftCard/activate/pageMsg',{...data},res=>{
+		 console.log(res)
+		 if(res.messageCode==900){
+			 this.setData({
+				 shopDetail:res.data
+			 })
+		 }
+	 })  
+   },
    /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-	  console.log(options,'activate');
 	this.setData({
-		showBack:true,
+		showBack:options.card_id?false:true,
 		barTitle:"激活套餐",
 		barHeight:app.globalData.statusBarHeight
 	})
 	if(app.loginTest()) return;
+	
+	if(options.card_id){
+		this.getCardInfo(options);
+	}else{
+		if(app.globalData.shopList){
+			this.setData({
+				shopDetail:app.globalData.shopList
+			})
+		}else{
+			wx.reLaunch({
+				url:"/pages/toPromote/toPromote"
+			})
+		}
+	}
+	
 	if(app.globalData.myUserInfo){
 		this.getAreaData();
 	}else{

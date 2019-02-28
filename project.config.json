@@ -199,11 +199,11 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 25,
 					"name": "激活卡激活",
 					"pathName": "pages/buyShop/cardActivate/cardActivate",
-					"query": "",
-					"scene": null
+					"query": "card_id=pCJDe0wLOjK_zF5B1gGtHbWi43qE&encrypt_code=RPUN9gJo00CoGACVKEd%2B7jrHbU5FaFMzNdld%2BWcMWPE%3D&openid=oCJDe06Ff5F0krlPj74htlfCx8so",
+					"scene": 1029
 				}
 			]
 		}

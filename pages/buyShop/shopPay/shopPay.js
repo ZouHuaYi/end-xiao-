@@ -76,7 +76,6 @@ Page({
 			url:"/pages/toPromote/toPromote"
 		})
 	}
-	this.options = options;
   },
   /**
    * 生命周期函数--监听页面显示

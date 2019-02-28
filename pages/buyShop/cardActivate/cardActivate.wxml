@@ -15,6 +15,28 @@
 			</view>
 		</view>
 	</view>
+	<view class="content-box">
+		<view class="pay-box">
+			<view class="tit">{{shopDetail.v_package.hospitalName}}</view>
+			<view class="pay-hospital clearfix">
+				<image class="hosp-img" mode="cover" src="{{shopDetail.v_package.thumbnail}}"></image>
+				<view class="pay-name">
+					<view class="pay-tit">{{shopDetail.v_package.title}}</view>
+					<view class="s-star">
+						<view class="tip-cl">
+							<image mode="cover" src="../../../assets/class_a.png"></image>
+							<text>{{grade[shopDetail.v_package.grade]}}等级</text>
+						</view>
+						<view class="tip-cl" wx:if="{{shopDetail.v_package.freeAllowanceAllocation}}">
+							<image mode="cover" src="../../../assets/glod.png"></image>
+							<text>赠送美丽金</text>
+						</view>
+					</view>
+					<view class="s-monney">￥{{shopDetail.v_package.price}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
 	<view class="content-mak">
 		<view class="ipt">
 			<input type="number" bindinput="activateInput" placeholder="使用激活卡兑现套餐"/>
