@@ -15,7 +15,7 @@
 			</view>
 		</view>
 	</view>
-	<view class="content-box">
+	<view class="content-box" wx:if="{{shopDetail.v_package}}">
 		<view class="pay-box">
 			<view class="tit">{{shopDetail.v_package.hospitalName}}</view>
 			<view class="pay-hospital clearfix">
@@ -39,7 +39,7 @@
 	</view>
 	<view class="content-mak">
 		<view class="ipt">
-			<input type="number" bindinput="activateInput" placeholder="使用激活卡兑现套餐"/>
+			<input type="number" bindinput="activateInput" value="{{inputData}}" placeholder="使用激活卡兑现套餐"/>
 		</view>
 		<view class="form-btn">
 			<button class="in-btn" bindtap="activateClick" type="default">立即激活</button>

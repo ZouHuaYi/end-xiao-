@@ -4,11 +4,12 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-	areaList:null,
-	shopDetail:null,
-	grade:['无','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
-  },
+   data: {
+		areaList:null,
+		shopDetail:null,
+		grade:['无','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
+		inputData:''
+   },
 	// 选择地点
 	selectArea:function(e){
 		let id = e.currentTarget.dataset.id;
@@ -16,11 +17,14 @@ Page({
 			url:"../editorList/editorList?id="+id
 		})
 	},
-	// 点击激活
+	// 输入激活码
 	activateInput:function(e){
 		this.input = e.detail.value;
+		this.setData({
+			inputData:e.detail.value
+		})
 	},
-	// 输入激活码
+	// 点击激活
 	activateClick:function(){
 		if(!this.input){
 			wx.showToast({
@@ -86,63 +90,67 @@ Page({
 			}
 		})
 	},
-   // 获取套餐信息
-   getCardInfo:function(data){
+    // 获取套餐信息
+    getCardInfo:function(data){
 	 app.postRequest('/rest/wechat/giftCard/activate/pageMsg',{...data},res=>{
 		 console.log(res)
 		 if(res.messageCode==900){
 			 this.setData({
 				 shopDetail:res.data
 			 })
+			 this.setData({
+				 inputData:res.data.code
+			 })
+			 this.input = res.data.code;
 		 }
 	 })  
-   },
+    },
    /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-	this.setData({
-		showBack:options.card_id?false:true,
-		barTitle:"激活套餐",
-		barHeight:app.globalData.statusBarHeight
-	})
-	if(app.loginTest()) return;
-	
-	if(options.card_id){
-		this.getCardInfo(options);
-	}else{
-		if(app.globalData.shopList){
-			this.setData({
-				shopDetail:app.globalData.shopList
-			})
+    onLoad: function (options) {
+		this.setData({
+			showBack:options.card_id?false:true,
+			barTitle:"激活套餐",
+			barHeight:app.globalData.statusBarHeight
+		})
+		if(app.loginTest()) return;
+		
+		if(options.card_id){
+			this.getCardInfo(options);
 		}else{
-			wx.reLaunch({
-				url:"/pages/toPromote/toPromote"
+			if(app.globalData.shopList){
+				this.setData({
+					shopDetail:app.globalData.shopList
+				})
+			}else{
+				wx.reLaunch({
+					url:"/pages/toPromote/toPromote"
+				})
+			}
+		}
+		
+		if(app.globalData.myUserInfo){
+			this.getAreaData();
+		}else{
+			app.userInfoReadyCallback = info => {	
+				this.getAreaData();
+			}
+		}
+		
+		
+    },
+	  /**
+	   * 生命周期函数--监听页面显示
+	   */
+	onShow: function () {
+		if(app.globalData.areaSelect){
+			let newsData = app.globalData.areaSelect;
+			this.receivePhone = newsData['receivePhone'];
+			newsData['receivePhone'] = this.receivePhone.substr(0, 3) + "****" + this.receivePhone.substr(7);
+			this.setData({
+				areaList:newsData
 			})
 		}
 	}
-	
-	if(app.globalData.myUserInfo){
-		this.getAreaData();
-	}else{
-		app.userInfoReadyCallback = info => {	
-			this.getAreaData();
-		}
-	}
-	
-	
-  },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  	if(app.globalData.areaSelect){
-  		let newsData = app.globalData.areaSelect;
-  		this.receivePhone = newsData['receivePhone'];
-  		newsData['receivePhone'] = this.receivePhone.substr(0, 3) + "****" + this.receivePhone.substr(7);
-  		this.setData({
-  			areaList:newsData
-  		})
-  	}
-  }
 })

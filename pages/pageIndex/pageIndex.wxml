@@ -49,7 +49,7 @@
 		</view>
 		<!-- end 广告位置 -->
 		<view class="hospital-list" >
-			<view class="hosp-title">医院 / 美容院</view>	
+			<view class="hosp-title" wx:if="{{hospitalList.length>0}}">医院 / 美容院</view>	
 			<view class="hospital-content" wx:if="{{hospitalList.length>0}}">
 				<view class="hospital-item" wx:for="{{hospitalList}}" wx:key="{{index}}" bindtap="goToPayList" data-id="{{item.id}}">
 					<view class="item-left">

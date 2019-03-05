@@ -179,7 +179,7 @@ App({
 		return false;
 	},
 	globalData: {
-		root_url:'https://test.topmei3mei.com',
+		root_url:'https://admin.topmei3mei.com',
 		map_key:'5BVBZ-GL3KO-SDXWF-S753K-7D7PK-DWBTX',
 		userInfo: null,
 		unionId:null,
