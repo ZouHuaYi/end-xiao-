@@ -274,5 +274,8 @@ Page({
 				this.shareAllData();
 			}
 		}
+   },
+   onShareAppMessage:function(){
+	   
    }
 })

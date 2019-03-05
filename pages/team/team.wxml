@@ -1,0 +1,104 @@
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="container-team" style="padding-top: {{barHeight}}px;">
+	<view class="team-header">
+		<text class="th-nav {{indexNum==0?'on':''}}" data-index="0" bindtap="navClick">一级</text>
+		<text class="th-nav {{indexNum==1?'on':''}}" data-index="1" bindtap="navClick">二级</text>
+	</view>
+	<view class="team-content">
+		<swiper class="sliper" 
+			style="height: 100%;" 
+			current="{{indexNum}}"
+			bindchange="changeBanner"
+		>
+			<swiper-item>
+				<scroll-view scroll-y style="height: 100%;">
+					<view class="scroll-box">
+						<view class="sb-top">
+							<view class="nav-rane">
+								<text>等级</text>
+								<text>总数</text>
+								<text>免费业绩</text>
+								<text>重销业绩</text>
+								<text>总业绩</text>
+							</view>
+							<block wx:for="{{firstStatistics}}" wx:key="{{index}}">
+								<view class="table-rane">
+									<view class="item">{{item.packageTypw}}</view>
+									<view class="item">{{item.number}}</view>
+									<view class="item">￥{{item.sumFreePerformance}}</view>
+									<view class="item">￥{{item.sumMultiplePerformance}}</view>
+									<view class="item">￥{{item.total}}</view>
+								</view>
+							</block>
+						</view>
+						<view class="sb-bottom"> 
+							<view class="nav-rane">
+								<text>等级</text>
+								<text>头像</text>
+								<text>名称</text>
+								<text>城市</text>
+								<text>总业绩</text>
+							</view>
+							<block wx:for="{{firstTeam}}" wx:key="{{index}}">
+								<view class="table-rane">
+									<view class="item">{{item.packageType}}</view>
+									<view class="item">
+										<image src="{{item.userAvatar}}" mode="cover"></image>
+									</view>
+									<view class="item">{{item.userNickname}}</view>
+									<view class="item">{{item.userArea}}</view>
+									<view class="item">￥{{item.total}}</view>
+								</view>
+							</block>	
+						</view>
+					</view> 
+				</scroll-view>
+			</swiper-item>
+			<swiper-item>
+				<scroll-view scroll-y style="height: 100%;">
+					<view class="scroll-box">
+						<view class="sb-top">
+							<view class="nav-rane">
+								<text>等级</text>
+								<text>总数</text>
+								<text>免费业绩</text>
+								<text>重销业绩</text>
+								<text>总业绩</text>
+							</view>
+							<block wx:for="{{secondStatistics}}" wx:key="{{index}}">
+								<view class="table-rane">
+									<view class="item">{{item.packageTypw}}</view>
+									<view class="item">{{item.number}}</view>
+									<view class="item">￥{{item.sumFreePerformance}}</view>
+									<view class="item">￥{{item.sumMultiplePerformance}}</view>
+									<view class="item">￥{{item.total}}</view>
+								</view>
+							</block>
+						</view>
+						<view class="sb-bottom"> 
+							<view class="nav-rane">
+								<text>等级</text>
+								<text>头像</text>
+								<text>名称</text>
+								<text>城市</text>
+								<text>总业绩</text>
+							</view>
+							<block wx:for="{{secondTeam}}" wx:key="{{index}}">
+								<view class="table-rane">
+									<view class="item">{{item.packageType}}</view>
+									<view class="item">
+										<image src="{{item.userAvatar}}" mode="cover"></image>
+									</view>
+									<view class="item">{{item.userNickname}}</view>
+									<view class="item">{{item.userArea?item.userArea:'未知'}}</view>
+									<view class="item">￥{{item.total}}</view>
+								</view>
+							</block>	
+						</view>
+					</view> 
+				</scroll-view>
+			</swiper-item>
+		</swiper>
+	</view>
+</view>

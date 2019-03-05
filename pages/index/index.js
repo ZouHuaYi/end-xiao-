@@ -115,5 +115,8 @@ Page({
 				}
 			})
 		}
-    }
+    },
+	onShareAppMessage:function(){
+		   
+	}
 })

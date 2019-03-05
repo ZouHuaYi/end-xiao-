@@ -1,0 +1,89 @@
+.container-team{
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+}
+.team-header{
+	width: 100%;
+	height: 36px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 36px;
+	box-sizing: border-box;
+	border-bottom: 1px solid #F0F0F0;
+}
+.th-nav{
+	display: inline-block;
+	padding: 0 10px;
+	height: 100%;
+	position: relative;
+}
+.th-nav.on{
+	/* background: #EFEFEF; */
+}
+.th-nav.on:after{
+	position: absolute;
+	content: " ";
+	width: 100%;
+	border-bottom: 2px solid #0CCCBB;
+	left: 0;
+	bottom: 0;
+}
+.team-content{
+	flex: 1;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.scroll-box{
+	padding-bottom: 40px;
+}
+.nav-rane{
+	width: 100%;
+	height: 36px;
+	line-height: 36px;
+	background: #F5F1EE;
+	overflow: hidden;
+}
+.nav-rane text{
+	float: left;
+	width: 20%;
+	text-align: center;
+	height: 100%;
+	border-left: 1px solid #E5E5E5;
+	box-sizing: border-box;
+}
+.nav-rane text:first-child{
+	border-left: none;
+}
+.table-rane{
+	width: 100%;
+	height: 150rpx;
+	border-bottom: 1px solid #E5E5E5;
+	overflow: hidden;
+}
+.table-rane view{
+	float: left;
+	width: 20%;
+	height: 100%;
+	padding: 10rpx;
+	box-sizing: border-box;
+	border-left: 1px solid #E5E5E5;
+	word-break: break-all;
+	display: flex;
+	align-items: center;
+	justify-content:center;
+	font-size: 12px;
+}
+.table-rane view:first-child{
+	border-left: none;
+}
+.table-rane view.item image{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
