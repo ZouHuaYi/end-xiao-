@@ -1,36 +1,23 @@
 const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-	scrollStatus:false
+
   },
-  // 滚动事件
-  scrollVideo:function(e){
-	  console.log(e)
-	  const top = e.detail.scrollTop;
-	  if(top<=60){
-		  this.setData({
-			scrollStatus:false
-		  })
-	  }else{
-		  this.setData({
-		  	scrollStatus:true
-		  })
-	  }
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 	this.setData({
 		showBack:true,
-		barTitle:'视频详情',
+		barTitle:'视频',
 		barHeight:app.globalData.statusBarHeight
-	});
-	
+	})
   },
 
   /**

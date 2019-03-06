@@ -1,0 +1,147 @@
+/* pages/videoList/pageIndex/pageIndex.wxss */
+.banner,.banner swiper{
+	width: 100%;
+	height: 324rpx;
+	margin-bottom: 30rpx;
+}
+.banner-item{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 24rpx 30rpx 0;       
+}
+.banner-item image{
+	display: block;
+	width: 100%;
+	height: 300rpx;
+	border-radius: 10rpx;
+}
+.video-nav{
+	width: 100%;
+	padding: 20rpx 30rpx;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+.nav-item{
+	float: left;
+	width: 25%;
+	text-align: center;
+	margin-bottom: 20rpx;
+}
+.nav-icon{
+	display: block;
+	width: 70rpx;
+	height: 70rpx;
+	margin: 0 auto;
+}
+.nav-icon text{
+	display: inline-block;
+	padding: 16rpx 0 5rpx;
+	font-size: 24rpx;
+	color: #333333;
+}
+.video-content{
+	width: 100%;
+	padding: 0 30rpx;
+	box-sizing: border-box;
+}
+.video-content .title{
+	width: 100%;
+	padding-left: 32rpx;
+	font-size: 30rpx;
+	color: #000000;
+	position: relative;
+	line-height: 30rpx;
+	margin-bottom: 30rpx;
+	box-sizing: border-box;
+}
+.video-content .title:after{
+	position: absolute;
+	content: " ";
+	height: 30rpx;
+	top: 0;
+	border-left: 3px solid #14cebc;
+	left: 2px;
+	border-radius: 2px;
+}
+.video-list{
+	width: 100%;
+}
+.video-item{
+	width: 100%;
+	height: 225rpx;
+	overflow: hidden;
+	display: flex;
+	margin-bottom: 30rpx;
+}
+.item-left-img{
+	width: 225rpx;
+	height: 225rpx;
+	border-radius: 4px;
+	overflow: hidden;
+	position: relative;
+}
+.item-left-img .mask{
+	position: absolute;
+	width: 100%;
+	height: 48rpx;
+	left: 0;
+	bottom: 0;
+	font-size: 24rpx;
+	line-height: 48rpx;
+	background: linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,0.4));
+	color: #FFFFFF;
+}
+.item-left-img .mask .iconfont{
+	font-size: 24rpx;
+	padding:0 8rpx 0 10rpx;
+}
+.item-left-img image{
+	display: block;
+	width: 100%;
+}
+.item-right-text{
+	flex: 1;
+	margin-left: 30rpx;
+	position: relative;
+}
+.item-right-text .tit{
+	font-size: 30rpx;
+	line-height: 30rpx;
+	padding: 24rpx 0 12rpx;
+	color: #000000;
+}
+.item-right-text .text{
+	font-size: 24rpx;
+	line-height: 32rpx;
+	color: #666666;
+	display: -webkit-box !important; 
+	word-break: break-all; 
+	text-overflow: ellipsis; 
+	overflow: hidden; 
+	-webkit-box-orient: vertical; 
+	-webkit-line-clamp:2;
+}
+.item-right-text .monney{
+	position: absolute;
+	font-size: 28rpx;
+	color: #14cebc;
+	line-height: 28rpx;
+	left: 0;
+	bottom: 46rpx;
+}
+.item-right-text .evaluation{
+	display: flex;
+	font-size: 24rpx;
+	color: #7c7c7c;
+	position: absolute;
+	line-height: 24rpx;
+	left: 0;
+	bottom: 5rpx;
+}
+.item-right-text .evaluation .iconfont{
+	font-size: 24rpx;
+	margin-right: 10rpx;
+}
+.item-right-text .evaluation .tip:last-child{
+	margin-left: 60rpx;
+}
