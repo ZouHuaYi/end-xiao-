@@ -180,8 +180,15 @@ page{
 	line-height: 40rpx;
 	padding: 28rpx 0;
 	font-size: 28rpx;
-	
 	border-bottom: 1px solid #CCCCCC;
+	position: relative;
+}
+.footer .f-item .tgo{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 30rpx;
+	color: #CCCCCC;
 }
 .footer .f-item:last-child{
 	border: none;

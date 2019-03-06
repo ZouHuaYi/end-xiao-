@@ -9,7 +9,8 @@ Page({
 		firstStatistics:[],
 		firstTeam:[],
 		secondStatistics:[],
-		secondTeam:[]
+		secondTeam:[],
+		loadingEnd:false
   },
 	//切换的时候
 	changeBanner:function(e){
@@ -27,11 +28,19 @@ Page({
 	},
 	// 获取团队数据
 	getTeamData:function(opt){
+		wx.showLoading({
+			title:"正在加载",
+			mask:true
+		})
 		app.postRequest('/rest/distribution/team',{
 			token:app.globalData.myUserInfo.token,
-			userId:opt.userid,
-			hospitalId:opt.hospitalid,
+			userId: parseInt(opt.userid),
+			hospitalId:parseInt(opt.hospitalid),
 		},res=>{
+			this.setData({
+				loadingEnd:true
+			})
+			wx.hideLoading();
 			if(res.messageCode==900){
 				const {firstStatistics,firstTeam,secondStatistics,secondTeam} = res.data;
 				this.setData({
@@ -59,17 +68,22 @@ Page({
 			}
 		})
 	},
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+    /**
+    * 生命周期函数--监听页面加载
+    */
+    onLoad: function (options) {
 		this.setData({
 			showBack:true,
-			barTitle:'我的团队',
+			barTitle:options.title?options.title:'我的团队',
 			barHeight:app.globalData.statusBarHeight
 		})
+	
 		if(options.userid){
 			this.getTeamData(options)
 		}
-  }
+    },
+	onShareAppMessage:function(){
+		const share = app.allShareData();
+		return share;
+	}
 })

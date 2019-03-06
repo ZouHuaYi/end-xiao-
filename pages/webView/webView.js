@@ -18,5 +18,9 @@ Page({
 		})
 	}
 	
-  }
+  },
+	onShareAppMessage:function(){
+		const share = app.allShareData();
+		return share;
+	}
 })

@@ -145,5 +145,9 @@ Page({
 		this.getVideoData(id,1)
 	});
 	
+  },
+  onShareAppMessage:function(){
+  	const share = app.allShareData();
+  	return share;
   }
 })

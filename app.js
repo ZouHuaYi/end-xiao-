@@ -178,8 +178,16 @@ App({
 		}	
 		return false;
 	},
+	// 统一分享页
+	allShareData:function(){
+		return {
+			path: '/pages/index/index',
+			success: function (res) {},
+			fail: function (res) {}
+		}
+	},
 	globalData: {
-		root_url:'https://test.topmei3mei.com',
+		root_url:'https://admin.topmei3mei.com',
 		map_key:'5BVBZ-GL3KO-SDXWF-S753K-7D7PK-DWBTX',
 		userInfo: null,
 		unionId:null,

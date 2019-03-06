@@ -11,7 +11,20 @@ Page({
 			alertStatus:false,
 			animationData:{},
 			opacityData:{},
-			avatar:''
+			avatar:'',
+			navlist:[
+				{
+					"title":"我的团队",
+					"icon":"../../assets/me.png",
+					"url":"/pages/team/team"
+				}]
+	},
+	// 去我的团队
+	gotoMyteam:function(e){
+		const {hospitalid,userid,url} = e.currentTarget.dataset;
+		wx.navigateTo({
+			url:`${url}?userid=${userid}&hospitalid=${hospitalid}&title=${this.data.newShowData.hospitalName}`
+		})
 	},
 	// 去推广医院
 	goToHospitalList:function(){

@@ -57,7 +57,13 @@
 		</view>
 	</view>
 	<view class="footer">
-		
+		<block wx:for="{{navlist}}" wx:key="{{index}}">
+				<view class="f-item" bindtap="gotoMyteam" data-url="{{item.url}}" data-hospitalid="{{newShowData.id}}" data-userid="{{newShowData.userId}}" >
+					<image class="icon" mode="widthFix" src="{{item.icon}}"></image>
+					<text class="tit">{{item.title}}</text>
+					<text class="tgo iconfont icon-jiantou"></text>
+				</view>
+		</block>
 	</view>
 </view>
 <view class="select-mak"  wx:if="{{alertStatus}}">
