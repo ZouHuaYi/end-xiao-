@@ -1,0 +1,28 @@
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="container" style="padding-top: {{barHeight}}px;">
+	<view class="header-search">
+		<view class="search-text">
+			<view class="search-input">
+				<input type="text" bindinput="searchInput" placeholder="搜索商家" />
+			</view>
+			<view class="btn-click">
+				<icon class="search" type="search" size="20" color="#ffffff" bindtap="searchClick"></icon>
+			</view>
+		</view>
+		<view class="nav-select">
+			<view class="nav-item">
+				<text>最新</text>
+				<text class="iconfont icon-xiajiantou"></text>
+			</view>
+			<view class="nav-item">
+				<text>免费</text>
+				<text class="iconfont icon-xiajiantou"></text>
+			</view>
+			<view class="nav-item">
+				<text>美妆</text>
+				<text class="iconfont icon-xiajiantou"></text>
+			</view>
+		</view>
+	</view>
+</view>

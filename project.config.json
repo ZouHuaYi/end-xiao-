@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 27,
+			"current": 28,
 			"list": [
 				{
 					"id": -1,
@@ -216,6 +216,13 @@
 					"id": -1,
 					"name": "视频主页",
 					"pathName": "pages/videoList/pageIndex/pageIndex",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "视频列表页",
+					"pathName": "pages/videoList/pageList/pageList",
 					"scene": null
 				}
 			]

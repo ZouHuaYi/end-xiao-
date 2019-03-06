@@ -20,7 +20,8 @@
 		"pages/webView/webView",
     "pages/videoList/videoList",
     "pages/videoList/pageIndex/pageIndex",
-    "pages/videoList/detail/detail"
+    "pages/videoList/detail/detail",
+    "pages/videoList/pageList/pageList"
   ],
   "window":{
     "backgroundTextStyle":"light",
