@@ -1,7 +1,6 @@
 <import src="/pages/component/header/header.wxml"/>
 <template is="header" data="{{barHeight,showBack,barTitle}}"></template>
 <view class="video-content" style="padding-top:{{barHeight}}px;">
-	
 	<view class="video-page">
 		<video class="video" src="http://ebk.oss-cn-shenzhen.aliyuncs.com/MSM/APP%E6%A1%88%E4%BE%8B%E8%A7%86%E5%B1%8F/6V%E8%84%B8/V%E8%84%B84.mp4" autoplay></video>
 	</view>
@@ -12,49 +11,51 @@
 				<text>专辑介绍</text>
 				<text>评论（10）</text>
 			</view>
-			<scroll-view scroll-y style="height: 100%;" bindscroll="scrollVideo">
-				<view class="header">
-					<view class="title">
-						<view class="tit fl"><text class="tab">运营</text> 黑鼻头水氧小气泡</view>
-						<text class="fr iconfont icon-fenxiang"></text>
-						<text class="fr iconfont icon-dianzan"></text>
+			<scroll-view  scroll-y style="height: 100%;" bindscroll="scrollVideo">
+				<view class="scroll-box">
+					<view class="header">
+						<view class="title">
+							<view class="tit fl"><text class="tab">运营</text> 黑鼻头水氧小气泡</view>
+							<text class="fr iconfont icon-fenxiang"></text>
+							<text class="fr iconfont icon-dianzan"></text>
+						</view>
+						<view class="sec-data">
+							<text>播放次数: 123</text>
+							<text>点赞: 33</text>
+							<text>转发: 90</text>
+						</view>
 					</view>
-					<view class="sec-data">
-						<text>播放次数: 123</text>
-						<text>点赞: 33</text>
-						<text>转发: 90</text>
+					<view class="line"></view>
+					<view class="nav-introduce {{scrollStatus?'on':''}}">
+						<text class="on">选集</text>
+						<text>专辑介绍</text>
+						<text>评论（10）</text>
 					</view>
-				</view>
-				<view class="line"></view>
-				<view class="nav-introduce {{scrollStatus?'on':''}}">
-					<text class="on">选集</text>
-					<text>专辑介绍</text>
-					<text>评论（10）</text>
-				</view>
-				<view class="tab-content">
-					<view class="tab-item tab-one" hidden="{{true}}">
-						<view class="one">1.第一集</view>
-						<view class="one">2.第一集</view>
-						<view class="one">3.第一集</view>
-					</view>
-					<view class="tab-item tab-tow" hidden="{{true}}">
-						如果不介绍主讲人，专辑大纲什么什么的就来一段文字
-		描述就好了，如果有其他的可以加一段详情
-					</view>
-					<view class="tab-item tab-three">
-						<view class="user-comments" wx:for="{{10}}">
-							<view class="user-header">
-								<image class="user-logo" src="../../../assets/default.png"></image>
-								<view class="user-tit">
-									<view class="header-tit">
-										<view class="tit">用户名称</view>
-										<view class="date">02-28 19:59</view>
-										<!-- <view class="right">
-											<text class="iconfont icon-duanxin"></text>
-										</view> -->
-									</view>
-									<view class="user-comments-text">
-										这个视频不错哦，超级超级喜欢这个视频
+					<view class="tab-content">
+						<view class="tab-item tab-one" hidden="{{true}}">
+							<view class="one">1.第一集</view>
+							<view class="one">2.第一集</view>
+							<view class="one">3.第一集</view>
+						</view>
+						<view class="tab-item tab-tow" hidden="{{true}}">
+							如果不介绍主讲人，专辑大纲什么什么的就来一段文字
+			描述就好了，如果有其他的可以加一段详情
+						</view>
+						<view class="tab-item tab-three">
+							<view class="user-comments" wx:for="{{10}}">
+								<view class="user-header">
+									<image class="user-logo" src="../../../assets/default.png"></image>
+									<view class="user-tit">
+										<view class="header-tit">
+											<view class="tit">用户名称</view>
+											<view class="date">02-28 19:59</view>
+											<!-- <view class="right">
+												<text class="iconfont icon-duanxin"></text>
+											</view> -->
+										</view>
+										<view class="user-comments-text">
+											这个视频不错哦，超级超级喜欢这个视频
+										</view>
 									</view>
 								</view>
 							</view>
@@ -65,51 +66,53 @@
 		</view>
 		<view class="video-list-container">
 			<scroll-view scroll-y style="height: 100%;">
-				<view class="header">
-					<view class="title">
-						<view class="tit fl"><text class="tab">运营</text> 黑鼻头水氧小气泡</view>
-						<text class="fr iconfont icon-fenxiang"></text>
-						<text class="fr iconfont icon-dianzan"></text>
+				<view class="scroll-box">
+					<view class="header">
+						<view class="title">
+							<view class="tit fl"><text class="tab">运营</text> 黑鼻头水氧小气泡</view>
+							<text class="fr iconfont icon-fenxiang"></text>
+							<text class="fr iconfont icon-dianzan"></text>
+						</view>
+						<view class="sec-data">
+							<text>播放次数: 123</text>
+							<text>点赞: 33</text>
+							<text>转发: 90</text>
+						</view>
 					</view>
-					<view class="sec-data">
-						<text>播放次数: 123</text>
-						<text>点赞: 33</text>
-						<text>转发: 90</text>
+					<view class="line"></view>
+					<view class="title-introduce">
+						<text>视频介绍</text>
 					</view>
-				</view>
-				<view class="line"></view>
-				<view class="title-introduce">
-					<text>视频介绍</text>
-				</view>
-				<view class="spa-content">
-					如果不介绍主讲人，专辑大纲什么什么的就来一段文字
-描述就好了，如果有其他的可以加一段详情
-				</view>
-				<view class="spa-comments">评论（10）</view>
-				<view class="tab-content">
-					<view class="tab-item tab-one" hidden="{{true}}">
-						<view class="one">1.第一集</view>
-						<view class="one">2.第一集</view>
-						<view class="one">3.第一集</view>
+					<view class="spa-content">
+						如果不介绍主讲人，专辑大纲什么什么的就来一段文字
+	描述就好了，如果有其他的可以加一段详情
 					</view>
-					<view class="tab-item tab-tow" hidden="{{true}}">
-					如果不介绍主讲人，专辑大纲什么什么的就来一段文字
-		描述就好了，如果有其他的可以加一段详情
-					</view>
-					<view class="tab-item tab-three">
-						<view class="user-comments" wx:for="{{10}}">
-							<view class="user-header">
-								<image class="user-logo" src="../../../assets/default.png"></image>
-								<view class="user-tit">
-									<view class="header-tit">
-										<view class="tit">用户名称</view>
-										<view class="date">02-28 19:59</view>
-										<!-- <view class="right">
-											<text class="iconfont icon-duanxin"></text>
-										</view> -->
-									</view>
-									<view class="user-comments-text">
-										这个视频不错哦，超级超级喜欢这个视频
+					<view class="spa-comments">评论（10）</view>
+					<view class="tab-content">
+						<view class="tab-item tab-one" hidden="{{true}}">
+							<view class="one">1.第一集</view>
+							<view class="one">2.第一集</view>
+							<view class="one">3.第一集</view>
+						</view>
+						<view class="tab-item tab-tow" hidden="{{true}}">
+						如果不介绍主讲人，专辑大纲什么什么的就来一段文字
+			描述就好了，如果有其他的可以加一段详情
+						</view>
+						<view class="tab-item tab-three">
+							<view class="user-comments" wx:for="{{10}}">
+								<view class="user-header">
+									<image class="user-logo" src="../../../assets/default.png"></image>
+									<view class="user-tit">
+										<view class="header-tit">
+											<view class="tit">用户名称</view>
+											<view class="date">02-28 19:59</view>
+											<!-- <view class="right">
+												<text class="iconfont icon-duanxin"></text>
+											</view> -->
+										</view>
+										<view class="user-comments-text">
+											这个视频不错哦，超级超级喜欢这个视频
+										</view>
 									</view>
 								</view>
 							</view>
@@ -119,4 +122,7 @@
 			</scroll-view>
 		</view>
 	</view>
+</view>
+<view class="comments-input">
+	<input type="text" confirm-type="done" placeholder="我要评论" />
 </view>

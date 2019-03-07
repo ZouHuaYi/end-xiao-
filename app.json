@@ -21,7 +21,9 @@
     "pages/videoList/videoList",
     "pages/videoList/pageIndex/pageIndex",
     "pages/videoList/detail/detail",
-    "pages/videoList/pageList/pageList"
+    "pages/videoList/pageList/pageList",
+    "pages/videoList/members/members",
+    "pages/videoList/column/column"
   ],
   "window":{
     "backgroundTextStyle":"light",

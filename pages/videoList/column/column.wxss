@@ -1,0 +1,125 @@
+.container-column{
+	width: 100%;
+	height: 100vh;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+}
+.column-nav{
+	width: 100%;
+	height: 90rpx;
+	border-bottom: 1px solid #F0F0F0;
+	display: flex;
+	justify-content:space-around;
+	line-height: 90rpx;
+}
+.column-nav text{
+	display: inline-block;
+	position: relative;
+	font-size: 30rpx;
+	color: #999999;
+}
+.column-nav text.on{
+	color: #60dbcf;
+}
+.column-nav text.on:after{
+	position: absolute;
+	content: " ";
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	border-bottom: 2px solid #42d5c5;
+}
+.column-scroll{
+	flex: 1;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.column-list{
+	width: 100%;
+	padding: 30rpx;
+	box-sizing: border-box;
+}
+.video-item{
+	width: 100%;
+	height: 225rpx;
+	overflow: hidden;
+	display: flex;
+	margin-bottom: 30rpx;
+}
+.item-left-img{
+	width: 225rpx;
+	height: 225rpx;
+	border-radius: 4px;
+	overflow: hidden;
+	position: relative;
+}
+.item-left-img .mask{
+	position: absolute;
+	width: 100%;
+	height: 48rpx;
+	left: 0;
+	bottom: 0;
+	font-size: 24rpx;
+	line-height: 48rpx;
+	background: linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,0.4));
+	color: #FFFFFF;
+}
+.item-left-img .mask .iconfont{
+	font-size: 24rpx;
+	padding:0 8rpx 0 10rpx;
+}
+.item-left-img image{
+	display: block;
+	width: 100%;
+}
+.item-right-text{
+	flex: 1;
+	margin-left: 30rpx;
+	position: relative;
+}
+.item-right-text .tit{
+	font-size: 30rpx;
+	line-height: 30rpx;
+	padding: 24rpx 0 12rpx;
+	color: #000000;
+}
+.item-right-text .text{
+	font-size: 24rpx;
+	line-height: 32rpx;
+	color: #666666;
+	display: -webkit-box !important; 
+	word-break: break-all; 
+	text-overflow: ellipsis; 
+	overflow: hidden; 
+	-webkit-box-orient: vertical; 
+	-webkit-line-clamp:2;
+}
+.item-right-text .monney{
+	position: absolute;
+	font-size: 28rpx;
+	color: #14cebc;
+	line-height: 28rpx;
+	left: 0;
+	bottom: 46rpx;
+}
+.item-right-text .evaluation{
+	display: flex;
+	font-size: 24rpx;
+	color: #7c7c7c;
+	position: absolute;
+	line-height: 24rpx;
+	left: 0;
+	bottom: 5rpx;
+}
+.item-right-text .evaluation .iconfont{
+	font-size: 24rpx;
+	margin-right: 10rpx;
+}
+.item-right-text .evaluation .tip{
+	margin-right: 60rpx;
+}
+.item-right-text .evaluation .tip:last-child{
+	margin-right: 0;
+}

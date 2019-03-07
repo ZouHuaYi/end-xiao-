@@ -1,6 +1,6 @@
 <import src="/pages/component/header/header.wxml"/>
 <template is="header" data="{{barHeight,showBack,barTitle}}"></template>
-<view class="container" style="padding-top: {{barHeight}}px;">
+<view class="container-video" style="padding-top: {{barHeight}}px;">
 	<view class="header-search">
 		<view class="search-text">
 			<view class="search-input">
@@ -23,6 +23,62 @@
 				<text>美妆</text>
 				<text class="iconfont icon-xiajiantou"></text>
 			</view>
+			<view class="nav-second" wx:if="{{false}}">
+				<view class="second-mask"></view>
+				<view class="second-list" wx:if="{{false}}">
+					<view class="second-scroll-one">
+						<text>大咖培训</text>
+						<text class="on">变美百搭</text>
+						<text>真人案例</text>
+					</view>
+					<view class="second-scroll-tow">
+						<scroll-view scroll-y style="height: 100%;">
+							<view class="sec" wx:for="{{10}}">
+								<text>美甲</text>
+								<icon type="success_no_circle" size="16" color="#89e7dd"></icon>
+							</view>
+						</scroll-view>
+					</view>
+				</view>
+				<view class="second-sec-box" wx:if="{{false}}">
+					<view class="one">
+						<text>最热</text>
+						<icon type="success_no_circle" size="16" color="#89e7dd"></icon>
+					</view>
+					<view class="one">
+						<text>最新</text>
+						<icon type="success_no_circle" size="16" color="#89e7dd"></icon>
+					</view>
+				</view>
+				
+			</view>
 		</view>
+	</view>
+	<view class="video-list">
+		<scroll-view scroll-y style="height: 100%;">
+			<view class="video-content">
+				<view class="video-item" wx:for="{{20}}">
+					<view class="video-mask">
+						<image mode="widthFix" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/test/uploadfiles/banner/bb8c3acf4ae14555b066a1677f8cd737.jpg"></image>
+						<text class="play iconfont icon-bofang"></text>
+						<view class="mask">开学聚会，就要高级撩人女神妆!</view>
+					</view>
+					<view class="video-tip">
+						<view class="tip-eay">
+							<text class="iconfont icon-yanjing1"></text>
+							<text>99+</text>
+						</view>
+						<view class="tip-right">
+							<text class="iconfont icon-duanxin"></text>
+							<text>99+</text>
+						</view>
+						<view class="tip-right">
+							<text class="iconfont icon-dianzan"></text>
+							<text>99+</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
 	</view>
 </view>

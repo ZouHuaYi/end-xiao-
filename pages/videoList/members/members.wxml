@@ -1,0 +1,15 @@
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="container-mem" style="padding-top: {{barHeight}}px;">
+	<view class="mem-list">
+		<view class="mem-item" wx:for="{{10}}">
+			<view class="mem-img">
+				<image mode="widthFix" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/test/uploadfiles/banner/bb8c3acf4ae14555b066a1677f8cd737.jpg"></image>
+				<view class="mask">03/12</view>
+				<view class="vip">VIP</view>
+			</view>
+			<view class="title">主标视频叫什么什么</view>
+			<view class="subtitle">副标补充说明一下</view>
+		</view>
+	</view>
+</view>
