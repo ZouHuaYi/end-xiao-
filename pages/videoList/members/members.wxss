@@ -15,10 +15,10 @@
 	float: right;
 }
 .mem-item:nth-child(2n) .mem-img{
-	box-shadow: 5rpx 5rpx 20rpx rgba(0,0,0,0.6);
+	box-shadow: 5rpx 5rpx 20rpx rgba(0,0,0,0.3);
 }
 .mem-item:nth-child(2n+1) .mem-img{
-	box-shadow: -5rpx 5rpx 20rpx rgba(0,0,0,0.6);
+	box-shadow: -5rpx 5rpx 20rpx rgba(0,0,0,0.3);
 }
 .mem-img{
 	position: relative;
@@ -63,7 +63,6 @@
 .mem-item .title{
 	font-size: 28rpx;
 	line-height: 28rpx;
-	padding-top: 22rpx;
 	display: -webkit-box !important; 
 	word-break: break-all; 
 	text-overflow: ellipsis; 
@@ -71,14 +70,13 @@
 	-webkit-box-orient: vertical; 
 	-webkit-line-clamp:1;
 	box-sizing: border-box;
-	padding: 22rpx 20rpx 0;
+	padding: 20rpx 16rpx 0;
 	font-weight: 800;
 }
 .mem-item .subtitle{
 	font-size: 26rpx;
 	color: #625e5e;
 	line-height: 24rpx;
-	padding-top: 14rpx;
 	display: -webkit-box !important; 
 	word-break: break-all; 
 	text-overflow: ellipsis; 
@@ -86,5 +84,5 @@
 	-webkit-box-orient: vertical; 
 	-webkit-line-clamp:1;
 	box-sizing: border-box;
-	padding: 14rpx 20rpx 0;
+	padding: 12rpx 16rpx 0;
 }

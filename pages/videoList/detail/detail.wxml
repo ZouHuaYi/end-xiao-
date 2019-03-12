@@ -2,10 +2,14 @@
 <template is="header" data="{{barHeight,showBack,barTitle}}"></template>
 <view class="video-content" style="padding-top:{{barHeight}}px;">
 	<view class="video-page">
-		<video class="video" src="http://ebk.oss-cn-shenzhen.aliyuncs.com/MSM/APP%E6%A1%88%E4%BE%8B%E8%A7%86%E5%B1%8F/6V%E8%84%B8/V%E8%84%B84.mp4" autoplay></video>
+		<video class="video" poster="" src="{{detailData.video}}" autoplay="{{chargeStatus==0}}">
+			<cover-view class="pay-monney" wx:if="{{chargeStatus==1}}">
+				<button class="pay-btn" type="default" size="mini" data-id="{{detailData.id}}" bindtap="pay">立即购买</button>
+			</cover-view>
+		</video>
 	</view>
 	<view class="video-box">
-		<view class="video-list-container" wx:if="{{false}}">
+		<view class="video-list-container" wx:if="{{members==1}}">
 			<view class="float-top" hidden="{{!scrollStatus}}">
 				<text class="on">选集</text>
 				<text>专辑介绍</text>
@@ -16,8 +20,8 @@
 					<view class="header">
 						<view class="title">
 							<view class="tit fl"><text class="tab">运营</text> 黑鼻头水氧小气泡</view>
-							<text class="fr iconfont icon-fenxiang"></text>
-							<text class="fr iconfont icon-dianzan"></text>
+							<button open-type="share" size="mini" class="fr iconfont icon-fenxiang"></button>
+							<text class="fr iconfont icon-zan2"></text>
 						</view>
 						<view class="sec-data">
 							<text>播放次数: 123</text>
@@ -64,30 +68,26 @@
 				</view>
 			</scroll-view>
 		</view>
-		<view class="video-list-container">
+		<view class="video-list-container" wx:if="{{members==0}}">
 			<scroll-view scroll-y style="height: 100%;">
 				<view class="scroll-box">
 					<view class="header">
 						<view class="title">
-							<view class="tit fl"><text class="tab">运营</text> 黑鼻头水氧小气泡</view>
-							<text class="fr iconfont icon-fenxiang"></text>
+							<view class="tit fl"><!-- text class="tab">运营</text --> {{detailData.title}}</view>
+							<button size="mini" open-type="share" class="fr iconfont icon-fenxiang"></button>
 							<text class="fr iconfont icon-dianzan"></text>
 						</view>
 						<view class="sec-data">
-							<text>播放次数: 123</text>
-							<text>点赞: 33</text>
-							<text>转发: 90</text>
+							<text>播放次数: {{detailData.clickNum}}</text>
+							<text>点赞: {{detailData.likeNum}}</text>
 						</view>
 					</view>
 					<view class="line"></view>
 					<view class="title-introduce">
 						<text>视频介绍</text>
 					</view>
-					<view class="spa-content">
-						如果不介绍主讲人，专辑大纲什么什么的就来一段文字
-	描述就好了，如果有其他的可以加一段详情
-					</view>
-					<view class="spa-comments">评论（10）</view>
+					<view class="spa-content">{{detailData.description?detailData.description:'没有更多介绍'}}</view>
+					<view class="spa-comments">评论（{{detailData.commentNum}}）</view>
 					<view class="tab-content">
 						<view class="tab-item tab-one" hidden="{{true}}">
 							<view class="one">1.第一集</view>

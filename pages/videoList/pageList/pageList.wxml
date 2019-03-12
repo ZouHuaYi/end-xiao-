@@ -4,80 +4,119 @@
 	<view class="header-search">
 		<view class="search-text">
 			<view class="search-input">
-				<input type="text" bindinput="searchInput" placeholder="搜索商家" />
+				<input type="text" 
+					bindinput="searchInput"
+					placeholder="搜索商家" 
+				/>
 			</view>
 			<view class="btn-click">
-				<icon class="search" type="search" size="20" color="#ffffff" bindtap="searchClick"></icon>
+				<icon 
+					class="search" 
+					type="search" 
+					size="20" 
+					color="#ffffff" 
+					bindtap="searchClick">
+				</icon>
 			</view>
 		</view>
 		<view class="nav-select">
-			<view class="nav-item">
-				<text>最新</text>
-				<text class="iconfont icon-xiajiantou"></text>
+			<view class="nav-item {{indexStatus==index?'on':''}}" 
+				wx:for="{{navList}}" 
+				wx:key="{{index}}"
+				bindtap="clickNavChangeFirst"
+				data-type="{{item.type}}"
+				data-index="{{index}}"
+			>
+				<text>{{item.title}}</text>
+				<text class="iconfont {{indexStatus==index?'icon-xiajiantou-copy':'icon-xiajiantou'}}"></text>
 			</view>
-			<view class="nav-item">
-				<text>免费</text>
-				<text class="iconfont icon-xiajiantou"></text>
+			<view class="nav-item {{indexStatus==3?'on':''}}"
+				bindtap="clickNavChangeFirst"
+				data-index="{{3}}"
+			>
+				<text>{{threeNavName}}</text>
+				<text class="iconfont {{indexStatus==3?'icon-xiajiantou-copy':'icon-xiajiantou'}}"></text>
 			</view>
-			<view class="nav-item">
-				<text>美妆</text>
-				<text class="iconfont icon-xiajiantou"></text>
-			</view>
-			<view class="nav-second" wx:if="{{false}}">
-				<view class="second-mask"></view>
-				<view class="second-list" wx:if="{{false}}">
+			<view class="nav-second" 
+				wx:if="{{showStatus}}">
+				<view class="second-mask" bindtap="closeAllMask"></view>
+				<view class="second-list" wx:if="{{showThreeStatus}}">
 					<view class="second-scroll-one">
-						<text>大咖培训</text>
-						<text class="on">变美百搭</text>
-						<text>真人案例</text>
+						<text wx:for="{{threeNavList}}" 
+							class="{{threeFisrtIndex==index?'on':''}}"  
+							data-index="{{index}}"
+							bindtap="clickThreeNavFun"
+							data-title="{{item.name}}"
+							wx:key="{{item.id}}">{{item.name}}</text>
 					</view>
 					<view class="second-scroll-tow">
 						<scroll-view scroll-y style="height: 100%;">
-							<view class="sec" wx:for="{{10}}">
-								<text>美甲</text>
-								<icon type="success_no_circle" size="16" color="#89e7dd"></icon>
+							<view class="sec" 
+								wx:for="{{threeNavSecondList}}" 
+								wx:key="{{item.id}}"
+								data-index="{{index}}"
+								data-pid="{{item.pid}}"
+								data-title="{{item.name}}"
+								bindtap="clickThreeNavSec"
+							>
+								<text class="{{threeSecondIndex==index?'on':''}}">{{item.name}}</text>
+								<icon wx:if="{{threeSecondIndex==index}}" type="success_no_circle" size="16" color="#89e7dd"></icon>
 							</view>
 						</scroll-view>
 					</view>
 				</view>
-				<view class="second-sec-box" wx:if="{{false}}">
-					<view class="one">
-						<text>最热</text>
-						<icon type="success_no_circle" size="16" color="#89e7dd"></icon>
-					</view>
-					<view class="one">
-						<text>最新</text>
-						<icon type="success_no_circle" size="16" color="#89e7dd"></icon>
+				<view class="second-sec-box" 
+					wx:if="{{showOneTwoStatus}}" 
+				>
+					<view class="one {{oneTwoStatus[indexStatus]==index?'on':''}}}}" 
+						wx:for="{{navOneTwo[indexStatus]}}" 
+						wx:key="{{index}}"
+						bindtap="selectSecondNav"
+						data-index="{{index}}"
+						data-status="{{indexStatus}}"
+						data-title="{{item.title}}"
+					>
+						<text>{{item.title}}</text>
+						<icon 
+							wx:if="{{oneTwoStatus[indexStatus]==index}}" 
+							type="success_no_circle" 
+							size="16" 
+							color="#89e7dd"
+						></icon>
 					</view>
 				</view>
-				
 			</view>
 		</view>
 	</view>
 	<view class="video-list">
-		<scroll-view scroll-y style="height: 100%;">
+		<scroll-view scroll-y style="height: 100%;" bindscrolltolower="scrollAddData">
 			<view class="video-content">
-				<view class="video-item" wx:for="{{20}}">
+				<view class="video-item" wx:for="{{videoListData}}" wx:key="{{item.id}}">
 					<view class="video-mask">
-						<image mode="widthFix" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/test/uploadfiles/banner/bb8c3acf4ae14555b066a1677f8cd737.jpg"></image>
+						<image mode="widthFix" src="{{item.thumbnail}}"></image>
 						<text class="play iconfont icon-bofang"></text>
-						<view class="mask">开学聚会，就要高级撩人女神妆!</view>
+						<view class="mask">{{item.title}}</view>
 					</view>
 					<view class="video-tip">
 						<view class="tip-eay">
 							<text class="iconfont icon-yanjing1"></text>
-							<text>99+</text>
+							<text>{{item.clickNum}}+</text>
 						</view>
 						<view class="tip-right">
 							<text class="iconfont icon-duanxin"></text>
-							<text>99+</text>
+							<text>{{item.commentNum}}+</text>
 						</view>
 						<view class="tip-right">
 							<text class="iconfont icon-dianzan"></text>
-							<text>99+</text>
+							<text>{{item.likeNum}}+</text>
 						</view>
 					</view>
 				</view>
+				<view class="nodata" wx:if="{{loadingStatus==2&&videoListData.length==0}}">
+					<image mode="widthFix" src="../../../assets/nodata.png"></image>
+					<text>没有更多内容</text>
+				</view>
+				<button class="loading" wx:else  loading="{{loadingStatus==0}}">{{loadingList[loadingStatus]}}</button>
 			</view>
 		</scroll-view>
 	</view>

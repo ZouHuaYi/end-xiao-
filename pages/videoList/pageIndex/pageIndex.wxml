@@ -3,56 +3,67 @@
 <view class="container" style="padding-top: {{barHeight}}px;">
 	<view class="banner">
 		<swiper
-			autoplay="{{false}}"
+			autoplay="{{true}}"
 			indicator-dots="{{true}}"
 			indicator-color="rgba(255,255,255,1)"
 			indicator-active-color="rgba(255,255,255,.3)"
 		>
-		<block wx:for="{{2}}">
+		<block wx:for="{{bannerList}}" wx:key="{{item.id}}">
 			<swiper-item>
 				<view class="banner-item">
-					<image src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/test/uploadfiles/banner/bb8c3acf4ae14555b066a1677f8cd737.jpg"></image>
+					<image mode="widthFix" src="{{item.banner}}"></image>
 				</view>
 			</swiper-item>
 		</block>
 		</swiper>
 	</view>
 	<view class="video-nav">
-		<view class="nav-item" wx:for="{{8}}">
-			<image class="nav-icon" src="../../../assets/video/video_icon_train.png"></image>
-			<text>大咖培训</text>
+		<view class="nav-item" 
+			wx:for="{{navList}}" 
+			wx:key="{{item.id}}" 
+			data-id="{{item.id}}" 
+			data-url="{{item.url}}" 
+			wx:if="{{item.status!=3}}" 
+			data-name="{{item.name}}" 
+			bindtap="goToPagesList"
+		>
+			<image class="nav-icon" src="{{item.icon}}"></image>
+			<text>{{item.name}}</text>
 		</view>
 	</view>
 	<view class="video-content">
 		<view class="title">最新视频</view>
 		<view class="video-list">
-			<view class="video-item" wx:for="{{10}}">
+			<view class="video-item" 
+				wx:for="{{hotDataList}}" 
+				wx:key="{{item.id}}" 
+				data-id="{{item.id}}" 
+				bindtap="goToDetail"
+			>
 				<view class="item-left-img">
-					<image  src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/test/uploadfiles/banner/33692ba427bc48f58e72bbefb2b8c7ab.jpg"></image>
+					<image mode="widthFix" src="{{item.thumbnail}}"></image>
 					<view class="mask">
 						<text class="iconfont icon-bofang1"></text>
-						<text>3243</text>
+						<text>{{item.clickNum?item.clickNum:0}}</text>
 					</view>
 				</view>
 				<view class="item-right-text">
-					<view class="tit">跟着女神学变美</view>
-					<view class="text">2分钟教你GET小白瓷肌教你get小白2分
-钟教你GET小白瓷肌教你get小白2分2分钟教你GET小白瓷肌教你get小白2分
-钟教你GET小白瓷肌教你get小白2分
-					</view>
-					<view class="monney">￥300.00</view>
+					<view class="tit">{{item.title}}</view>
+					<view class="text">{{item.description}}</view>
+					<view class="monney">￥{{item.price}}</view>
 					<view class="evaluation">
 						<view class="tip">
 							<text class="iconfont icon-dianzan"></text>
-							<text>99+</text>
+							<text>{{item.likeNum}}+</text>
 						</view>
 						<view class="tip">
 							<text class="iconfont icon-duanxin"></text>
-							<text>99+</text>
+							<text>{{item.commentNum}}+</text>
 						</view>
 					</view>
 				</view>
 			</view>
+			<button class="loading" loading="{{loadingStatus==0}}">{{loadingList[loadingStatus]}}</button>
 		</view>
 	</view>
 </view>

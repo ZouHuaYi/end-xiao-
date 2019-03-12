@@ -17,7 +17,7 @@
 }
 .video-nav{
 	width: 100%;
-	padding: 20rpx 30rpx;
+	padding: 20rpx 30rpx 40rpx;
 	box-sizing: border-box;
 	overflow: hidden;
 }
@@ -26,11 +26,17 @@
 	width: 25%;
 	text-align: center;
 	margin-bottom: 20rpx;
+	font-size: 24rpx;
+	color: #494949;
+}
+.nav-item text{
+	display: inline-block;
+	padding: 10rpx 0;
 }
 .nav-icon{
 	display: block;
-	width: 70rpx;
-	height: 70rpx;
+	width: 90rpx;
+	height: 90rpx;
 	margin: 0 auto;
 }
 .nav-icon text{
@@ -106,9 +112,16 @@
 }
 .item-right-text .tit{
 	font-size: 30rpx;
-	line-height: 30rpx;
-	padding: 24rpx 0 12rpx;
+	line-height: 32rpx;
+	padding-top: 24rpx;
+	margin-bottom: 12rpx;
 	color: #000000;
+	display: -webkit-box !important; 
+	word-break: break-all; 
+	text-overflow: ellipsis; 
+	overflow: hidden; 
+	-webkit-box-orient: vertical; 
+	-webkit-line-clamp:1;
 }
 .item-right-text .text{
 	font-size: 24rpx;
@@ -144,4 +157,10 @@
 }
 .item-right-text .evaluation .tip:last-child{
 	margin-left: 60rpx;
+}
+.loading{
+	background: transparent;
+	font-size: 28rpx;
+	color: #666666;
+	margin: 30rpx 0 10rpx;
 }

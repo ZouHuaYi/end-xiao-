@@ -38,8 +38,7 @@ Page({
 		  subject:"医院套餐购买",
 		  body:"医院套餐购买",
 		  orderNumber:this.data.orderPlace.orderNumber,
-		  payType:0,
-		  wechatType:1,
+		  payType:6,
 		  openid:app.globalData.openId
 	  },data=>{
 		  if(data.messageCode==900){
