@@ -1,13 +1,14 @@
 <import src="/pages/component/header/header.wxml"/>
 <template is="header" data="{{barHeight,showBack,barTitle}}"></template>
 <view class="container-column" style="padding-top: {{barHeight}}px;">
-	<view class="column-nav">
+	<view style="text-align: center;padding: 20px 0;">正在开发中...</view>
+	<view class="column-nav" hidden="{{true}}">
 		<text>综合</text>
 		<text class="on">最新</text>
 		<text>最热</text>
 		<text>已购买</text>
 	</view>
-	<view class="column-scroll">
+	<view class="column-scroll" hidden="{{true}}">
 		<scroll-view scroll-y style="height: 100%;">
 			<view class="column-list">
 				<view class="video-item" wx:for="{{10}}">
@@ -41,6 +42,7 @@
 						</view>
 					</view>
 				</view>
+				
 			</view>
 		</scroll-view>
 	</view>

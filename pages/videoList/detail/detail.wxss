@@ -75,6 +75,9 @@
 	margin-left: 40rpx;
 	color: #666666;
 }
+/* .title .iconfont.icon-zan2{
+	color: #ff83a3;
+} */
 .sec-data{
 	padding-top: 22rpx;
 }
@@ -186,10 +189,14 @@
 	color: #666666;
 	font-size: 28rpx;
 }
+.header-tit .right .iconfont{
+	color: #CCCCCC;
+}
 .user-comments-text{
 	font-size: 28rpx;
 	line-height: 44rpx;
 	color: #333333;
+	word-break: break-all;
 }
 .title-introduce{
 	width: 100%;

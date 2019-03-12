@@ -32,7 +32,7 @@
 		</view>
 	</view>
 	<view class="video-content">
-		<view class="title">最新视频</view>
+		<view class="title" wx:if="{{hotDataList.length>0}}">最新视频</view>
 		<view class="video-list">
 			<view class="video-item" 
 				wx:for="{{hotDataList}}" 
@@ -54,11 +54,11 @@
 					<view class="evaluation">
 						<view class="tip">
 							<text class="iconfont icon-dianzan"></text>
-							<text>{{item.likeNum}}+</text>
+							<text>{{item.likeNum}}{{item.likeNum>100?'+':''}}</text>
 						</view>
 						<view class="tip">
 							<text class="iconfont icon-duanxin"></text>
-							<text>{{item.commentNum}}+</text>
+							<text>{{item.commentNum}}{{item.commentNum>100?'+':''}}</text>
 						</view>
 					</view>
 				</view>

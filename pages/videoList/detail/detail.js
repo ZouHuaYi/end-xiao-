@@ -1,16 +1,94 @@
 const app = getApp();
+import {formatTime} from '../../../utils/util';
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
+    /**
+    * 页面的初始数据
+    */
+    data: {
 		scrollStatus:false,
 		members:-1,
 		detailData:{},
 		chargeStatus:-1,
-		commentList:[]
-  },
+		commentList:[],
+		inputValue:'',
+		userId:null,
+   },
+   giveVideoLike:function(e){
+	   const {id,token} = app.globalData.myUserInfo; 
+	   const status = e.currentTarget.dataset.status;
+	   let { detailData} = this.data;
+	 app.postRequest("/rest/like/like_or_cancellike",{
+		 postId:this.options.id,
+		 userId:id,
+		 action:status?0:1,
+		 type:12,
+		 token:token,
+	 },res=>{
+		if(res.messageCode==900){
+			 detailData.isLike = !status;
+			 detailData.likeNum = status?detailData.likeNum-1:detailData.likeNum+1;
+			 this.setData({
+				 detailData:detailData
+			 })
+		}
+	 })  
+   },
+   // 删除评论
+   deleteComment:function(e){
+	   wx.showModal({
+		  title: '温馨提示',
+		  content: '是否要删除该评论？删除后数据无法恢复。',
+		  success:(res)=>{
+			if (res.confirm) {
+				const ids = e.currentTarget.dataset.id;
+				const {id,token} = app.globalData.myUserInfo;
+				app.postRequest("/rest/comment/delete",{
+					userId:id,
+					type:12,
+					id:ids,
+					token:token,
+				},res=>{
+					this.getCommnetData(id,this.options.id);
+				})
+			} 
+		  }
+		})
+   },
+   // 视频点赞
+	giveCommentVideo:function(e){
+		const content = e.detail.value;
+		if(content.trim()==''){
+			wx.showToast({
+				title: '评论不能为空',
+				icon: 'none',
+				duration: 2000
+			})
+			return;
+		}
+		const {id,token} = app.globalData.myUserInfo
+		app.postRequest("/rest/comment/add",{
+			postId:this.options.id,
+			content:content,
+			starNum:0,
+			type:12,
+			userId:id,
+			token:token,
+		},res=>{
+			if(res.messageCode==900){
+				this.getCommnetData(id,this.options.id);
+				this.setData({
+					inputValue:''
+				})
+			}else{
+				wx.showToast({
+					title: res.message?res.message:'评论失败',
+					icon: 'none',
+					duration: 2000
+				})
+			}
+		})
+	},
 	// 获取视频详细页的数据
 	getDetailData:function(opt){
 		if(this.data.members==0){
@@ -21,22 +99,21 @@ Page({
 				userId:id,
 				token:token				
 			},res=>{
-					if(res.messageCode==900){
-						const chargeStatus = res.data.priceTag=='免费'||res.data.price==0||res.data.price==0.0?0:1;
-						this.setData({
-							detailData:res.data,
-							chargeStatus:chargeStatus
-						})
-						this.getCommnetData(id,opt.id);
-					}else{
-						wx.showToast({
-							title: res.message,
-							icon: 'none',
-							duration: 2000
-						})
-					}
+				if(res.messageCode==900){
+					const chargeStatus = res.data.priceTag=='免费'||res.data.priceTag=='已购买'?0:1;
+					this.setData({
+						detailData:res.data,
+						chargeStatus:chargeStatus
+					})
+					this.getCommnetData(id,opt.id);
+				}else{
+					wx.showToast({
+						title: res.message,
+						icon: 'none',
+						duration: 2000
+					})
+				}
 			})
-			
 		}else if(opt.members==1){
 			// 有选集
 			
@@ -52,32 +129,32 @@ Page({
 			openid:app.globalData.openId
 		},data=>{
 				if(data.messageCode==900){
-							  let {timestamp,total_fee,noncestr,partnerid,prepayid,sign} = data.data;
-							    wx.requestPayment({
-									timeStamp: String(timestamp),
-									nonceStr: noncestr,
-									package: `prepay_id=${prepayid}`,
-									signType: 'MD5',
-									paySign: sign,
-									total_fee:total_fee,
-									success:res=> { 
-										  wx.showToast({
-										  	title: '支付成功',
-										  	icon: 'none',
-										  	duration: 2000
-										  }) 
-											this.setData({
-												chargeStatus:0
-											})
-									  },
-									 fail:res=> {
-									   wx.showToast({
-										title: '支付失败',
-										icon: 'none',
-										duration: 2000
-									  }) 
-									}
-							   })
+				  let {timestamp,total_fee,noncestr,partnerid,prepayid,sign} = data.data;
+					wx.requestPayment({
+						timeStamp: String(timestamp),
+						nonceStr: noncestr,
+						package: `prepay_id=${prepayid}`,
+						signType: 'MD5',
+						paySign: sign,
+						total_fee:total_fee,
+						success:res=> { 
+							  wx.showToast({
+								title: '支付成功',
+								icon: 'none',
+								duration: 2000
+							  }) 
+								this.setData({
+									chargeStatus:0
+								})
+						  },
+						 fail:res=> {
+						   wx.showToast({
+							title: '支付失败',
+							icon: 'none',
+							duration: 2000
+						  }) 
+						}
+				   })
 				}else{
 					wx.showToast({
 						title: data.message,
@@ -95,17 +172,20 @@ Page({
 			userId:userId,
 			postId:postId,
 			type:12,
+			token:app.globalData.myUserInfo.token,
 		},res=>{
-				console.log(res)
-				if(res.messageCode==900){
-					this.setData({
-						commentList:res.data
+			if(res.messageCode==900){
+				this.setData({
+					commentList:res.data.map((el,key)=>{
+						el.time = formatTime('MM-dd HH:ss',el.createTime);
+						return el;
 					})
-				}
+				})
+			}
 		})
 	},
 	// 滚动事件
-  scrollVideo:function(e){
+	scrollVideo:function(e){
 	  const top = e.detail.scrollTop;
 	  if(top<=60){
 		  this.setData({
@@ -116,11 +196,11 @@ Page({
 		  	scrollStatus:true
 		  })
 	  }
-  },
+	},
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+	onLoad: function (options) {
 		this.setData({
 			showBack:true,
 			barTitle:'视频详情',
@@ -130,16 +210,23 @@ Page({
 		if(app.loginTest()) return;
 		if(app.globalData.myUserInfo){
 			this.getDetailData(options);
+			this.setData({
+				userId:app.globalData.myUserInfo.id
+			})
 		}else{
 			app.userInfoReadyCallback = info => {		
 				this.getDetailData(options);
+				this.setData({
+					userId:app.globalData.myUserInfo.id
+				})
 			}
 		}
-  },
+		this.options = options;
+	},
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+	onShareAppMessage: function () {
 
-  }
+	}
 })

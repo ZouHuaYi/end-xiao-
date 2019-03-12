@@ -1,5 +1,5 @@
 const app = getApp();
-const WHIRE_NAV = [{'name':'专栏','url':'/pages/videoList/members/members'},{'name':'会员','url':'/pages/videoList/column/column'}];
+const WHIRE_NAV = [{'name':'专栏','url':'/pages/videoList/column/column'},{'name':'会员','url':'/pages/videoList/members/members'}];
 
 Page({
   /**

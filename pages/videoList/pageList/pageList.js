@@ -29,6 +29,23 @@ Page({
 	loadingStatus:0,   // 0 正在加载 1 上拉加载 2 全部加载完成 3 没有数据
 	loadingList:['正在加载','加载更多数据','全部加载完成','没有更多数据'],
   },
+  // 搜索页
+  searchInput:function(e){
+	 this.inputKeyword = (e.detail.value).trim();
+   },
+  // 点击搜索
+  searchClick:function(){
+	  this.data.videoForm['keyword'] = this.inputKeyword?this.inputKeyword:'';
+	  this.searchStatusClick = true;
+	  this.closeAllMask();
+  },
+  // 跳转到详情页面
+  goToDetail:function(e){
+	   const id = e.currentTarget.dataset.id;
+		wx.navigateTo({
+			url:`/pages/videoList/detail/detail?id=${id}&members=0`
+	  })
+  },
   // 获取列表数据
   getListData:function(){
 	const {pageNumber,rowNumber,videoForm,videoListData} = this.data;
@@ -65,7 +82,7 @@ Page({
   },
   // 选择第三列 获取 第二个导航
   clickThreeNavSec:function(e){
-	  const {index,title,pid} = e.currentTarget.dataset;
+	  const {index,title,id} = e.currentTarget.dataset;
 	  const {threeFisrtIndex,videoForm} = this.data;
 	  this.data.temporaryFirstIndex = [threeFisrtIndex,index];
 	  const tipTitle = this.title;
@@ -74,7 +91,13 @@ Page({
 		 threeNavName:title,
 		 barTitle:tipTitle,
 	  })
-	  videoForm['categoryId'] = pid;
+	  if(videoForm['pid']){
+		  delete videoForm['pid'];
+	  }
+	  videoForm['categoryId'] = id;
+	  if(!this.searchStatusClick || !this.inputKeyword){
+		  videoForm['keyword'] = '';
+	  }
 	  this.data.videoForm = videoForm;
 	  this.closeAllMask();
   },
@@ -204,7 +227,8 @@ Page({
 		})
 		title = options.name;
 		videoForm = {
-			categoryId:options.id,
+			pid:options.id,
+			categoryId:0,
 			isHomePage:0,
 			free:1,
 			keyword:'',

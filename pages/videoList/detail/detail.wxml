@@ -4,7 +4,7 @@
 	<view class="video-page">
 		<video class="video" poster="" src="{{detailData.video}}" autoplay="{{chargeStatus==0}}">
 			<cover-view class="pay-monney" wx:if="{{chargeStatus==1}}">
-				<button class="pay-btn" type="default" size="mini" data-id="{{detailData.id}}" bindtap="pay">立即购买</button>
+				<button class="pay-btn" type="default" size="mini" data-id="{{detailData.id}}" bindtap="pay">购买(￥{{detailData.price}})</button>
 			</cover-view>
 		</video>
 	</view>
@@ -75,7 +75,7 @@
 						<view class="title">
 							<view class="tit fl"><!-- text class="tab">运营</text --> {{detailData.title}}</view>
 							<button size="mini" open-type="share" class="fr iconfont icon-fenxiang"></button>
-							<text class="fr iconfont icon-dianzan"></text>
+							<text bindtap="giveVideoLike" data-status="{{detailData.isLike}}" class="fr iconfont {{detailData.isLike?'icon-zan2':'icon-dianzan'}}"></text>
 						</view>
 						<view class="sec-data">
 							<text>播放次数: {{detailData.clickNum}}</text>
@@ -99,20 +99,21 @@
 			描述就好了，如果有其他的可以加一段详情
 						</view>
 						<view class="tab-item tab-three">
-							<view class="user-comments" wx:for="{{10}}">
+							<view class="user-comments" wx:for="{{commentList}}" wx:key="{{item.id}}">
 								<view class="user-header">
-									<image class="user-logo" src="../../../assets/default.png"></image>
+									<image class="user-logo" src="{{item.commentator.avatar}}"></image>
 									<view class="user-tit">
 										<view class="header-tit">
-											<view class="tit">用户名称</view>
-											<view class="date">02-28 19:59</view>
-											<!-- <view class="right">
-												<text class="iconfont icon-duanxin"></text>
-											</view> -->
+											<view class="tit">{{item.commentator.nickname}}</view>
+											<view class="date">{{item.time}}</view>
+											<view class="right">
+												<text bindtap="deleteComment" data-id="{{item.id}}" wx:if="{{userId==item.commentator.userId}}" class="iconfont icon-shanchu"></text>
+											</view>
 										</view>
 										<view class="user-comments-text">
-											这个视频不错哦，超级超级喜欢这个视频
+											{{item.content}}
 										</view>
+										
 									</view>
 								</view>
 							</view>
@@ -124,5 +125,5 @@
 	</view>
 </view>
 <view class="comments-input">
-	<input type="text" confirm-type="done" placeholder="我要评论" />
+	<input type="text" confirm-type="done" placeholder="我要评论" bindconfirm="giveCommentVideo" value="{{inputValue}}" />
 </view>

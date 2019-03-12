@@ -6,7 +6,7 @@
 			<view class="search-input">
 				<input type="text" 
 					bindinput="searchInput"
-					placeholder="搜索商家" 
+					placeholder="搜索关键字" 
 				/>
 			</view>
 			<view class="btn-click">
@@ -55,7 +55,7 @@
 								wx:for="{{threeNavSecondList}}" 
 								wx:key="{{item.id}}"
 								data-index="{{index}}"
-								data-pid="{{item.pid}}"
+								data-id="{{item.id}}"
 								data-title="{{item.name}}"
 								bindtap="clickThreeNavSec"
 							>
@@ -91,7 +91,12 @@
 	<view class="video-list">
 		<scroll-view scroll-y style="height: 100%;" bindscrolltolower="scrollAddData">
 			<view class="video-content">
-				<view class="video-item" wx:for="{{videoListData}}" wx:key="{{item.id}}">
+				<view class="video-item" 
+					wx:for="{{videoListData}}" 
+					wx:key="{{item.id}}"
+					bindtap="goToDetail"
+					data-id="{{item.id}}"
+				>
 					<view class="video-mask">
 						<image mode="widthFix" src="{{item.thumbnail}}"></image>
 						<text class="play iconfont icon-bofang"></text>
@@ -100,15 +105,15 @@
 					<view class="video-tip">
 						<view class="tip-eay">
 							<text class="iconfont icon-yanjing1"></text>
-							<text>{{item.clickNum}}+</text>
+							<text>{{item.clickNum?item.clickNum:0}}{{item.clickNum>100?'+':''}}</text>
 						</view>
 						<view class="tip-right">
 							<text class="iconfont icon-duanxin"></text>
-							<text>{{item.commentNum}}+</text>
+							<text>{{item.commentNum?item.commentNum:0}}{{item.commentNum>100?'+':''}}</text>
 						</view>
 						<view class="tip-right">
 							<text class="iconfont icon-dianzan"></text>
-							<text>{{item.likeNum}}+</text>
+							<text>{{item.likeNum?item.likeNum:0}}{{item.likeNum>100?'+':''}}</text>
 						</view>
 					</view>
 				</view>
@@ -116,7 +121,7 @@
 					<image mode="widthFix" src="../../../assets/nodata.png"></image>
 					<text>没有更多内容</text>
 				</view>
-				<button class="loading" wx:else  loading="{{loadingStatus==0}}">{{loadingList[loadingStatus]}}</button>
+				<button class="loading" bindtap="getListData" wx:else loading="{{loadingStatus==0}}">{{loadingList[loadingStatus]}}</button>
 			</view>
 		</scroll-view>
 	</view>

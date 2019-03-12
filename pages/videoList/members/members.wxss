@@ -1,7 +1,7 @@
 .mem-list{
 	width: 100%;
 	overflow: hidden;
-	padding: 26rpx 0 30rpx;
+	padding: 26rpx 0 0rpx;
 }
 .mem-item{
 	width: 370rpx;
@@ -62,7 +62,7 @@
 }
 .mem-item .title{
 	font-size: 28rpx;
-	line-height: 28rpx;
+	line-height: 32rpx;
 	display: -webkit-box !important; 
 	word-break: break-all; 
 	text-overflow: ellipsis; 
@@ -76,7 +76,7 @@
 .mem-item .subtitle{
 	font-size: 26rpx;
 	color: #625e5e;
-	line-height: 24rpx;
+	line-height: 30rpx;
 	display: -webkit-box !important; 
 	word-break: break-all; 
 	text-overflow: ellipsis; 
@@ -85,4 +85,10 @@
 	-webkit-line-clamp:1;
 	box-sizing: border-box;
 	padding: 12rpx 16rpx 0;
+}
+.loading {
+	background:transparent;
+	font-size:28rpx;
+	color:#666666;
+	margin:10rpx 0 20rpx;
 }
