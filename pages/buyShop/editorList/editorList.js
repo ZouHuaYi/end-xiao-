@@ -6,7 +6,10 @@ Page({
    */
 	data: {
 		areaList:[],
-		selectId:0
+		selectId:0,
+		pageNumber:1,
+		rowNumber:10,
+		loadingStatus:0,   // 0 正在加载 1 上拉加载 2 全部加载完成 3 没有数据
    },
 	// 选择地址
 	selectAction:function(e){
@@ -26,29 +29,29 @@ Page({
 			success:res=>{
 				if (res.confirm) {
 					app.postRequest('/rest/address/delete',{
-							token:app.globalData.myUserInfo.token,
-							addressId:id
-						},data=>{
-								if(data.messageCode==900){
-									let areaList = this.updateArrByDel(this.data.areaList,index);
-									this.setData({
-										areaList:areaList
-									})
-									if(id==this.data.selectId){
-										this.setData({
-											selectId:0
-										})
-									}
-									if(areaList.length<=0){
-										app.globalData.areaSelect = null;
-									}
-								}else{
-									wx.showToast({
-										title: data.message,
-										icon: 'none',
-										duration: 2000
-									})
-								}
+						token:app.globalData.myUserInfo.token,
+						addressId:id
+					},data=>{
+						if(data.messageCode==900){
+							let areaList = this.updateArrByDel(this.data.areaList,index);
+							this.setData({
+								areaList:areaList
+							})
+							if(id==this.data.selectId){
+								this.setData({
+									selectId:0
+								})
+							}
+							if(areaList.length<=0){
+								app.globalData.areaSelect = null;
+							}
+						}else{
+							wx.showToast({
+								title: data.message,
+								icon: 'none',
+								duration: 2000
+							})
+						}
 					})
 				} else if (res.cancel) {
 				}
@@ -77,10 +80,10 @@ Page({
 			url:"../editorArea/editorArea?id="+id
 		})
 	},
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+    /**
+    * 生命周期函数--监听页面加载
+    */
+    onLoad: function (options) {
 		this.setData({
 			showBack:true,
 			barTitle:"地址管理",
@@ -92,31 +95,39 @@ Page({
 				selectId:options.id
 			})
 		}
-  },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+    },
+	/**
+	* 生命周期函数--监听页面显示
+	*/
+	onShow: function () {
 		app.postRequest("/rest/address/list",{
 			"token":app.globalData.myUserInfo.token,
 			"userId":app.globalData.myUserInfo.id,
 			"page":1,
-			"rows":1000
+			"rows":20
 		},data=>{
 			if(data.messageCode==900){
 				if(data.data&&data.data.length>0){
 					this.setData({
-						areaList:data.data
+						areaList:data.data,
+						loadingStatus:1
 					})
 				}
-			}else{
-				wx.showToast({
-					title: data.message,
-					icon: 'none',
-					duration: 2000
+			}else if(data.messageCode==905){
+				this.setData({
+					loadingStatus:2
 				})
-			}
+			}else{
+				this.setData({
+					loadingStatus:2
+				})
+				wx.showToast({
+				  title: data.message?data.message:'无法获取数据',
+				  icon: 'none',
+				  duration: 2000
+				})
+			} 
 		})
-   }
+	}
 
 })

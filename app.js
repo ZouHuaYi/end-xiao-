@@ -188,7 +188,7 @@ App({
 	},
 	globalData: {
 		root_url:'https://test.topmei3mei.com',
-		// root_url:'http://192.168.2.240:8080/msm',
+		//root_url:'http://192.168.2.240:8080/msm',
 		map_key:'5BVBZ-GL3KO-SDXWF-S753K-7D7PK-DWBTX',
 		userInfo: null,
 		unionId:null,
@@ -196,7 +196,7 @@ App({
 		loginStatus:0,
 		tokenStatus:false,
 		navigateBackUrl:null,
-		myUserInfo:{token:'85741982474a58e689fee1c7d0659539',id:4165},
+		myUserInfo:null,
 		shopList:null,
 		areaSelect:null,
 		orderPlace:null,

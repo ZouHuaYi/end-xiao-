@@ -192,11 +192,11 @@
 }
 .video-mask .play{
 	position: absolute;
-	font-size: 70rpx;
+	font-size: 80rpx;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
-	color: #FFFFFF;
+	color: rgba(0,0,0,.5);
 }
 .video-mask .mask{
 	position: absolute;

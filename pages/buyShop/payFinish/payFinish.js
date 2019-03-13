@@ -57,11 +57,10 @@ Page({
 						  	duration: 2000
 						  }) 
 						  setTimeout(()=>{
-							  wx.reLaunch({
-								url:"/pages/pageIndex/pageIndex"
-							  }) 
+							  wx.redirectTo({
+							  	url:"/pages/toPromote/toPromote?pay=true"
+							  })
 						  },2000)
-						 
 					  },
 					 fail:res=> {
 					   wx.showToast({

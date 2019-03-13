@@ -4,7 +4,13 @@
 	<view class="header-top">
 		<view class="h-top">
 			<view class="sec-list">
-				<text wx:for="{{secNav}}" wx:key="{{index}}" bindtap="secNavClick" data-index="{{index}}" class="{{index==secIndex?'on':''}}">{{item}}</text>
+				<text 
+					wx:for="{{secNav}}" 
+					wx:key="{{index}}" 
+					bindtap="secNavClick" 
+					data-index="{{index}}" 
+					class="{{index==secIndex?'on':''}}"
+				>{{item}}</text>
 			</view>
 			<view class="btn-city" wx:if="{{titleName}}" bindtap="showMak">{{titleName}} <text class="icon iconfont icon-xiajiantou"></text></view>
 			<view class="city-mak" bindtap="showMak" hidden="{{!hiddenStatus}}"  ></view>
@@ -60,10 +66,11 @@
 						</view>
 					</view>
 				</view>
-				<view class="nodata" wx:if="{{hospitalList==0&&noDataStatus}}">
+				<view class="nodata" wx:if="{{loadingStatus==2&&hospitalList.length==0}}">
 					<image mode="widthFix" src="../../../assets/nodata.png"></image>
 					<text>没有更多内容</text>
 				</view>
+				<button bindtap="getHospitalData" class="loading" wx:else loading="{{loadingStatus==0}}">{{loadingList[loadingStatus]}}</button>
 			</view>
 		</scroll-view>
 	</view>

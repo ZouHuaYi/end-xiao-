@@ -54,16 +54,16 @@
 					<view class="evaluation">
 						<view class="tip">
 							<text class="iconfont icon-dianzan"></text>
-							<text>{{item.likeNum}}{{item.likeNum>100?'+':''}}</text>
+							<text>{{item.likeNum>100?'99+':item.likeNum}}</text>
 						</view>
 						<view class="tip">
 							<text class="iconfont icon-duanxin"></text>
-							<text>{{item.commentNum}}{{item.commentNum>100?'+':''}}</text>
+							<text>{{item.commentNum>100?'99+':item.commentNum}}</text>
 						</view>
 					</view>
 				</view>
 			</view>
-			<button class="loading" loading="{{loadingStatus==0}}">{{loadingList[loadingStatus]}}</button>
+			<button class="loading" bindtap="getHotVideoData" loading="{{loadingStatus==0}}">{{loadingList[loadingStatus]}}</button>
 		</view>
 	</view>
 </view>

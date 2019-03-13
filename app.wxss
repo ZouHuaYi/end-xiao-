@@ -126,3 +126,9 @@ input{
 .nav-header-title .nav-home .icon{
 	font-size: 20px;
 }
+.loading {
+	background:transparent;
+	font-size:28rpx;
+	color:#666666;
+	margin:30rpx 0 10rpx;
+}

@@ -54,6 +54,7 @@ Page({
     */
     onLoad: function (options) {
 		this.setData({
+			isHome:options.share?true:false,
 			barHeight:app.globalData.statusBarHeight
 		})
 		if(app.loginTest()) return;
@@ -81,7 +82,7 @@ Page({
 	let {v_hospital,v_package} = this.data.shopDetail;
 	return{
 		title: v_hospital.name,
-		path: 'pages/buyShop/shopDetail/shopDetail?id='+ v_package.id,
+		path: `pages/buyShop/shopDetail/shopDetail?id=${v_package.id}&share=true`,
 		success: function (res) {
 			
 		},

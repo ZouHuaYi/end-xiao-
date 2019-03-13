@@ -22,6 +22,11 @@
 				</view>
 			</view>
 		</block>
+		<view class="nodata" wx:if="{{loadingStatus==2&&areaList.length==0}}">
+			<image mode="widthFix" src="../../../assets/nodata.png"></image>
+			<text>没有更多内容</text>
+		</view>
+		<button class="loading" bindtap="getListData" wx:elif="{{loadingStatus==0}}" loading="{{loadingStatus==0}}">正在加载</button>
 	</view>
 	<view class="form-btn">
 		<button class="in-btn" bindtap="addNewsArea" type="default">添加新地址</button>

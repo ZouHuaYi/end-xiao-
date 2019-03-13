@@ -130,11 +130,9 @@ Page({
 		barTitle:'视频',
 		barHeight:app.globalData.statusBarHeight
 	})
-	app.userInfoReadyCallback = info => {		
-		this.getBannerData();
-		this.getNavData();
-		this.getHotVideoData();
-	}
+	this.getBannerData();
+	this.getNavData();
+	this.getHotVideoData();
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -148,6 +146,5 @@ Page({
 		  })
 		 this.getHotVideoData()
 	  },500)
-	  
   }
 })

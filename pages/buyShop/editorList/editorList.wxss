@@ -81,3 +81,9 @@ page{
 	left: 0;
 	z-index: 1000;
 }
+.loading {
+	background:transparent;
+	font-size:28rpx;
+	color:#666666;
+	margin:30rpx 0 10rpx;
+}

@@ -105,15 +105,15 @@
 					<view class="video-tip">
 						<view class="tip-eay">
 							<text class="iconfont icon-yanjing1"></text>
-							<text>{{item.clickNum?item.clickNum:0}}{{item.clickNum>100?'+':''}}</text>
+							<text>{{item.clickNum>100?'99+':item.clickNum}}</text>
 						</view>
 						<view class="tip-right">
 							<text class="iconfont icon-duanxin"></text>
-							<text>{{item.commentNum?item.commentNum:0}}{{item.commentNum>100?'+':''}}</text>
+							<text>{{item.commentNum>100?'99+':item.commentNum}}</text>
 						</view>
 						<view class="tip-right">
 							<text class="iconfont icon-dianzan"></text>
-							<text>{{item.likeNum?item.likeNum:0}}{{item.likeNum>100?'+':''}}</text>
+							<text>{{item.likeNum>100?'99+':item.likeNum}}</text>
 						</view>
 					</view>
 				</view>

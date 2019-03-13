@@ -210,7 +210,8 @@ Page({
    */
     onLoad: function (options) {
 		this.setData({
-			showBack:true,
+			goHome:options.share?true:false,
+			showBack:options.share?false:true,
 			barHeight:app.globalData.statusBarHeight
 		})
 		if(app.loginTest()) return;

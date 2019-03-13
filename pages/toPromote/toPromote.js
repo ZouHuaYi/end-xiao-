@@ -209,7 +209,8 @@ Page({
     */
 	onLoad: function (options) {
 		this.setData({
-			showBack:true,
+			isHome:options.pay?true:false,
+			showBack:options.pay?false:true,
 			barHeight:app.globalData.statusBarHeight
 		})
 		

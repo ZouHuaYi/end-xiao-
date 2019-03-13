@@ -6,7 +6,10 @@
 	</view>
 </template>
 <template name="navigatorBack">
-	<view class="navigator-back" style="top:{{barHeight-40}}px">
+	<view wx:if="{{!isHome}}" class="navigator-back" style="top:{{barHeight-40}}px">
 		<navigator open-type="navigateBack"><text class="icon iconfont icon-jiantou4"></text></navigator>
+	</view>
+	<view wx:else class="navigator-back" style="top:{{barHeight-40}}px">
+		<navigator open-type="reLaunch" url="/pages/pageIndex/pageIndex"><text class="icon iconfont icon-home"></text></navigator>
 	</view>
 </template>
