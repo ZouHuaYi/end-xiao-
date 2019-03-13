@@ -1,0 +1,69 @@
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="container" style="padding-top: {{barHeight}}px;">
+	<view class="banner">
+		<swiper
+			autoplay="{{true}}"
+			indicator-dots="{{true}}"
+			indicator-color="rgba(255,255,255,1)"
+			indicator-active-color="rgba(255,255,255,.3)"
+		>
+		<block wx:for="{{bannerList}}" wx:key="{{item.id}}">
+			<swiper-item>
+				<view class="banner-item">
+					<image mode="widthFix" src="{{item.banner}}"></image>
+				</view>
+			</swiper-item>
+		</block>
+		</swiper>
+	</view>
+	<view class="video-nav">
+		<view class="nav-item" 
+			wx:for="{{navList}}" 
+			wx:key="{{item.id}}" 
+			data-id="{{item.id}}" 
+			data-url="{{item.url}}" 
+			wx:if="{{item.status!=3}}" 
+			data-name="{{item.name}}" 
+			bindtap="goToPagesList"
+		>
+			<image class="nav-icon" src="{{item.icon}}"></image>
+			<text>{{item.name}}</text>
+		</view>
+	</view>
+	<view class="video-content">
+		<view class="title" wx:if="{{hotDataList.length>0}}">最新视频</view>
+		<view class="video-list">
+			<view class="video-item" 
+				wx:for="{{hotDataList}}" 
+				wx:key="{{item.id}}" 
+				data-id="{{item.id}}" 
+				bindtap="goToDetail"
+			>
+				<view class="item-left-img">
+					<image mode="widthFix" src="{{item.thumbnail}}"></image>
+					<view class="mask">
+						<text class="iconfont icon-bofang1"></text>
+						<text>{{item.clickNum?item.clickNum:0}}</text>
+					</view>
+				</view>
+				<view class="item-right-text">
+					<view class="tit">{{item.title}}</view>
+					<view class="text">{{item.description}}</view>
+					<view class="monney">￥{{item.price}}</view>
+					<view class="evaluation">
+						<view class="tip">
+							<text class="iconfont icon-dianzan"></text>
+							<text>{{item.likeNum}}{{item.likeNum>100?'+':''}}</text>
+						</view>
+						<view class="tip">
+							<text class="iconfont icon-duanxin"></text>
+							<text>{{item.commentNum}}{{item.commentNum>100?'+':''}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<button class="loading" loading="{{loadingStatus==0}}">{{loadingList[loadingStatus]}}</button>
+		</view>
+	</view>
+</view>

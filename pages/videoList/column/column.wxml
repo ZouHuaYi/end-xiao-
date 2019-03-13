@@ -1,0 +1,49 @@
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<view class="container-column" style="padding-top: {{barHeight}}px;">
+	<view style="text-align: center;padding: 20px 0;">正在开发中...</view>
+	<view class="column-nav" hidden="{{true}}">
+		<text>综合</text>
+		<text class="on">最新</text>
+		<text>最热</text>
+		<text>已购买</text>
+	</view>
+	<view class="column-scroll" hidden="{{true}}">
+		<scroll-view scroll-y style="height: 100%;">
+			<view class="column-list">
+				<view class="video-item" wx:for="{{10}}">
+					<view class="item-left-img">
+						<image  src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/test/uploadfiles/banner/33692ba427bc48f58e72bbefb2b8c7ab.jpg"></image>
+						<view class="mask">
+							<text class="iconfont icon-bofang1"></text>
+							<text>3243</text>
+						</view>
+					</view>
+					<view class="item-right-text">
+						<view class="tit">跟着女神学变美</view>
+						<view class="text">2分钟教你GET小白瓷肌教你get小白2分
+		钟教你GET小白瓷肌教你get小白2分2分钟教你GET小白瓷肌教你get小白2分
+		钟教你GET小白瓷肌教你get小白2分
+						</view>
+						<view class="monney">￥300.00</view>
+						<view class="evaluation">
+							<view class="tip">
+								<text class="iconfont icon-guanlishuji"></text>
+								<text>99</text>
+							</view>
+							<view class="tip">
+								<text class="iconfont icon-dianzan"></text>
+								<text>99+</text>
+							</view>
+							<view class="tip">
+								<text class="iconfont icon-duanxin"></text>
+								<text>99+</text>
+							</view>
+						</view>
+					</view>
+				</view>
+				
+			</view>
+		</scroll-view>
+	</view>
+</view>

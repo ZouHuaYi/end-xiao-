@@ -24,9 +24,9 @@
 	color: #898a8f;
 }
 ::-webkit-scrollbar{
-width: 0;
-height: 0;
-color: transparent;
+	width: 0;
+	height: 0;
+	color: transparent;
 }
 .nav-btn.active{
 	color: #050c1c;

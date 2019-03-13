@@ -1,23 +1,129 @@
 <import src="/pages/component/header/header.wxml"/>
-<template is="header" data="{{barHeight,showBack,barTitle}}"></template>
+<template is="header" data="{{barHeight,showBack,barTitle,goHome}}"></template>
 <view class="video-content" style="padding-top:{{barHeight}}px;">
-	
 	<view class="video-page">
-		<video class="video" src="http://ebk.oss-cn-shenzhen.aliyuncs.com/MSM/APP%E6%A1%88%E4%BE%8B%E8%A7%86%E5%B1%8F/6V%E8%84%B8/V%E8%84%B84.mp4" autoplay></video>
-		<view class="header">
-			<view class="title">
-				<text class="tit fl">黑鼻头水氧小气泡</text>
-				<text class="fr iconfont icon-fenxiang"></text>
-				<text class="fr iconfont icon-aixin1"></text>
+		<video class="video" poster="" src="{{detailData.video}}" autoplay="{{chargeStatus==0}}">
+			<cover-view class="pay-monney" wx:if="{{chargeStatus==1}}">
+				<button class="pay-btn" type="default" size="mini" data-id="{{detailData.id}}" bindtap="pay">购买(￥{{detailData.price}})</button>
+			</cover-view>
+		</video>
+	</view>
+	<view class="video-box">
+		<view class="video-list-container" wx:if="{{members==1}}">
+			<view class="float-top" hidden="{{!scrollStatus}}">
+				<text class="on">选集</text>
+				<text>专辑介绍</text>
+				<text>评论（10）</text>
 			</view>
-			<view class="sec-data">
-				<text>播放量:123</text>
-				<text class="circle"></text>
-				<text>点赞量:123</text>
-			</view>
+			<scroll-view  scroll-y style="height: 100%;" bindscroll="scrollVideo">
+				<view class="scroll-box">
+					<view class="header">
+						<view class="title">
+							<view class="tit fl"><text class="tab">运营</text> 黑鼻头水氧小气泡</view>
+							<button open-type="share" size="mini" class="fr iconfont icon-fenxiang"></button>
+							<text class="fr iconfont icon-zan2"></text>
+						</view>
+						<view class="sec-data">
+							<text>播放次数: 123</text>
+							<text>点赞: 33</text>
+							<text>转发: 90</text>
+						</view>
+					</view>
+					<view class="line"></view>
+					<view class="nav-introduce {{scrollStatus?'on':''}}">
+						<text class="on">选集</text>
+						<text>专辑介绍</text>
+						<text>评论（10）</text>
+					</view>
+					<view class="tab-content">
+						<view class="tab-item tab-one" hidden="{{true}}">
+							<view class="one">1.第一集</view>
+							<view class="one">2.第一集</view>
+							<view class="one">3.第一集</view>
+						</view>
+						<view class="tab-item tab-tow" hidden="{{true}}">
+							如果不介绍主讲人，专辑大纲什么什么的就来一段文字
+			描述就好了，如果有其他的可以加一段详情
+						</view>
+						<view class="tab-item tab-three">
+							<view class="user-comments" wx:for="{{10}}">
+								<view class="user-header">
+									<image class="user-logo" src="../../../assets/default.png"></image>
+									<view class="user-tit">
+										<view class="header-tit">
+											<view class="tit">用户名称</view>
+											<view class="date">02-28 19:59</view>
+											<!-- <view class="right">
+												<text class="iconfont icon-duanxin"></text>
+											</view> -->
+										</view>
+										<view class="user-comments-text">
+											这个视频不错哦，超级超级喜欢这个视频
+										</view>
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+		<view class="video-list-container" wx:if="{{members==0}}">
+			<scroll-view scroll-y style="height: 100%;">
+				<view class="scroll-box">
+					<view class="header">
+						<view class="title">
+							<view class="tit fl"><!-- text class="tab">运营</text --> {{detailData.title}}</view>
+							<button size="mini" open-type="share" class="fr iconfont icon-fenxiang"></button>
+							<text bindtap="giveVideoLike" data-status="{{detailData.isLike}}" class="fr iconfont {{detailData.isLike?'icon-zan2':'icon-dianzan'}}"></text>
+						</view>
+						<view class="sec-data">
+							<text>播放次数: {{detailData.clickNum}}</text>
+							<text>点赞: {{detailData.likeNum}}</text>
+						</view>
+					</view>
+					<view class="line"></view>
+					<view class="title-introduce">
+						<text>视频介绍</text>
+					</view>
+					<view class="spa-content">{{detailData.description?detailData.description:'没有更多介绍'}}</view>
+					<view class="spa-comments">评论（{{detailData.commentNum}}）</view>
+					<view class="tab-content">
+						<view class="tab-item tab-one" hidden="{{true}}">
+							<view class="one">1.第一集</view>
+							<view class="one">2.第一集</view>
+							<view class="one">3.第一集</view>
+						</view>
+						<view class="tab-item tab-tow" hidden="{{true}}">
+						如果不介绍主讲人，专辑大纲什么什么的就来一段文字
+			描述就好了，如果有其他的可以加一段详情
+						</view>
+						<view class="tab-item tab-three">
+							<view class="user-comments" wx:for="{{commentList}}" wx:key="{{item.id}}">
+								<view class="user-header">
+									<image class="user-logo" src="{{item.commentator.avatar}}"></image>
+									<view class="user-tit">
+										<view class="header-tit">
+											<view class="tit">{{item.commentator.nickname}}</view>
+											<view class="date">{{item.time}}</view>
+											<view class="right">
+												<text bindtap="deleteComment" data-id="{{item.id}}" wx:if="{{userId==item.commentator.userId}}" class="iconfont icon-shanchu"></text>
+											</view>
+										</view>
+										<view class="user-comments-text">
+											{{item.content}}
+										</view>
+										
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
 		</view>
 	</view>
-	<view class="line"></view>
-	
-	
+</view>
+<view class="comments-input">
+	<input type="text" confirm-type="done" placeholder="我要评论" bindconfirm="giveCommentVideo" value="{{inputValue}}" />
 </view>

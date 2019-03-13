@@ -7,7 +7,7 @@
 		"pages/promteCode/promteCode",
 		"pages/loginEnd/loginEnd",
 		"pages/loginEnd/passw/passw",
-    "pages/team/team",
+		"pages/team/team",
 		"pages/buyShop/editorArea/editorArea",
 		"pages/buyShop/editorList/editorList",
 		"pages/buyShop/cardActivate/cardActivate",
@@ -15,11 +15,15 @@
 		"pages/buyShop/shopList/shopList",
 		"pages/buyShop/shopDetail/shopDetail",
 		"pages/buyShop/shopPay/shopPay",
-    "pages/buyShop/mmBuy/mmBuy",
+		"pages/buyShop/mmBuy/mmBuy",
 		"pages/hospitalList/hospitalList",
 		"pages/webView/webView",
-    "pages/videoList/videoList",
-    "pages/videoList/detail/detail"
+		"pages/videoList/videoList",
+		"pages/videoList/pageIndex/pageIndex",
+		"pages/videoList/detail/detail",
+		"pages/videoList/pageList/pageList",
+		"pages/videoList/members/members",
+		"pages/videoList/column/column"
   ],
   "window":{
     "backgroundTextStyle":"light",
