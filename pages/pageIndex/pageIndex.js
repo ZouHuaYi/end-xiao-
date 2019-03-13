@@ -29,7 +29,7 @@ Page({
 			{
 				title:'案例视频',
 				img:'../../assets/team_go.png',
-				url:'/pages/videoList/videoList',
+				url:'/pages/videoList/pageIndex/pageIndex',
 				link:''
 			},
 			{

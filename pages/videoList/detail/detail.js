@@ -14,6 +14,7 @@ Page({
 		inputValue:'',
 		userId:null,
    },
+   // 点赞
    giveVideoLike:function(e){
 	   const {id,token} = app.globalData.myUserInfo; 
 	   const status = e.currentTarget.dataset.status;
@@ -49,13 +50,18 @@ Page({
 					id:ids,
 					token:token,
 				},res=>{
+					const {detailData} = this.data;
+					detailData.commentNum -= 1; 
 					this.getCommnetData(id,this.options.id);
+					this.setData({
+						detailData:detailData
+					})
 				})
 			} 
 		  }
 		})
    },
-   // 视频点赞
+   // 视频评论
 	giveCommentVideo:function(e){
 		const content = e.detail.value;
 		if(content.trim()==''){
@@ -77,8 +83,11 @@ Page({
 		},res=>{
 			if(res.messageCode==900){
 				this.getCommnetData(id,this.options.id);
+				const {detailData} = this.data;
+				detailData.commentNum += 1; 
 				this.setData({
-					inputValue:''
+					inputValue:'',
+					detailData:detailData
 				})
 			}else{
 				wx.showToast({
@@ -164,7 +173,7 @@ Page({
 				}
 		})
 	},
-  // 获取评论
+    // 获取评论
 	getCommnetData:function(userId,postId){
 		app.postRequest('/rest/comment/list',{
 			page:1,
@@ -202,7 +211,8 @@ Page({
    */
 	onLoad: function (options) {
 		this.setData({
-			showBack:true,
+			showBack:options.share?false:true,
+			goHome:options.share?true:false,
 			barTitle:'视频详情',
 			barHeight:app.globalData.statusBarHeight,
 			members:options.members?options.members:0
@@ -223,10 +233,14 @@ Page({
 		}
 		this.options = options;
 	},
-  /**
-   * 用户点击右上角分享
-   */
+    /**
+     * 用户点击右上角分享
+    */
 	onShareAppMessage: function () {
-
+		return{
+			path: `/pages/videoList/detail/detail?id=${this.options.id}&members=${this.options.members}&share=true`,
+			success: function (res) {},
+			fail: function (res) {}
+		}
 	}
 })

@@ -66,11 +66,16 @@ Page({
   },
   // 获取轮播图 
   getBannerData:function(){
+	   wx.showLoading({
+	  	mask:true,
+	  		title:"正在加载"
+	  })
 	app.postRequest('/rest/banner/list',{
 		page:1,
 		rows:10,
 		position:10
 	},res=>{
+		 wx.hideLoading();
 		if(res.messageCode==900){
 			this.setData({
 				bannerList:res.data
@@ -144,12 +149,5 @@ Page({
 		 this.getHotVideoData()
 	  },500)
 	  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })
