@@ -171,7 +171,7 @@
 }
 .video-content{
 	width: 100%;
-	padding: 20rpx 35rpx 30rpx;
+	padding: 20rpx 35rpx 0rpx;
 	box-sizing: border-box;
 }
 .video-item{
@@ -236,11 +236,11 @@
 	color: #666666;
 	vertical-align: middle;
 }
-.loading {
+/* .loading {
 	background:transparent;
 	font-size:28rpx;
 	color:#666666;
 	margin:30rpx 0 10rpx;
-}
+} */
 
 

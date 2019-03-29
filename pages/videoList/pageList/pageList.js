@@ -193,10 +193,10 @@ Page({
   scrollAddData:function(){
 	if(this.loadingNew) return;
 	this.loadingNew = true;
+	this.setData({
+		loadingStatus:0
+	})
 	setTimeout(()=>{
-		  this.setData({
-			loadingStatus:0
-		  })
 		 this.getListData()
 	},500)
   },

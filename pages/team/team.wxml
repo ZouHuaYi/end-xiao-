@@ -2,8 +2,8 @@
 <template is="header" data="{{barHeight,showBack,barTitle}}"></template>
 <view class="container-team" style="padding-top: {{barHeight}}px;">
 	<view class="team-header">
-		<text class="th-nav {{indexNum==0?'on':''}}" data-index="0" bindtap="navClick">一级</text>
-		<text class="th-nav {{indexNum==1?'on':''}}" data-index="1" bindtap="navClick">二级</text>
+		<text class="th-nav {{indexNum==0?'on':''}}" data-index="0" bindtap="navClick">直客</text>
+		<text class="th-nav {{indexNum==1?'on':''}}" data-index="1" bindtap="navClick">荐客</text>
 	</view>
 	<view class="team-content">
 		<swiper class="sliper" 

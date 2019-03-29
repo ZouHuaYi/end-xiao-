@@ -5,6 +5,7 @@
 		"pages/pageIndex/pageIndex",
 		"pages/toPromote/toPromote",
 		"pages/promteCode/promteCode",
+    "pages/promteCode/indexCode/indexCode",
 		"pages/loginEnd/loginEnd",
 		"pages/loginEnd/passw/passw",
 		"pages/team/team",

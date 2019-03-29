@@ -1,5 +1,5 @@
 <import src="/pages/component/header/header.wxml"/>
-<template is="header" data="{{barHeight,showBack,barTitle,isHome}}"></template>
+<template is="header" data="{{barHeight,showBack,barTitle,goHome}}"></template>
 <view class="container {{alertStatus?'on':''}}" style="padding-top: {{barHeight}}px;">
 	<view class="bgk" style="padding-top: {{barHeight}}px;"></view>
 	<view class="header">
@@ -12,7 +12,7 @@
 					<view class="hb-item"><image class="icon" src="../../assets/taocan.png" mode="cover"></image><text class="tit">{{newShowData.pack}}</text></view>
 					<view class="hb-item" wx:if="{{newShowData.gradeText}}"><image class="icon" src="../../assets/star.png" mode="cover"></image><text class="tit">{{newShowData.gradeText}}</text></view>
 				</view>
-				<view class="h-prom" wx:if="{{false}}">推广: {{newShowData.pUserNickname}}</view>
+				<view class="h-prom" wx:if="{{true}}">推广: {{newShowData.pUserNickname}}</view>
 			</view>
 		</view>
 		<button class="h-href" wx:if="{{newShowData.packageType==0}}" data-hospitalId="{{newShowData.hospitalId}}"  bindtap="goToPay">
@@ -58,7 +58,7 @@
 	</view>
 	<view class="footer">
 		<block wx:for="{{navlist}}" wx:key="{{index}}">
-				<view class="f-item" bindtap="gotoMyteam" data-url="{{item.url}}" data-hospitalid="{{newShowData.id}}" data-userid="{{newShowData.userId}}" >
+				<view class="f-item" bindtap="gotoMyteam" data-url="{{item.url}}" data-hospitalid="{{newShowData.hospitalId}}" data-userid="{{newShowData.userId}}" >
 					<image class="icon" mode="widthFix" src="{{item.icon}}"></image>
 					<text class="tit">{{item.title}}</text>
 					<text class="tgo iconfont icon-jiantou"></text>

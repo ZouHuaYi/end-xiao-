@@ -14,7 +14,9 @@ Page({
 	secIndex:0,
 	pagesNumber:1,
 	scrollTop:0,
-	searchKey:''
+	searchKey:'',
+	loadingStatus:0,   // 0 正在加载 1 上拉加载 2 全部加载完成 3 没有数据
+	loadingList:['正在加载','加载更多数据','全部加载完成','没有更多数据'],
   },
   // 跳转到购买列表页
   goToPayList:function(e){
@@ -29,7 +31,7 @@ Page({
 			this.data.searchKey = this.search;
 			this.data.pagesNumber = 1;
 		 }  
-		this.getHospitalData(this.areaPlace); 
+		this.getHospitalData(); 
 	 
   },
   // 搜索框输入
@@ -41,7 +43,15 @@ Page({
   },
   // bottom
   lower:function(){
-		this.getHospitalData(this.areaPlace);
+	  if(this.loadingNew) return;
+	  this.loadingNew = true;
+	  console.log('-----')
+	  this.setData({
+	  	loadingStatus:0
+	  })
+	  setTimeout(()=>{
+		  this.getHospitalData();
+	  },500)
   },
   //  点击第一个导航的时候
   firstNavClick:function(e){
@@ -55,7 +65,7 @@ Page({
 		if(this.requestTask){
 			this.requestTask.abort();
 		}
-		this.getHospitalData(this.areaPlace);
+		this.getHospitalData();
   },
   // 点击第二个导航的时候
   secNavClick:function(e){
@@ -65,16 +75,12 @@ Page({
 			pagesNumber:1,
 			scrollTop:0
 		}) 
-		this.getHospitalData(this.areaPlace);
+		this.getHospitalData();
   },
   // 获取数据
-  getHospitalData:function(area){
+  getHospitalData:function(){
 		let {firsIndex,secIndex,hospitalList,pageRows,pagesNumber,searchKey} = this.data;
-		if(this.startLower) return;
-		wx.showLoading({
-			title:"正在加载",
-			mask:true
-		})
+		const area = this.areaPlace;
 		this.startLower = true;
 		app.globalData.navigateBackUrl = null;
 		this.requestTask = app.postRequest('/rest/distribution/hospital',{
@@ -88,8 +94,6 @@ Page({
 			userId:app.globalData.myUserInfo.id,
 			token:app.globalData.myUserInfo.token
 		},data=>{
-			this.startLower = false;
-			wx.hideLoading();
 			if(data.messageCode==900){
 				if(data.data && data.data.length>0){
 					let dat = data.data.map((el)=>{
@@ -107,7 +111,8 @@ Page({
 					}
 					this.setData({
 						hospitalList:hospitalList,
-						pagesNumber:pagesNumber+1
+						pagesNumber:pagesNumber+1,
+						loadingStatus:1,
 					})
 				}else{
 					if(pagesNumber==1){
@@ -115,13 +120,19 @@ Page({
 							hospitalList:[]
 						})
 					}
+					this.setData({
+						loadingStatus:2,
+					})
 				}
-			}else if(data.messageCode==902){
+			}else if(data.messageCode==902||data.messageCode==905){
 				if(pagesNumber==1){
 					this.setData({
 						hospitalList:[]
 					})
 				}
+				this.setData({
+					loadingStatus:2,
+				})
 			}else{
 				wx.showToast({
 					title: data.message?data.message:'无法获得医院数据',
@@ -129,6 +140,7 @@ Page({
 					duration: 2000
 				})
 			}
+			this.loadingNew = false;
 		})  
   },
   // 获取地理位置信息
@@ -193,10 +205,10 @@ Page({
   // 整合分享授权部分
   shareAllData:function(){
 	  if(this.areaPlace){
-	  	this.getHospitalData(this.areaPlace);
+	  	this.getHospitalData();
 	  }else{
 	  	this.getAreaData((res)=>{
-	  		this.getHospitalData(res);
+	  		this.getHospitalData();
 	  	})
 	  }
   },
@@ -205,7 +217,8 @@ Page({
    */
   onLoad: function (options) {
 		this.setData({
-			showBack:true,
+			goHome:options.share?true:false,
+			showBack:options.share?false:true,
 			barTitle:'推广医院',
 			barHeight:app.globalData.statusBarHeight
 		})
@@ -223,6 +236,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-	
+	return{
+		path:'/pages/hospitalList/hospitalList?share=true'
+	}
   }
 })

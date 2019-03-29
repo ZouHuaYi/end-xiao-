@@ -1,0 +1,38 @@
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle,goHome}}"></template>
+<view class="container" style="padding-top: {{barHeight}}px;">
+	<view class="code-share-box">
+		<view class="code-header">
+			<view class="code-header-content">
+				<view class="code-top">
+					<image mode="cover" src="{{avatar}}"></image>
+					<view class="code-t-tit">
+						<text class="tit">推广人</text>
+						<text class="name">xxxxxxxxx</text>
+						<button class="share-btn" type="primary" size="mini" open-type="share">分享</button>
+					</view>
+				</view>
+				<view class="qrcode-image">
+					<image src="../../../assets/shop.jpg"></image>
+				</view>
+				<view class="btn-package">
+					<button type="default" >广州美上美公司 <text class="iconfont icon-xiajiantou"></text></button>
+				</view>
+			</view>
+		</view>
+		<view class="code-cneter">
+			<image class="main-center-image" mode="widthFix" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/test/cf58602ae0414dac99822079e9ce60db.png"></image>
+		</view>
+		<view class="code-footer">
+			<view class="code-footer-box">
+				<image class="code-footer-tow" mode="widthFix" src="https://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/user_promotion.png"></image>
+				<view class="select-list">
+					<view class="select-item">
+						<text class="left">大师风范大大大大</text>
+						<text class="right">￥900909</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

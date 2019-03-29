@@ -5,19 +5,19 @@ Page({
 	   * 页面的初始数据
 	   */
     data: {
-			newShowData:{},
-			allShowData:[],
-			alertSelect:[{"hospital":"医院","icon":"icon-yiyuan","list":[]},{"hospital":"美容院","icon":"icon-yiyuan-2","list":[]}],
-			alertStatus:false,
-			animationData:{},
-			opacityData:{},
-			avatar:'',
-			navlist:[
-				{
-					"title":"我的团队",
-					"icon":"../../assets/me.png",
-					"url":"/pages/team/team"
-				}]
+		newShowData:{},
+		allShowData:[],
+		alertSelect:[{"hospital":"医院","icon":"icon-yiyuan","list":[]},{"hospital":"美容院","icon":"icon-yiyuan-2","list":[]}],
+		alertStatus:false,
+		animationData:{},
+		opacityData:{},
+		avatar:'',
+		navlist:[
+			{
+				"title":"我的团队",
+				"icon":"../../assets/me.png",
+				"url":"/pages/team/team"
+			}]
 	},
 	// 去我的团队
 	gotoMyteam:function(e){
@@ -209,11 +209,10 @@ Page({
     */
 	onLoad: function (options) {
 		this.setData({
-			isHome:options.pay?true:false,
+			goHome:options.pay?true:false,
 			showBack:options.pay?false:true,
 			barHeight:app.globalData.statusBarHeight
 		})
-		
 		if(app.loginTest()) return;
 		if(app.globalData.myUserInfo){
 			this.gainAllData(app.globalData.myUserInfo.id,app.globalData.myUserInfo.token);

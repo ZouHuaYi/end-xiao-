@@ -41,7 +41,7 @@
 				bindtap="goToDetail"
 			>
 				<view class="item-left-img">
-					<image mode="widthFix" src="{{item.thumbnail}}"></image>
+					<image mode="aspectFill" src="{{item.thumbnail}}"></image>
 					<view class="mask">
 						<text class="iconfont icon-bofang1"></text>
 						<text>{{item.clickNum?item.clickNum:0}}</text>

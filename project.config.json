@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 30,
+			"current": 31,
 			"list": [
 				{
 					"id": -1,
@@ -46,10 +46,11 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "推广主页",
 					"pathName": "pages/toPromote/toPromote",
-					"query": ""
+					"query": "pay=true",
+					"scene": null
 				},
 				{
 					"id": -1,
@@ -237,6 +238,14 @@
 					"id": -1,
 					"name": "专栏",
 					"pathName": "pages/videoList/column/column",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "二维码主要页",
+					"pathName": "pages/promteCode/indexCode/indexCode",
+					"query": "",
 					"scene": null
 				}
 			]

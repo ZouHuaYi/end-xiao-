@@ -10,7 +10,7 @@ Page({
 		firstTeam:[],
 		secondStatistics:[],
 		secondTeam:[],
-		loadingEnd:false
+		loadingEnd:false,
   },
 	//切换的时候
 	changeBanner:function(e){
@@ -45,22 +45,22 @@ Page({
 				const {firstStatistics,firstTeam,secondStatistics,secondTeam} = res.data;
 				this.setData({
 					firstStatistics:firstStatistics.map((el,key)=>{
-						el.packageTypw = el.packageTypw>0?String.fromCharCode(parseInt(el.packageTypw)+64):'';
+						el.packageTypw = el.packageTypw>0?String.fromCharCode(parseInt(el.packageTypw)+64):'无';
 						el.total = el.sumFreePerformance+el.sumMultiplePerformance;
 						return el
 					}),
 					firstTeam:firstTeam.map((el,key)=>{
-						el.packageType = el.packageType>0?String.fromCharCode(parseInt(el.packageType)+64):'';
+						el.packageType = el.packageType>0?String.fromCharCode(parseInt(el.packageType)+64):'无';
 						el.total = el.multiplePerformance + el.freePerformance;
 						return el;
 					}),
 					secondStatistics:secondStatistics.map((el,key)=>{
-						el.packageTypw = el.packageTypw>0?String.fromCharCode(parseInt(el.packageTypw)+64):'';
+						el.packageTypw = el.packageTypw>0?String.fromCharCode(parseInt(el.packageTypw)+64):'无';
 						el.total = el.sumFreePerformance+el.sumMultiplePerformance;
 						return el
 					}),
 					secondTeam:secondTeam.map((el,key)=>{
-						el.packageType = el.packageType>0?String.fromCharCode(parseInt(el.packageType)+64):'';
+						el.packageType = el.packageType>0?String.fromCharCode(parseInt(el.packageType)+64):'无';
 						el.total = el.multiplePerformance + el.freePerformance;
 						return el;
 					}),
