@@ -24,9 +24,9 @@
 			<text class="tip-right"></text>
 		</view>
 		<view class="code-bottom">
-			<view class="code-img" wx:if="{{statusNowTime==2}}">
+			<!-- <view class="code-img" wx:if="{{statusNowTime==2}}">
 				<image bindtap="preImgFun" bindlongpress="downLoadImg" data-img="{{codeUrl}}" mode="widthFix" src="{{codeUrl}}"></image>
-			</view>
+			</view> -->
 			<view class="code-input" wx:if="{{statusNowTime==1}}">
 				<text class="ok">当前登陆账号</text>
 				<text class="ph">{{vphone}}</text>

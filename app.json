@@ -5,7 +5,7 @@
 		"pages/pageIndex/pageIndex",
 		"pages/toPromote/toPromote",
 		"pages/promteCode/promteCode",
-    "pages/promteCode/indexCode/indexCode",
+		"pages/promteCode/indexCode/indexCode",
 		"pages/loginEnd/loginEnd",
 		"pages/loginEnd/passw/passw",
 		"pages/team/team",
@@ -24,6 +24,7 @@
 		"pages/videoList/detail/detail",
 		"pages/videoList/pageList/pageList",
 		"pages/videoList/members/members",
+		"pages/promteCode/selectAdd/selectAdd",
 		"pages/videoList/column/column"
   ],
   "window":{

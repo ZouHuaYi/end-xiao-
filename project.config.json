@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 31,
+			"current": 32,
 			"list": [
 				{
 					"id": -1,
@@ -246,6 +246,12 @@
 					"name": "二维码主要页",
 					"pathName": "pages/promteCode/indexCode/indexCode",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择项目页",
+					"pathName": "pages/promteCode/selectAdd/selectAdd",
 					"scene": null
 				}
 			]

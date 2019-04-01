@@ -8,29 +8,35 @@
 					<image mode="cover" src="{{avatar}}"></image>
 					<view class="code-t-tit">
 						<text class="tit">推广人</text>
-						<text class="name">xxxxxxxxx</text>
+						<text class="name">{{nickname}}</text>
 						<button class="share-btn" type="primary" size="mini" open-type="share">分享</button>
 					</view>
 				</view>
 				<view class="qrcode-image">
-					<image src="../../../assets/shop.jpg"></image>
+					<image bindtap="preImgFun" data-img="{{codeUrl}}" mode="widthFix" src="{{codeUrl}}"></image>
 				</view>
 				<view class="btn-package">
-					<button type="default" >广州美上美公司 <text class="iconfont icon-xiajiantou"></text></button>
+					<button type="default" bindtap="selectHospital">{{packageMapList[defaultIndex].title}} <text class="iconfont icon-xiajiantou"></text></button>
 				</view>
 			</view>
 		</view>
 		<view class="code-cneter">
-			<image class="main-center-image" mode="widthFix" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/test/cf58602ae0414dac99822079e9ce60db.png"></image>
+			<image class="main-center-image" mode="widthFix" src="{{packageMapList[defaultIndex].description[0]}}"></image>
 		</view>
-		<view class="code-footer">
+		<view class="code-footer" wx:if="{{packageMapList.length>0}}">
 			<view class="code-footer-box">
-				<image class="code-footer-tow" mode="widthFix" src="https://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/user_promotion.png"></image>
-				<view class="select-list">
-					<view class="select-item">
-						<text class="left">大师风范大大大大</text>
-						<text class="right">￥900909</text>
+				<image class="code-footer-tow" mode="widthFix" src="{{appStatus.serviceImgUrl}}"></image>
+				<view class="select-list-show">
+					<view class="select-item" wx:for="{{showHospitalList}}" wx:key="{{item.id}}">
+						<view class="tit">{{item.name}}</view>
+						<view class="site" wx:for="{{item.productMapList}}"  wx:for-index="idx" wx:key="{{itemName.id}}" wx:for-item="itemName">
+							<text class="left">{{itemName.title}}</text>
+							<view class="right">￥<text>{{itemName.price}}</text></view>
+						</view>
 					</view>
+				</view>
+				<view class="add-btn">
+					<button class="add-message" bindtap="addProject">项目管理</button>
 				</view>
 			</view>
 		</view>

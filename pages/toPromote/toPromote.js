@@ -45,7 +45,7 @@ Page({
 		let {pid,hospitalid,title} = e.currentTarget.dataset;
 		hospitalid = '';
 		wx.navigateTo({
-			url:`/pages/promteCode/promteCode?pId=${pid}&hospitalId=${hospitalid}&myApp=myApp`
+			url:`/pages/promteCode/indexCode/indexCode?pId=${pid}&hospitalId=${hospitalid}&myApp=myApp`
 		})
 	},
 	// 恢复原来的状态

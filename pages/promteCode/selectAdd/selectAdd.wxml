@@ -1,0 +1,43 @@
+<import src="/pages/component/header/header.wxml"/>
+<template is="header" data="{{barHeight,showBack,barTitle,goHome}}"></template>
+<view class="container" style="padding-top: {{barHeight}}px;">
+	<view class="select-project">
+		<view class="select-content">
+			<view class="select-list"  wx:for="{{hospitalList}}" wx:key="{{item.id}}">
+				<view class="list-title">
+					<text>{{item.name}}</text>
+					<button class="add" bindtap="addShow" data-id="{{item.id}}" size="mini">添加新项目</button>
+				</view>
+				<view class="list-item">
+					<view class="item {{itemName.on?'on':''}}" bindtap="selectActive" data-pid="{{item.id}}" data-id="{{itemName.id}}" wx:for="{{item.productMapList}}" wx:key="{{itemName.id}}"  wx:for-index="idx" wx:for-item="itemName">
+						<view class="item-left">
+							{{itemName.title}}
+						</view>
+						<view class="price">
+							￥<text>{{itemName.price}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="form-btn">
+			<button class="in-btn" bindtap="finishConfim" type="default">完成</button>
+		</view>
+	</view>
+</view>
+<view class="project-add-finish" wx:if="{{alertStatus}}">
+	<view class="mask" bindtap="cancalFun"></view>
+	<view class="alert-finish" >
+		<view class="alert-tit">新建项目</view>
+		<view class="alert-input">
+			<input type="text" bindinput="inputFun" data-key="inputname"  placeholder="请输入医美项目"  />
+		</view>
+		<view class="alert-input">
+			<input type="number" bindinput="inputFun" data-key="inputprice" placeholder="请输入项目价格" />
+		</view>
+		<view class="alert-btn">
+			<button class="fl" bindtap="cancalFun" size="mini">取消</button>
+			<button bindtap="comfigFun" class="fr" size="mini">确定</button>
+		</view>
+	</view>
+</view>

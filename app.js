@@ -187,8 +187,8 @@ App({
 		}
 	},
 	globalData: {
-		root_url:'https://test.topmei3mei.com',
-		//root_url:'http://192.168.2.240:8080/msm',
+		root_url:'https://admin.topmei3mei.com',
+		//root_url:'http://192.168.2.236:8080/msm',
 		map_key:'5BVBZ-GL3KO-SDXWF-S753K-7D7PK-DWBTX',
 		userInfo: null,
 		unionId:null,
@@ -202,6 +202,7 @@ App({
 		orderPlace:null,
 		recommended:null,
 		templateHtml:null,
-		statusBarHeight:40
+		statusBarHeight:40,
+		hospitalList:[],
   }
 })

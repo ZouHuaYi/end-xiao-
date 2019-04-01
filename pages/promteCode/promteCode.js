@@ -75,15 +75,8 @@ Page({
     },
 	// 获取小程序二维码
 	getQrCodeData:function(pId,hospitalId){
-		this.setData({
-			statusNowTime:2
-		})
-		app.postRequest('/rest/user/getAppletCodeUrl',{pId:pId,hospitalId:hospitalId?hospitalId:'',page:'pages/promteCode/promteCode'},data=>{
-			if(data.messageCode==900){
-				this.setData({
-					codeUrl:data.data.codeUrl
-				})
-			}
+		wx.redirectTo({
+			url:'/pages/promteCode/indexCode/indexCode',
 		})
 	},
 	// 获取医院的hospital 
@@ -266,14 +259,14 @@ Page({
     * 用户点击右上角分享
     */
     onShareAppMessage: function () {
-			 let hospitalId = this.hospitalId;// this.hospitalId;
-			 let path = `/pages/promteCode/promteCode?share=share&pId=${this.id}&hospitalId=${hospitalId}`;
-			 return {
-						title: this.data.nickname + '向你推荐'+this.data.hospital_name,
-						imageUrl:this.data.hospital_logo,
-						path: path,
-						success: function (res) {},
-						fail: function (res) {}
-				}
-  }
+		 let hospitalId = this.hospitalId; // this.hospitalId;
+		 let path = `/pages/promteCode/promteCode?share=share&pId=${this.id}&hospitalId=${hospitalId}`;
+		 return {
+				title: this.data.nickname + '向你推荐'+this.data.hospital_name,
+				imageUrl:this.data.hospital_logo,
+				path: path,
+				success: function (res) {},
+				fail: function (res) {}
+		}
+	}
 })
