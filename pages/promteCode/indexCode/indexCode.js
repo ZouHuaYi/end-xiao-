@@ -15,6 +15,13 @@ Page({
 	animationData:{},
 	opacityData:{},
    },
+   // 打电话
+   telPhone:function(e){
+	   const ph = e.currentTarget.dataset.phone;
+	   wx.makePhoneCall({
+		  phoneNumber: ph // 仅为示例，并非真实的电话号码
+		})
+   },
    // 图片预览
    preImgFun:function(e){
 		let img = e.currentTarget.dataset.img;
@@ -85,6 +92,7 @@ Page({
 	// 页面跳转 
 	addProject:function(){
 		const {relateAccount,locking} = this.data.appStatus;
+		
 		if(relateAccount==true&&locking==false){
 			wx.navigateTo({
 				url:'/pages/promteCode/selectAdd/selectAdd'
@@ -106,7 +114,7 @@ Page({
 	/**
     * 生命周期函数--监听页面加载
     */
-  onLoad: function (options) {
+	onLoad: function (options) {
 		this.setData({
 			goHome:options.share?true:false,
 			showBack:options.share?false:true,
@@ -116,13 +124,13 @@ Page({
 		let {avatar,nickname,id} = app.globalData.myUserInfo;
 		this.setData({
 			nickname:nickname,
-			avatar:avatar?avatar:'../../assets/default.png'
+			avatar:avatar?avatar:'../../../assets/default.png'
 		})
 		this.id = id;
 		this.hospitalId = options.hospitalId?options.hospitalId:'';
 		this.getHospitalData(id,this.hospitalId);   
 		this.getQrCodeData(id,this.hospitalId);
-  },
+	},
 	// 获取已经选择的项目
 	selectServerData:function(){
 		app.postRequest('/rest/distribution/user_configure_product_list',{
@@ -158,15 +166,15 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-	 let hospitalId = this.hospitalId; // this.hospitalId;
-	 let path = `/pages/promteCode/promteCode?share=share&pId=${this.id}&hospitalId=${hospitalId}`;
-	 return {
-			title: this.data.nickname + '向你推荐'+'美上美App',
-			imageUrl:this.data.hospital_logo,
-			path: path,
-			success: function (res) {},
-			fail: function (res) {}
-	}
-  }
+	  onShareAppMessage: function () {
+		 let hospitalId = this.hospitalId; // this.hospitalId;
+		 let path = `/pages/promteCode/promteCode?share=share&pId=${this.id}&hospitalId=${hospitalId}`;
+		 return {
+				title: this.data.nickname + '向你推荐'+'美上美App',
+				imageUrl:this.data.hospital_logo,
+				path: path,
+				success: function (res) {},
+				fail: function (res) {}
+		 }
+	  }
 })

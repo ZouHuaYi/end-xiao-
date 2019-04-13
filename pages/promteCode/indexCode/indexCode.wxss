@@ -115,15 +115,16 @@ page{
 }
 .select-item .tit{
 	font-size: 28rpx;
-	padding: 16rpx 0 10rpx;
+	padding: 20rpx 0 10rpx;
 }
 .select-item .site{
 	width: 100%;
-	border: 1px solid #00ceba;
+	border: 1px dotted #CCCCCC;
 	box-sizing: border-box;
 	padding: 10rpx;
 	position: relative;
 	margin-bottom: 10rpx;
+	border-radius: 10rpx;
 }
 .select-item .site .left{
 	display: block;
@@ -140,6 +141,18 @@ page{
 	color: #03D0BC;
 	font-size: 28rpx;
 	color: #03D0BC;
+}
+.select-item text.icon{
+	font-size: 24rpx;
+	color: #00CEBA;
+	margin-right: 10rpx;
+}
+.select-item .item-adr{
+	padding-bottom: 10rpx;
+}
+.select-item text.phone{
+	font-size: 24rpx;
+	color: #666666;
 }
 .add-btn{
 	width: 240rpx;

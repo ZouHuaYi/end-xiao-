@@ -29,6 +29,14 @@
 				<view class="select-list-show">
 					<view class="select-item" wx:for="{{showHospitalList}}" wx:key="{{item.id}}">
 						<view class="tit">{{item.name}}</view>
+						<view class="item-adr" wx:if="{{item.phone}}">
+							<text class="icon iconfont icon-dianhua"></text>
+							<text bindtap="telPhone" data-phone="{{item.phone}}" class="phone">{{item.phone}}</text>
+						</view>
+						<view class="item-adr" wx:if="{{item.address}}">
+							<text class="icon iconfont icon-dizhi"></text>
+							<text class="phone">{{item.address}}</text>
+						</view>
 						<view class="site" wx:for="{{item.productMapList}}"  wx:for-index="idx" wx:key="{{itemName.id}}" wx:for-item="itemName">
 							<text class="left">{{itemName.title}}</text>
 							<view class="right">￥<text>{{itemName.price}}</text></view>

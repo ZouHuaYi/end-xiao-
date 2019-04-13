@@ -2,32 +2,32 @@ const app = getApp();
 const SECOND_NAV = ['全部','免费','精品'];
 
 Page({
-  /**
-   * 页面的初始数据
-   */
-  data: {
-	navList:[{"title":'最新',"type":0}],
-	navOneTwo:[
-		[{"title":'最新',"type":0},{"title":'最热',"type":1}],
-		[{"title":'全部',"type":0},{"title":'免费',"type":1},{"title":'精品',"type":2}],
-	],
-	showStatus:false,
-	showOneTwoStatus:false,
-	indexStatus:-1,
-	oneTwoStatus:[0,0],
-	threeNavList:[],
-	threeNavSecondList:[],
-	showThreeStatus:false,
-	threeNavName:'全部',
-	threeFisrtIndex:-1,
-	threeSecondIndex:-1,
-	temporaryFirstIndex:[],
-	pageNumber:1,
-	rowNumber:10,
-	videoListData:[],
-	videoForm:{},
-	loadingStatus:0,   // 0 正在加载 1 上拉加载 2 全部加载完成 3 没有数据
-	loadingList:['正在加载','加载更多数据','全部加载完成','没有更多数据'],
+		/**
+		 * 页面的初始数据
+		 */
+		data: {
+			navList:[{"title":'最新',"type":0}],
+			navOneTwo:[
+				[{"title":'最新',"type":0},{"title":'最热',"type":1}],
+				[{"title":'全部',"type":0},{"title":'免费',"type":1},{"title":'精品',"type":2}],
+			],
+			showStatus:false,
+			showOneTwoStatus:false,
+			indexStatus:-1,
+			oneTwoStatus:[0,0],
+			threeNavList:[],
+			threeNavSecondList:[],
+			showThreeStatus:false,
+			threeNavName:'全部',
+			threeFisrtIndex:-1,
+			threeSecondIndex:-1,
+			temporaryFirstIndex:[],
+			pageNumber:1,
+			rowNumber:10,
+			videoListData:[],
+			videoForm:{},
+			loadingStatus:0,   // 0 正在加载 1 上拉加载 2 全部加载完成 3 没有数据
+			loadingList:['正在加载','加载更多数据','全部加载完成','没有更多数据'],
   },
   // 搜索页
   searchInput:function(e){
