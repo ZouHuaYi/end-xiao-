@@ -154,3 +154,8 @@
 	padding: 20rpx 30rpx 0;
 	box-sizing: border-box;
 }
+.address{
+	font-size: 22rpx;
+	color: #666666;
+	padding-top: 16rpx;
+}

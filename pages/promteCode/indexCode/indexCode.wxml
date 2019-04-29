@@ -15,13 +15,15 @@
 				<view class="qrcode-image">
 					<image bindtap="preImgFun" data-img="{{codeUrl}}" mode="widthFix" src="{{codeUrl}}"></image>
 				</view>
-				<view class="btn-package">
-					<button type="default" bindtap="selectHospital">{{packageMapList[defaultIndex].title}} <text class="iconfont icon-xiajiantou"></text></button>
+				<view class="btn-package"  >
+					<picker range="{{pickerList}}" value="{{defaultIndex}}" bindchange="selectHospital">
+						<button type="default" >{{packageMapList[defaultIndex].title}} <text class="iconfont icon-xiajiantou"></text></button>
+					</picker>
 				</view>
 			</view>
 		</view>
 		<view class="code-cneter">
-			<image class="main-center-image" mode="widthFix" src="{{packageMapList[defaultIndex].description[0]}}"></image>
+			<image wx:if="{{packageMapList[defaultIndex].description[0]}}" class="main-center-image" mode="widthFix" src="{{packageMapList[defaultIndex].description[0]}}"></image>
 		</view>
 		<view class="code-footer" wx:if="{{packageMapList.length>0}}">
 			<view class="code-footer-box">

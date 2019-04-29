@@ -1,4 +1,5 @@
 import wxValidate from 'utils/wxValidate';
+import{getLocalCity} from '/utils/util.js'
 // import {EventEmitter } from "event"
 App({
 	//优雅的表单验证
@@ -6,7 +7,7 @@ App({
     onLaunch: function (e) {
 // 			const emitter = new EventEmitter();
 // 			emitter.setMaxListeners(0);//或者关闭最大监听阈值
-		
+				
 			const respx = wx.getSystemInfoSync();
 			this.globalData.statusBarHeight = respx.statusBarHeight+44;
 			// 登陆路径的白名单
@@ -79,7 +80,11 @@ App({
 				}
 			})
 		
-    },
+			getLocalCity((res)=>{
+				this.globalData.areaList = res;
+			})
+			
+	},
 	postRequest:function(url,data,callback){
 		let datas = data;
 		if(datas && Object.keys(datas).length>0){
@@ -188,8 +193,9 @@ App({
 	},
 	globalData: {
 		root_url:'https://admin.topmei3mei.com',
-		//root_url:'http://192.168.2.236:8080/msm',
+		// root_url:'http://192.168.2.236:8080/msm',
 		map_key:'5BVBZ-GL3KO-SDXWF-S753K-7D7PK-DWBTX',
+		areaList:null,
 		userInfo: null,
 		unionId:null,
 		openId:null,

@@ -84,6 +84,7 @@ Page({
 		app.postRequest('/rest/hospital/list',{
 			area: city,
 			district:'',
+			isDefault:1,
 			orderType:firsIndex,                // 0 默认 1 最热 2 最新 3 最近
 			latitude:area.latitude,
 			longitude:area.longitude,

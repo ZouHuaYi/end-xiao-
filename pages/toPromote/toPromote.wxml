@@ -23,7 +23,7 @@
 	<view class="goto-hospital">
 		<text class="tit">{{newShowData.hospitalName}}</text>
 		<view class="change" bindtap="changeAlert">
-			<text class="tip">切换</text>
+			<text class="tip">{{city||'切换'}}</text>
 			<text class="icon iconfont icon-qiehuan"></text>
 		</view>
 	</view>
@@ -81,6 +81,9 @@
 				</block>
 			</view>
 		</view>
-		<button class="add-news-btn" type="default" bindtap="goToHospitalList"><text class="icon iconfont icon-tianjia"></text>推广新医院</button>
+		<view class="add-news-btn">
+			<button class="add-hospital" type="default" bindtap="goToHospitalList"><text class="icon iconfont icon-tianjia"></text>推广新医院</button>
+			<button class="select-area" type="default" bindtap="goToSelectAreas">选择地区</button>
+		</view>
 	</view>
 </view>

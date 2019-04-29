@@ -1,5 +1,5 @@
 var app = getApp()
-
+import{getLocalCity} from '../../utils/util.js'
 Page({
    /**
 	   * 页面的初始数据
@@ -106,18 +106,27 @@ Page({
 			barTitle: data.hospitalName
 		})
 	},
+	// 跳转选择地址
+	goToSelectAreas:function  () {
+		wx.navigateTo({
+			url:'/pages/selectAddress/selectAddress'
+		})
+	},
 	// 获取用户信息
-	gainAllData:function(userId,token){
+	gainAllData:function(userId,token,areas){
 		let pack = ['无','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 		let grade =['一','二','三','四','五','六','七','八','九','十'];
 		let formData={
 			"userId":userId,
-			"token":token
+			"token":token,
+			"area": areas=='全国'?'':(areas||app.globalData.areaList.city||''),
 		}
+		
 		wx.showLoading({
 			title:"正在加载",
 			mask:true
 		})
+		
 		let alertSelect = this.data.alertSelect;
 		app.postRequest('/rest/distribution/home',formData,data=>{
 			wx.hideLoading();
@@ -163,18 +172,16 @@ Page({
 				}else{
 					wx.showModal({
 					  title: '温馨提示',
-					  cancelText:'取消',
+					  cancelText:'选择地区',
 					  confirmText:'去推广',
 					  content: '您当前没有可推广的医院或美容院',
-					  success(res) {
+					  success:(res) => {
 						if (res.confirm) {
 						  wx.redirectTo({
 						  	url:"/pages/hospitalList/hospitalList"
 						  })
 						} else if (res.cancel) {
-						   wx.reLaunch({
-						   	url:"/pages/pageIndex/pageIndex"
-						   })
+						  this.goToSelectAreas();
 						}
 					  }
 					})
@@ -182,16 +189,16 @@ Page({
 			}else if(data.messageCode==902){
 				wx.showModal({
 				  title: '温馨提示',
-				  cancelText:'取消',
+				  cancelText:'选择地区',
 				  confirmText:'去推广',
 				  content: '您当前没有可推广的医院或美容院',
-				  success(res) {
+				  success:(res)=> {
 					if (res.confirm) {
 					  wx.reLaunch({
 					  	url:"/pages/hospitalList/hospitalList"
 					  })
 					} else if (res.cancel) {
-					  wx.navigateBack();
+					  this.goToSelectAreas();
 					}
 				  }
 				})
@@ -203,6 +210,8 @@ Page({
 				})
 			}
 		})
+		
+		
 	},
     /**
     * 生命周期函数--监听页面加载
@@ -215,12 +224,18 @@ Page({
 		})
 		if(app.loginTest()) return;
 		if(app.globalData.myUserInfo){
-			this.gainAllData(app.globalData.myUserInfo.id,app.globalData.myUserInfo.token);
+			var areas = options.areas?options.areas:null;
+			this.gainAllData(app.globalData.myUserInfo.id,app.globalData.myUserInfo.token,areas);
 			this.setData({
-				avatar:app.globalData.myUserInfo.avatar
+				avatar:app.globalData.myUserInfo.avatar,
+				city:areas||app.globalData.areaList.city
 			})
 		}else{
-			app.userInfoReadyCallback = info => {		
+			app.userInfoReadyCallback = info => {
+				this.setData({
+					city:app.globalData.areaList.city
+				})
+				
 				this.gainAllData(info.id,info.token);
 				this.setData({
 					avatar:app.globalData.myUserInfo.avatar
@@ -231,7 +246,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+	onShow: function () {
 	    this.animation = wx.createAnimation({
 		  duration: 200,
 		  timingFunction: 'ease',
@@ -241,6 +256,11 @@ Page({
 		  timingFunction: 'ease',
 		})
   },
+	onHide:function () {
+		this.setData({
+			alertStatus:false
+		})
+	},
   /**
    * 用户点击右上角分享
    */

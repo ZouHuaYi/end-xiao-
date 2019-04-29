@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 32,
+			"current": 33,
 			"list": [
 				{
 					"id": -1,
@@ -242,16 +242,24 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 31,
 					"name": "二维码主要页",
 					"pathName": "pages/promteCode/indexCode/indexCode",
-					"query": "",
+					"query": "hospitalId=&pId=4165",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "选择项目页",
 					"pathName": "pages/promteCode/selectAdd/selectAdd",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择地址",
+					"pathName": "pages/selectAddress/selectAddress",
+					"query": "",
 					"scene": null
 				}
 			]

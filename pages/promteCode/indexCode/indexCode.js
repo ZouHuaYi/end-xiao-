@@ -1,4 +1,6 @@
 const app = getApp();
+var QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
+var qqmapsdk;
 
 Page({
 
@@ -14,6 +16,7 @@ Page({
 	alertStatus:true,
 	animationData:{},
 	opacityData:{},
+	pickerList:[],
    },
    // 打电话
    telPhone:function(e){
@@ -56,12 +59,47 @@ Page({
 			if(data.messageCode==900){
 				const {packageMapList,locking,serviceImgUrl,relateAccount} = data.data;
 				this.setData({
-					packageMapList:packageMapList,
 					appStatus:{
 						locking:locking,
 						serviceImgUrl:serviceImgUrl,
 						relateAccount:relateAccount,
 					}
+				});
+				this.getAreaData(res=>{
+					this.getLocalCity(res,dt=>{
+						let defaultIndex = -1;
+						let pickerList = [];
+						packageMapList.forEach((item,key)=>{
+							pickerList.push(item.title);
+							if(item.area.indexOf(dt.province+dt.city)>-1){
+								defaultIndex = key;
+								return;
+							}
+						})
+						if(defaultIndex==-1){
+							packageMapList.forEach((item,key)=>{
+								if(item.area.indexOf(dt.province)>-1){
+									defaultIndex = key;
+									return;
+								}
+							})
+						}
+						const valueIndex = Number(wx.getStorageSync('defaultIndex'));
+						this.setData({
+							defaultIndex:valueIndex?valueIndex:(defaultIndex==-1?0:defaultIndex),
+							packageMapList:packageMapList,
+							pickerList:pickerList
+						})
+						
+					},()=>{
+						this.setData({
+							packageMapList:packageMapList,
+						})
+					});
+				},()=>{
+					this.setData({
+						packageMapList:packageMapList,
+					})
 				})
 			}else{
 				wx.showToast({
@@ -76,17 +114,13 @@ Page({
 		})
 	},
 	// 改变医院名称
-	selectHospital:function(){
-		const {packageMapList} = this.data;
-		wx.showActionSheet({
-		  itemList:packageMapList.map(item=>{
-			  return item.title
-		  }) ,
-		  success:(res)=>{
-			this.setData({
-				defaultIndex:res.tapIndex
-			})
-		  },
+	selectHospital:function(e){
+		this.setData({
+			defaultIndex:e.detail.value
+		})
+		wx.setStorage({
+			key:'defaultIndex',
+			data:e.detail.value
 		})
 	},
 	// 页面跳转 
@@ -111,10 +145,98 @@ Page({
 			})
 		}
 	},
+	 // 获取地理位置信息
+	getAreaData:function(callback,fail){
+		let that = this; 
+		wx.getSetting({
+			success: (res) => {
+				if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {//非初始化进入该页面,且未授权
+					wx.showModal({
+						title: '是否授权当前位置',
+						content: '需要获取您的地理位置，请确认授权，否则无法获取您所需数据',
+						success: function (res) {
+							if (res.cancel) {
+								wx.showToast({
+									title: '授权失败',
+									icon: 'success',
+									duration: 1000
+								})
+								fail&&fail();
+							} else if (res.confirm) {
+								wx.openSetting({
+									success: function (dataAu) {
+										if (dataAu.authSetting["scope.userLocation"] == true) {
+											wx.showToast({
+												title: '授权成功',
+												icon: 'success',
+												duration: 1000
+											})
+											//再次授权，调用getLocationt的API
+											that.getAreaData(callback);
+										} else {
+											wx.showToast({
+												title: '授权失败',
+												icon: 'success',
+												duration: 1000
+											})
+										}
+									},
+									fail:function(){
+										fail&&fail();
+									}
+								})
+							}
+						}
+					})
+				} else if (res.authSetting['scope.userLocation'] == undefined) {//初始化进入
+					wx.getLocation({
+						type: 'wgs84',
+						success:  (res) =>{
+								that.areaPlace = res;
+								callback&&callback(res);
+						 },
+						 fail:function(){
+						 	fail&&fail();
+						 }
+					})  
+				} else  { //授权后默认加载
+					wx.getLocation({
+						type: 'wgs84',
+						success:  (res) =>{
+							that.areaPlace = res;
+							callback&&callback(res);
+						},
+						fail:function(){
+							fail&&fail();
+						}
+					})  
+				}
+			}
+		})
+	},
+	// 获取当前市
+	getLocalCity:function(area,callback,fail){
+		qqmapsdk.reverseGeocoder({
+			location: {
+				latitude: area.latitude,
+				longitude: area.longitude
+			},
+			success: (res) => {
+				const city = res.result.address_component;
+				callback&&callback(city);
+			},
+			fail:function(){
+				fail&&fail();
+			},
+		});
+	},
 	/**
     * 生命周期函数--监听页面加载
     */
 	onLoad: function (options) {
+		qqmapsdk = new QQMapWX({
+		  key: app.globalData.map_key
+		});
 		this.setData({
 			goHome:options.share?true:false,
 			showBack:options.share?false:true,
@@ -128,8 +250,10 @@ Page({
 		})
 		this.id = id;
 		this.hospitalId = options.hospitalId?options.hospitalId:'';
+		
 		this.getHospitalData(id,this.hospitalId);   
 		this.getQrCodeData(id,this.hospitalId);
+			
 	},
 	// 获取已经选择的项目
 	selectServerData:function(){

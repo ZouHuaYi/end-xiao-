@@ -270,16 +270,27 @@ page{
 	transform: translateY(100%);
 	padding:30rpx 30rpx 120rpx;
 }
-button.add-news-btn{
+.add-news-btn{
 	position: absolute;
 	width: 690rpx;
 	left: 30rpx;
 	bottom: 20rpx;
-	background: #14CCBA;
 	color: #FFFFFF;
 	line-height: 80rpx;
+	display: flex;
 }
-button.add-news-btn .icon{
+.add-news-btn .add-hospital{
+	background: #14CCBA;
+	color: #FFFFFF;
+}
+.add-news-btn button{
+	margin: 0;
+	flex: 1;
+}
+.add-news-btn .select-area{
+	margin-left: 10px;
+}
+.add-news-btn .icon{
 	margin-right: 10rpx;
 }
 .select-content{

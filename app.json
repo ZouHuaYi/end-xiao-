@@ -25,7 +25,8 @@
 		"pages/videoList/pageList/pageList",
 		"pages/videoList/members/members",
 		"pages/promteCode/selectAdd/selectAdd",
-		"pages/videoList/column/column"
+		"pages/videoList/column/column",
+    "pages/selectAddress/selectAddress"
   ],
   "window":{
     "backgroundTextStyle":"light",
