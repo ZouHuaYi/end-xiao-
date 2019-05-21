@@ -96,3 +96,25 @@
     top: 0;left: 0;bottom: 0;right: 0;
     z-index: 999;   
 }
+
+.vide-input{
+	width: 100%;
+	display: flex;
+	padding: 20rpx 30rpx;
+	box-sizing: border-box;
+	border-bottom: 1px solid #F5F5F5;
+}
+.vide-input .v-input{
+	flex: 1;
+	background: #F5F5F5;
+	height: 70rpx;
+	padding: 0 20rpx;
+	box-sizing: border-box;
+	line-height: 70rpx;
+	border-radius: 12rpx;
+}
+.vide-input .n-input{
+	height: 70rpx;
+	line-height: 70rpx;
+	margin-left: 20rpx;
+}

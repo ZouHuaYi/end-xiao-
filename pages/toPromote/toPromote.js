@@ -7,7 +7,7 @@ Page({
     data: {
 		newShowData:{},
 		allShowData:[],
-		alertSelect:[{"hospital":"医院","icon":"icon-yiyuan","list":[]},{"hospital":"美容院","icon":"icon-yiyuan-2","list":[]}],
+		alertSelect:[{"hospital":"医院","icon":"icon-yiyuan","list":[]},{"hospital":"精品推荐","icon":"icon-yiyuan-2","list":[]}],
 		alertStatus:false,
 		animationData:{},
 		opacityData:{},

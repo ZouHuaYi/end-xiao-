@@ -19,6 +19,7 @@ Page({
 	if(index===len){
 		if(this.startX-endX>30){
 			clearInterval(this.timePage);
+			if(!this.powerStatus) return;
 			this.goToIndex();
 		}
 	}
@@ -114,9 +115,10 @@ Page({
 					})
 				}
 			})
+		}else{
+			//拒绝授权的时候
+			console.log("拒绝授权啦");
 		}
     },
-	onShareAppMessage:function(){
-		   
-	}
+	onShareAppMessage:function(){}
 })

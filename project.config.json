@@ -19,6 +19,8 @@
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -37,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 33,
+			"current": 26,
 			"list": [
 				{
 					"id": -1,
@@ -86,8 +88,8 @@
 					"id": 7,
 					"name": "推广二维码",
 					"pathName": "pages/promteCode/promteCode",
-					"query": "",
-					"scene": "1011"
+					"query": "share=share",
+					"scene": 1011
 				},
 				{
 					"id": -1,
@@ -207,10 +209,10 @@
 					"scene": 1029
 				},
 				{
-					"id": -1,
+					"id": 26,
 					"name": "我的团队",
 					"pathName": "pages/team/team",
-					"query": "",
+					"query": "hospitalid=15658&userid=5969 ",
 					"scene": null
 				},
 				{

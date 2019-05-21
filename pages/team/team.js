@@ -33,7 +33,7 @@ Page({
 			mask:true
 		})
 		app.postRequest('/rest/distribution/team',{
-			token:app.globalData.myUserInfo.token,
+			token:  app.globalData.myUserInfo.token,
 			userId: parseInt(opt.userid),
 			hospitalId:parseInt(opt.hospitalid),
 		},res=>{
@@ -44,27 +44,28 @@ Page({
 			if(res.messageCode==900){
 				const {firstStatistics,firstTeam,secondStatistics,secondTeam} = res.data;
 				this.setData({
-					firstStatistics:firstStatistics.map((el,key)=>{
+					firstStatistics:firstStatistics?firstStatistics.map((el,key)=>{
 						el.packageTypw = el.packageTypw>0?String.fromCharCode(parseInt(el.packageTypw)+64):'无';
 						el.total = el.sumFreePerformance+el.sumMultiplePerformance;
 						return el
-					}),
-					firstTeam:firstTeam.map((el,key)=>{
+					}):[],
+					firstTeam:firstTeam?firstTeam.map((el,key)=>{
 						el.packageType = el.packageType>0?String.fromCharCode(parseInt(el.packageType)+64):'无';
 						el.total = el.multiplePerformance + el.freePerformance;
 						return el;
-					}),
-					secondStatistics:secondStatistics.map((el,key)=>{
+					}):[],
+					secondStatistics:secondStatistics?secondStatistics.map((el,key)=>{
 						el.packageTypw = el.packageTypw>0?String.fromCharCode(parseInt(el.packageTypw)+64):'无';
 						el.total = el.sumFreePerformance+el.sumMultiplePerformance;
 						return el
-					}),
-					secondTeam:secondTeam.map((el,key)=>{
+					}):[],
+					secondTeam:secondTeam?secondTeam.map((el,key)=>{
 						el.packageType = el.packageType>0?String.fromCharCode(parseInt(el.packageType)+64):'无';
 						el.total = el.multiplePerformance + el.freePerformance;
 						return el;
-					}),
+					}):[],
 				})
+				
 			}
 		})
 	},

@@ -1,13 +1,10 @@
 import wxValidate from 'utils/wxValidate';
-import{getLocalCity} from '/utils/util.js'
-// import {EventEmitter } from "event"
+import{getLocalCity} from '/utils/util.js';
+
 App({
 	//优雅的表单验证
 	wxValidate: (rules, messages) => new wxValidate(rules, messages),
     onLaunch: function (e) {
-// 			const emitter = new EventEmitter();
-// 			emitter.setMaxListeners(0);//或者关闭最大监听阈值
-				
 			const respx = wx.getSystemInfoSync();
 			this.globalData.statusBarHeight = respx.statusBarHeight+44;
 			// 登陆路径的白名单
@@ -16,23 +13,13 @@ App({
 				query += key+'='+e.query[key]+'&'	
 			}
 			const PRIVATE_URL = ["index","enLogin","loginEnd"];
-
 			this.globalData.navigateBackUrl = PRIVATE_URL.indexOf(e.path.split('/')[1]) == -1 ? '/'+e.path+'?'+ query : '/pages/pageIndex/pageIndex';
-		
-			// 获取用户信息
 			wx.getSetting({
 				success: res => {
 				if (res.authSetting['scope.userInfo']) {
-					// 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
 					wx.getUserInfo({
 					success: res => {
-						// 可以将 res 发送给后台解码出 unionId
 						this.globalData.userInfo = res.userInfo
-						// 如果已经授权直接登陆
-// 						wx.showLoading({
-// 							title:"正在加载",
-// 							mask:true
-// 						})
 						this.loginFun(res,(data)=>{
 							// wx.hideLoading();
 							if(data.messageCode==900){
@@ -47,7 +34,7 @@ App({
 								this.globalData.tokenStatus = true;
 								this.globalData.unionId = data.data.unionid;
 								this.globalData.openId = data.data.openid;
-
+						
 								wx.reLaunch({
 									url:'/pages/loginEnd/loginEnd'
 								})
@@ -72,7 +59,7 @@ App({
 				}else{
 					// 在没有授权的情况下 主动跳转到 index页
 					if(e.path!="pages/index/index"){
-							wx.navigateTo({
+						wx.reLaunch({
 							url:'/pages/index/index'
 						})
 					}
@@ -129,6 +116,8 @@ App({
 									})
 								 }
 							  })
+							}else{
+								// 没有授权的时候
 							}
 						  }
 						})
@@ -175,6 +164,15 @@ App({
 	},
 	// 登录限制
 	loginTest:function(){
+		wx.getSetting({
+			success:res=>{
+				if (!res.authSetting['scope.userInfo']) {
+					wx.reLaunch({
+						url:'/pages/index/index'
+					})
+				}
+			}
+		})
 		if(this.globalData.tokenStatus){
 			wx.reLaunch({
 				url:'/pages/loginEnd/loginEnd'
@@ -200,7 +198,7 @@ App({
 		unionId:null,
 		openId:null,
 		loginStatus:0,
-		tokenStatus:false,
+		tokenStatus:false,   // 默认的 就是拦截的意思
 		navigateBackUrl:null,
 		myUserInfo:null,
 		shopList:null,

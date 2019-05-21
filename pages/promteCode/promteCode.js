@@ -40,7 +40,7 @@ Page({
 					if (numtime <= 0) {
 					  clearInterval(timp);
 					  wx.reLaunch({
-						url:'/pages/toPromote/toPromote'
+						url:'/pages/toPromote/toPromote?pay=pay'
 					  })
 					}
 				    }, 1000);
@@ -76,7 +76,7 @@ Page({
 	// 获取小程序二维码
 	getQrCodeData:function(pId,hospitalId){
 		wx.redirectTo({
-			url:'/pages/promteCode/indexCode/indexCode',
+			url:'/pages/promteCode/indexCode/indexCode?share=share',
 		})
 	},
 	// 获取医院的hospital 
@@ -124,7 +124,7 @@ Page({
 				})
 				app.postRequest("/rest/user/getUser",{
 						token:app.globalData.myUserInfo.token,
-						hospitalId:options.hospitalId
+						hospitalId:options.hospitalId||''
 					},data=>{
 						if(data.messageCode==900 || data.messageCode==1402){
 							 // 判断是否在团队中的时候
@@ -244,7 +244,6 @@ Page({
 			}else{
 				this.shareOptions = options;
 			}
-			
 			if(app.globalData.myUserInfo){
 				this.judgeScan(this.shareOptions);
 			}else{

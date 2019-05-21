@@ -1,43 +1,47 @@
 {
-  "pages":[
-		"pages/index/index",
-		"pages/details/details",
-		"pages/pageIndex/pageIndex",
-		"pages/toPromote/toPromote",
-		"pages/promteCode/promteCode",
-		"pages/promteCode/indexCode/indexCode",
-		"pages/loginEnd/loginEnd",
-		"pages/loginEnd/passw/passw",
-		"pages/team/team",
-		"pages/buyShop/editorArea/editorArea",
-		"pages/buyShop/editorList/editorList",
-		"pages/buyShop/cardActivate/cardActivate",
-		"pages/buyShop/payFinish/payFinish",
-		"pages/buyShop/shopList/shopList",
-		"pages/buyShop/shopDetail/shopDetail",
-		"pages/buyShop/shopPay/shopPay",
-		"pages/buyShop/mmBuy/mmBuy",
-		"pages/hospitalList/hospitalList",
-		"pages/webView/webView",
-		"pages/videoList/videoList",
-		"pages/videoList/pageIndex/pageIndex",
-		"pages/videoList/detail/detail",
-		"pages/videoList/pageList/pageList",
-		"pages/videoList/members/members",
-		"pages/promteCode/selectAdd/selectAdd",
-		"pages/videoList/column/column",
+  "pages": [
+    "pages/index/index",
+    "pages/details/details",
+    "pages/pageIndex/pageIndex",
+    "pages/toPromote/toPromote",
+    "pages/promteCode/promteCode",
+    "pages/promteCode/indexCode/indexCode",
+    "pages/loginEnd/loginEnd",
+    "pages/loginEnd/passw/passw",
+    "pages/team/team",
+    "pages/buyShop/editorArea/editorArea",
+    "pages/buyShop/editorList/editorList",
+    "pages/buyShop/cardActivate/cardActivate",
+    "pages/buyShop/payFinish/payFinish",
+    "pages/buyShop/shopList/shopList",
+    "pages/buyShop/shopDetail/shopDetail",
+    "pages/buyShop/shopPay/shopPay",
+    "pages/buyShop/mmBuy/mmBuy",
+    "pages/hospitalList/hospitalList",
+    "pages/webView/webView",
+    "pages/videoList/videoList",
+    "pages/videoList/pageIndex/pageIndex",
+    "pages/videoList/detail/detail",
+    "pages/videoList/pageList/pageList",
+    "pages/videoList/members/members",
+    "pages/promteCode/selectAdd/selectAdd",
+    "pages/videoList/column/column",
     "pages/selectAddress/selectAddress"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#15cebc",
     "navigationBarTitleText": "正在加载",
-    "navigationBarTextStyle":"white",
-		"navigationStyle":"custom"
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
   },
-	"permission":{
-		"scope.userLocation": {
+	"networkTimeout":{
+		"request":120000
+	},
+  "permission": {
+    "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
-	}
+  },
+  "sitemapLocation": "sitemap.json"
 }

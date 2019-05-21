@@ -112,10 +112,17 @@ Page({
   bindCity: function(e) {
     var cityName = e.currentTarget.dataset.city;
     // this.setData({ cityName: cityName })
-		
 		wx.redirectTo({
 			url:`/pages/toPromote/toPromote?areas=${cityName}`
 		})
-  }
+  },
+	formSubmit:function(e){
+		var cityName = e.detail.value.area;
+		if(cityName){
+			wx.redirectTo({
+				url:`/pages/toPromote/toPromote?areas=${cityName}`
+			})
+		}
+	}
 
 })

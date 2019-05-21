@@ -86,11 +86,11 @@ page{
 .main-center-image{
 	display: block;
 	width: 100%;
-	margin-top: -200rpx;
 }
 .code-cneter{
 	width: 100%;
 	position: relative;
+	margin-top: 20px;
 }
 .code-footer{
 	width: 100%;

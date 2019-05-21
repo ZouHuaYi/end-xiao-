@@ -1,6 +1,12 @@
 <import src="/pages/component/header/header.wxml"/>
 <template is="header" data="{{barHeight,showBack,barTitle}}"></template>
 <view class="video-page" style="padding-top:{{barHeight}}px;">
+	<form bindsubmit="formSubmit">
+		<view class="vide-input">
+			<input name="area" class="v-input" type="text" placeholder="请输入正确的地址" />
+			<button form-type="submit" class="n-input" type="primary" size="mini">确定</button>
+		</view>
+	</form>
 	<scroll-view   scroll-y="true" style="height: {{winHeight}}px;" scroll-into-view="{{scrollTopId}}" class="city_list">
 		<block wx:for="{{city}}" wx:for-index="idx" wx:for-item="cityName" wx:key="{{idx}}">
 		  <text id="{{idx}}" class="list_tit">{{idx}}</text>
@@ -13,7 +19,7 @@
 		  bindtouchstart="chStart"
 		  bindtouchend="chEnd"
 		  catchtouchmove="chMove"
-		  style="background: rgba(0,0,0,{{trans}});top:{{(barHeight+5)+'px'}}"
+		  style="background: rgba(0,0,0,{{trans}});top:{{(barHeight+60)+'px'}}"
 		  >
 	   <block wx:for="{{city}}" wx:for-index="idx" wx:for-item="cityName" wx:key="{{idx}}">
 		  <block wx:if="{{idx != '热门城市'}}">

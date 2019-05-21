@@ -69,18 +69,19 @@ Page({
 	 },data=>{
 		if(data.messageCode==900){
 			app.globalData.tokenStatus = false;
-			
-			app.postRequest('/rest/user/open_bind_unbundled',{
-				wechat:app.globalData.unionId,
-				unionId:app.globalData.unionId,
-				id:userId,
-				action:0
-			},resd=>{
-				if(resd.messageCode==900){
-					console.log('静默式绑定成功');
-				}
-			})
-			
+			if(app.globalData.unionId){
+				app.postRequest('/rest/user/open_bind_unbundled',{
+					wechat:app.globalData.unionId,
+					unionId:app.globalData.unionId,
+					id:userId,
+					action:0
+				},resd=>{
+					if(resd.messageCode==900){
+						console.log('静默式绑定成功');
+					}
+				})
+			}
+		
 			if(app.globalData.navigateBackUrl){
 				wx.reLaunch({
 					url:app.globalData.navigateBackUrl
