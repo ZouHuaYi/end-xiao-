@@ -33,10 +33,11 @@ Page({
 				link:''
 			},
 			{
-				title:'重要通知',
-				img:'../../assets/info_go.png',
+				title:'MM卖场',
+				img:'../../assets/home_btn_market.png',
 				url:'/pages/webView/webView',
-				link:app.globalData.root_url+'/wxchat/report.html'
+				link:'',
+				appid:'wxec3573b60b7769c8'
 			},
 			{
 				title:'下载App',
@@ -137,8 +138,22 @@ Page({
 	},
 	// 去到
 	goToNav:function(e){
-		let {url,link} = e.currentTarget.dataset;
+		let {url,link,appid} = e.currentTarget.dataset;
 		let nav = link? url+'?url='+encodeURIComponent(link):url;
+		if(appid){
+			wx.navigateToMiniProgram({
+				appId:appid,
+				path:'pages/index/index',
+				fail:()=>{
+					wx.showToast({
+					  title: '该小程序正在开发中',
+					  icon: 'none',
+					  duration: 2000
+					})
+				}
+			})
+			return;
+		}
 		wx.navigateTo({
 			url:nav
 		})

@@ -7,7 +7,7 @@
 				<view class="code-top">
 					<image mode="cover" src="{{avatar}}"></image>
 					<view class="code-t-tit">
-						<text class="tit">推广人</text>
+						<text class="tit">美丽分享</text>
 						<text class="name">{{nickname}}</text>
 						<button class="share-btn" type="primary" size="mini" open-type="share">分享</button>
 					</view>

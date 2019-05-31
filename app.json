@@ -43,5 +43,6 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
+	"navigateToMiniProgramAppIdList":["wxec3573b60b7769c8"],
   "sitemapLocation": "sitemap.json"
 }

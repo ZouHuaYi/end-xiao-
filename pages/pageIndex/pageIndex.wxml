@@ -21,7 +21,7 @@
 	<view class="cont-nav">
 		<view class="nav-list">
 			<block wx:for="{{navList}}" wx:key="{{index}}">
-				<view class="nav-item" bindtap="goToNav" data-url="{{item.url}}" data-link="{{item.link}}">
+				<view class="nav-item" bindtap="goToNav" data-url="{{item.url}}" data-link="{{item.link}}" data-appid="{{item.appid}}">
 					<image src="{{item.img}}" mode="cover"></image>
 					<text>{{item.title}}</text>
 				</view>
